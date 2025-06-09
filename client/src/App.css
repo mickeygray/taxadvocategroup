@@ -259,7 +259,7 @@ body {
 .nav-list a {
   text-decoration: none;
   color: #132e55;
-  font-size: 20px !important;
+  font-size: 18px !important;
   padding: 8px 12px;
   transition: color 0.3s ease-in-out;
 }
