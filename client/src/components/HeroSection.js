@@ -2,16 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
+  const isMobile = window.innerWidth <= 768;
   return (
     <div className="hero-container">
       {/* Background Video */}
-      <video autoPlay muted loop className="hero-video">
-        <source
-          src="images/Cover-Video-by-Shutterstock-1111048265-compressed.mp4"
-          type="video/mp4"
+      {!isMobile ? (
+        <video autoPlay muted loop className="hero-video">
+          <source
+            src="images/Cover-Video-by-Shutterstock-1111048265-compressed.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      ) : (
+        <img
+          src="/images/Cover-Video-by-Shutterstock-1111048265-compressed_9.jpeg"
+          alt="Hero Background"
+          className="hero-image"
         />
-        Your browser does not support the video tag.
-      </video>
+      )}
 
       {/* Overlay Content */}
       <div className="hero-content">

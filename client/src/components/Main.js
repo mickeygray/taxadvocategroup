@@ -4,15 +4,15 @@ const Main = () => {
   return (
     <main className="main-container">
       {/* Welcome Section */}
-      <section class="welcome-section">
-        <div class="welcome-grid">
-          <div class="welcome-text">
+      <section className="welcome-section">
+        <div className="welcome-grid">
+          <div className="welcome-text">
             <h2>We Help Businesses and Individuals Succeed</h2>
             <p>With tailored solutions from industry leading experts.</p>
           </div>
-          <div class="consultation-card">
-            <div class="consultation-content">
-              <span class="call-text">Get a FREE Consultation Today</span>
+          <div className="consultation-card">
+            <div className="consultation-content">
+              <span className="call-text">Get a FREE Consultation Today</span>
               <a href="tel:+18005171807" class="call-button">
                 <i className="fa-solid fa-phone"></i> 800-517-1807
               </a>
