@@ -248,7 +248,7 @@ body {
   list-style: none;
   display: flex;
 
-  gap: 40px;
+  gap: 30px;
 }
 
 .nav-list li {
@@ -711,30 +711,42 @@ body {
     justify-content: center;
     padding: 40px 20px;
   }
+
   .welcome-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-items: center;
+    text-align: center;
+    max-width: 100%;
   }
 
   .welcome-text,
   .consultation-card {
-    max-width: 100%;
-  }
-
-  .welcome-text h2 {
-    font-size: 28px;
-  }
-
-  .welcome-text p {
-    font-size: 20px;
+    width: 100%;
+    max-width: 600px;
   }
 
   .call-button {
     font-size: 20px;
     padding: 12px 20px;
+    display: inline-block;
+    width: auto;
+    max-width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .consultation-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .call-text {
+    margin-bottom: 12px;
+    font-size: 18px;
   }
 }
 

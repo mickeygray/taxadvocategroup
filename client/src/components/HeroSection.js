@@ -25,9 +25,9 @@ const HeroSection = () => {
       {/* Overlay Content */}
       <div className="hero-content">
         <h1 className="hero-title">Tax Advocate Group</h1>
-        <h1 className="hero-subtitle">
+        <h3 className="hero-subtitle">
           Individual and Business Tax Consulting
-        </h1>
+        </h3>
         <h3 className="hero-subtitle">
           We work with businesses and individuals from all over the U.S.
           providing comprehensive and tailored solutions.
