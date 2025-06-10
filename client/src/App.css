@@ -247,6 +247,7 @@ body {
 .nav-list {
   list-style: none;
   display: flex;
+
   gap: 40px;
 }
 
@@ -302,6 +303,7 @@ body {
 
 .nav-phone a {
   display: block;
+  font-size: 1.2rem;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -407,14 +409,30 @@ body {
 }
 
 /* --- LAPTOP-SIZED MONITORS (smaller desktop) --- */
-@media (max-width: 1200px) and (min-width: 769px) {
+@media (max-width: 960px) and (min-width: 769px) {
   .nav-list a {
-    font-size: 18px !important;
-    padding: 6px 8px;
+    font-size: 16px !important;
+    padding: 6px 6px;
   }
 
   .nav-list {
-    gap: 24px;
+    gap: 20px;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-menu {
+    width: 100%;
+    position: static;
+    transform: none;
+    justify-content: center;
+  }
+
+  .nav-phone a {
+    font-size: 15px;
+    padding: 6px 10px;
+    top: 0;
   }
 }
 
@@ -515,6 +533,10 @@ body {
 @media (max-width: 768px) {
   .hero-title {
     font-size: 32px !important;
+  }
+
+  .hero-content h1 {
+    font-size: 25px;
   }
 
   .hero-heading-secondary {
@@ -642,6 +664,9 @@ body {
   margin: 0;
 }
 @media (max-width: 768px) {
+  .welcome-section {
+    max-width: 100%;
+  }
   .welcome-grid {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -650,8 +675,7 @@ body {
 
   .welcome-text,
   .consultation-card {
-    justify-self: center;
-    width: 90%;
+    width: 45%;
   }
 
   .welcome-text h2 {

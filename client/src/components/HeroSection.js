@@ -16,7 +16,7 @@ const HeroSection = () => {
         </video>
       ) : (
         <img
-          src="/images/Cover-Video-by-Shutterstock-1111048265-compressed_9.jpeg"
+          src="images/Cover-Video-by-Shutterstock-1111048265-compressed_9.jpeg"
           alt="Hero Background"
           className="hero-image"
         />
@@ -25,7 +25,9 @@ const HeroSection = () => {
       {/* Overlay Content */}
       <div className="hero-content">
         <h1 className="hero-title">Tax Advocate Group</h1>
-        <h1>Individual and Business Tax Consulting</h1>
+        <h1 className="hero-subtitle">
+          Individual and Business Tax Consulting
+        </h1>
         <h3 className="hero-subtitle">
           We work with businesses and individuals from all over the U.S.
           providing comprehensive and tailored solutions.
