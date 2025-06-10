@@ -704,7 +704,7 @@ body {
   background: #e08b36;
 }
 /* Mobile styling */
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 765px) {
   .welcome-section {
     max-width: 100%;
     display: flex;
@@ -749,7 +749,58 @@ body {
     font-size: 18px;
   }
 }
+@media (max-width: 764px) {
+  .welcome-section {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 16px;
+  }
 
+  .welcome-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .welcome-text,
+  .consultation-card {
+    width: 100%;
+    max-width: 90%;
+  }
+
+  .welcome-text h2 {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+
+  .welcome-text p {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .call-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .call-button {
+    font-size: 18px;
+    padding: 10px 16px;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .consultation-content {
+    width: 100%;
+    align-items: center;
+  }
+}
 /* About Section */
 
 .about-text {

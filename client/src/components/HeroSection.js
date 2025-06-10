@@ -26,9 +26,9 @@ const HeroSection = () => {
       <div className="hero-content">
         <h1 className="hero-title">Tax Advocate Group</h1>
         <h3 className="hero-subtitle">
-          Individual and Business Tax Consulting
-        </h3>
-        <h3 className="hero-subtitle">
+          <strong>Individual and Business Tax Consulting</strong>
+          <br />
+          <br />
           We work with businesses and individuals from all over the U.S.
           providing comprehensive and tailored solutions.
         </h3>
