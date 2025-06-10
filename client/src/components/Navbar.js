@@ -31,8 +31,6 @@ const Navbar = () => {
           <img
             src="/images/tax-advocate-group-logo-small.png"
             alt="Tax Advocate Group Logo"
-            width="140"
-            height="93"
           />
         </a>
       </div>
