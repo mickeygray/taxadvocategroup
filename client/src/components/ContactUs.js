@@ -62,7 +62,7 @@ const ContactUs = () => {
           </p>
           <p>
             <a href="mailto:inquiry@Tax Advocate Grouptaxgroup.com">
-              inquiry@TaxGroupConsultants.com
+              inquiry@TaxAdvocateGroup.com
             </a>
           </p>
         </div>
