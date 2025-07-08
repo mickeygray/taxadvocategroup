@@ -64,6 +64,16 @@ const Footer = () => {
                 Tax Resolution Truth: How to Really Negotiate with the IRS
               </a>
             </li>
+            <li>
+              <a href="/tax-news/irs-wage-garnishment-guide">
+                IRS Wage Garnishment: What It Is and How To Stop It
+              </a>
+            </li>{" "}
+            <li>
+              <a href="/tax-news/irs-bank-levy-guide">
+                Bank Levy: What It Means When the IRS Freezes Your Account
+              </a>
+            </li>
           </ul>
         </div>
       </div>

@@ -107,6 +107,120 @@ const useBlogData = () => {
           "<p>Whether you're facing mounting tax debt, penalties, or IRS collection actions, there are solutions available. With the right guidance and a strategic approach, you can resolve your tax challenges and move forward with financial confidence. Contact <a href='/contact-us'>Tax Advocate Group</a> today to explore your options and start the negotiation process.</p>",
         ],
       },
+      {
+        id: "irs-wage-garnishment-guide",
+        title: "IRS Wage Garnishment: What It Is and How To Stop It",
+        image: "/images/WageGarnishment.png",
+        teaser:
+          "The IRS can legally garnish your wages if you owe back taxes and don’t take action. Learn how the garnishment process works, what signs to look for, and how Tax Advocate Group can help you stop it before your paycheck is affected.",
+        contentTitle: "IRS Wage Garnishment: What It Is and How To Stop It",
+        contentBody: [
+          "<p>Wage garnishment is one of the most serious tools the IRS uses to collect unpaid taxes. If you ignore IRS notices or fail to address your tax debt, the agency can legally instruct your employer to withhold a portion of your paycheck and send it directly to the government. This process can begin with little warning and have a significant impact on your finances—and your workplace reputation.</p>",
+
+          "<h2>How Garnishment Starts: Signs You’re About to Be Garnished</h2>",
+          "<p>According to a <a href='https://www.cbsnews.com/news/irs-debt-wage-garnishment-collection/' target='_blank'>CBS News article</a>, one of the clearest signs you’re about to be garnished is receiving a <strong>Final Notice of Intent to Levy</strong>. This letter gives you just 30 days to resolve your tax issue before the IRS can legally start taking money from your wages.</p>",
+
+          "<p>The notice might arrive as a <strong>CP504</strong> or <strong>LT11</strong> letter. It will include details about your balance, your appeal rights, and the IRS’s intention to garnish your wages or seize your bank accounts if you don’t respond.</p>",
+
+          "<h2>The Legal Framework Behind IRS Garnishments</h2>",
+          "<p>IRS wage garnishments are governed by <a href='https://www.law.cornell.edu/uscode/text/26/6331' target='_blank'>26 U.S. Code § 6331</a>, which authorizes the federal government to collect unpaid taxes through a levy. Once the IRS sends a proper notice and waits the required 30 days, they can begin the garnishment process without court approval.</p>",
+
+          "<p>The IRS typically takes the portion of your income that exceeds minimum living expenses. That amount is calculated using IRS Publication 1494, which sets exempt income thresholds based on filing status and number of dependents.</p>",
+
+          "<h2>How the Garnishment Process Affects You</h2>",
+          "<ul>",
+          "<li>Your employer is legally required to comply once they receive a notice.</li>",
+          "<li>Money is deducted from each paycheck until your tax debt is fully repaid or a resolution is reached.</li>",
+          "<li>You may be forced to explain your financial situation to your employer, creating embarrassment or tension at work.</li>",
+          "</ul>",
+
+          "<h2>How To Stop IRS Wage Garnishment</h2>",
+          "<p>To stop wage garnishment, you must act quickly. Fortunately, there are multiple legal ways to resolve your IRS tax debt and halt the garnishment process:</p>",
+          "<h3>1. File All Missing Returns</h3>",
+          "<p>If you have unfiled tax returns, submit them immediately. The IRS often garnishes wages based on estimated debts. Filing may reduce your balance.</p>",
+
+          "<h3>2. Enter a Payment Plan</h3>",
+          "<p>You can request an <strong>Installment Agreement</strong> with the IRS, which allows you to pay off your debt over time. This can temporarily stop collection actions like garnishments. Learn more about these options directly on the <a href='https://www.irs.gov/payments/payment-plans-installment-agreements' target='_blank'>IRS Installment Agreement page</a>.</p>",
+
+          "<h3>3. Request Currently Not Collectible Status</h3>",
+          "<p>If you’re facing financial hardship, the IRS may classify your account as <strong>Currently Not Collectible</strong>. This halts collection while you recover financially. You'll still owe the debt, but garnishment will stop.</p>",
+
+          "<h3>4. Seek Help from a Tax Professional</h3>",
+          "<p>At <a href='/contact-us'>Tax Advocate Group</a>, we specialize in protecting taxpayers from IRS wage garnishments. Our team reviews your situation, communicates directly with the IRS, and helps you explore all available legal remedies to stop or lift the garnishment.</p>",
+
+          "<h2>What You Need to Provide</h2>",
+          "<p>To stop or negotiate wage garnishment, be prepared to gather:</p>",
+          "<ul>",
+          "<li>IRS notices (e.g., CP504, LT11)</li>",
+          "<li>Pay stubs and proof of income</li>",
+          "<li>Recent tax returns</li>",
+          "<li>Monthly living expenses</li>",
+          "</ul>",
+
+          "<h2>Final Thoughts</h2>",
+          "<p>IRS wage garnishments are stressful and financially damaging—but they are not the end of the road. By acting quickly and consulting a qualified professional, you can stop garnishment, reduce your tax debt, and regain control of your paycheck and your peace of mind.</p>",
+
+          "<p>Start by scheduling a free consultation with <a href='/contact-us'>Tax Advocate Group</a>. We’ll help you assess your options and take the first step toward relief.</p>",
+        ],
+      },
+      {
+        id: "irs-bank-levy-guide",
+        title: "Bank Levy: What It Means When the IRS Freezes Your Account",
+        image: "/images/BankLevy.png",
+        teaser:
+          "A bank levy is one of the most aggressive IRS collection actions—and it can drain your account with no warning. Learn the signs, your rights, and how to stop or reverse a levy before it’s too late. This guide walks you through what to expect and how Tax Advocate Group can help.",
+        contentTitle:
+          "IRS Bank Levies: What They Are and How to Protect Yourself",
+        contentBody: [
+          "<p>If the IRS has sent you a notice about a <strong>bank levy</strong>, your financial situation may be about to get much worse. A bank levy is a legal seizure of funds directly from your bank account. The IRS doesn’t need a court order to do this—just a series of notices, and your account can be frozen and emptied to satisfy unpaid taxes.</p>",
+
+          "<h2>What Is a Bank Levy?</h2>",
+          "<p>According to the <a href='https://www.irs.gov/businesses/small-businesses-self-employed/levy' target='_blank'>IRS</a>, a bank levy is a tool used to collect unpaid taxes when other attempts have failed. Once a levy is in place, your bank is legally obligated to freeze the funds in your account and remit the balance to the IRS after 21 days.</p>",
+          "<p>Per <a href='https://www.law.cornell.edu/uscode/text/26/6331' target='_blank'>26 U.S. Code § 6331</a> (Cornell Law School), the IRS has authority to levy any property or right to property, including bank accounts, wages, and other assets.</p>",
+
+          "<h2>How Does a Bank Levy Work?</h2>",
+          "<ol>",
+          "<li><strong>Notice of Intent to Levy:</strong> The IRS sends a CP504 or LT11 notice, giving you a final warning.</li>",
+          "<li><strong>Account Freeze:</strong> Your bank freezes the account for 21 days from the date of the levy.</li>",
+          "<li><strong>Fund Transfer:</strong> If unresolved, your bank sends the funds directly to the IRS.</li>",
+          "</ol>",
+
+          "<h2>Warning Signs You May Be at Risk</h2>",
+          "<p>According to a <a href='https://www.cbsnews.com/news/irs-bank-account-levies-tax-refund/' target='_blank'>CBS News article</a>, signs you're at risk include:</p>",
+          "<ul>",
+          "<li>Receiving IRS notices for unpaid taxes</li>",
+          "<li>Ignored or unpaid balance letters</li>",
+          "<li>Previous wage garnishment or asset seizure warnings</li>",
+          "</ul>",
+
+          "<h2>What to Do If You Receive a Levy Notice</h2>",
+          "<p>The 21-day period after a levy is your window to act. Options include:</p>",
+          "<ul>",
+          "<li>Paying the full amount</li>",
+          "<li>Requesting a <strong>Collection Due Process (CDP) hearing</strong></li>",
+          "<li>Submitting a financial hardship claim</li>",
+          "</ul>",
+
+          "<p>Investopedia explains that IRS levies can be stopped or avoided if you take immediate steps, including setting up a payment plan or negotiating a temporary hold: <a href='https://www.investopedia.com/terms/b/bank-levy.asp' target='_blank'>Investopedia: Bank Levy</a>.</p>",
+
+          "<h2>Can You Get a Bank Levy Reversed?</h2>",
+          "<p>In some cases, yes. If the levy creates severe financial hardship, the IRS may release it. You may also qualify for hardship relief, but timing is critical. Once the 21-day freeze passes, your funds are gone.</p>",
+
+          "<h2>How Tax Advocate Group Helps</h2>",
+          "<p>At <a href='/contact-us'>Tax Advocate Group</a>, we help clients respond immediately to levy notices. Our tax professionals contact the IRS, request holds, and negotiate on your behalf. Whether you need to stop the levy, request penalty abatement, or restructure your tax debt, we help protect your assets and regain control of your finances.</p>",
+
+          "<h2>Documents You’ll Need</h2>",
+          "<ul>",
+          "<li>IRS notices (CP504, LT11, etc.)</li>",
+          "<li>Recent bank statements</li>",
+          "<li>Proof of income and expenses</li>",
+          "<li>Previous tax returns</li>",
+          "</ul>",
+
+          "<h2>Final Thoughts</h2>",
+          "<p>IRS bank levies are serious. If you’ve received a notice or suspect your account may be frozen, you need to act now. Contact <a href='/contact-us'>Tax Advocate Group</a> to explore your options and avoid losing access to your money.</p>",
+        ],
+      },
     ]);
   }, []);
 
