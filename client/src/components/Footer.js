@@ -54,6 +54,11 @@ const Footer = () => {
           <h4>Recent Posts</h4>
           <ul>
             <li>
+              <a href="/tax-news/tax-advocate-bill-of-rights">
+                How a Tax Advocate Embodies the Taxpayer Bill of Rights
+              </a>
+            </li>
+            <li>
               <a href="/tax-news/understanding-tax-relief">
                 Understanding Tax Relief: Solutions to Ease Your Financial
                 Burden

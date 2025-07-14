@@ -7,6 +7,62 @@ const useBlogData = () => {
     // Simulated API fetch (Replace with actual API call)
     setBlogs([
       {
+        id: "tax-advocate-bill-of-rights",
+        title: "How a Tax Advocate Embodies the Taxpayer Bill of Rights",
+        image: "/images/BillOfRights.png",
+        teaser:
+          "Every taxpayer is protected by ten fundamental rights. Learn what these rights mean, how a Tax Advocate embodies them in their work.",
+        contentTitle: "How a Tax Advocate Embodies the Taxpayer Bill of Rights",
+        contentBody: [
+          "<h2>The Taxpayer Bill of Rights</h2>",
+          "<ul>",
+          "<li>The Right to Be Informed</li>",
+          "<li>The Right to Quality Service</li>",
+          "<li>The Right to Pay No More than the Correct Amount of Tax</li>",
+          "<li>The Right to Challenge the IRS’s Position and Be Heard</li>",
+          "<li>The Right to Appeal an IRS Decision in an Independent Forum</li>",
+          "<li>The Right to Finality</li>",
+          "<li>The Right to Privacy</li>",
+          "<li>The Right to Confidentiality</li>",
+          "<li>The Right to Retain Representation</li>",
+          "<li>The Right to a Fair and Just Tax System</li>",
+          "</ul>",
+
+          "<h3>1. The Right to Be Informed</h3>",
+          "<p><strong>The Tax Advocate</strong> ensures that taxpayers understand their obligations and rights by producing plain-language notices, educational tools, and online resources. The principle here is that knowledge is the foundation of fairness. At <strong>Tax Advocate Group</strong>, we carry that forward by explaining every step of the resolution process to our clients—translating IRS language into plain English and giving them the clarity they need to act confidently.</p>",
+
+          "<h3>2. The Right to Quality Service</h3>",
+          "<p><strong>The Tax Advocate</strong> provides dedicated assistance to taxpayers facing economic harm, offering a human touch in a bureaucratic system. The spirit behind this is dignity and professionalism. At <strong>Tax Advocate Group</strong>, our consultants, CPAs, attorneys, and enrolled agents make it a point to treat every client with care and urgency, providing honest timelines and empathetic counsel.</p>",
+
+          "<h3>3. The Right to Pay No More than the Correct Amount of Tax</h3>",
+          "<p><strong>The Tax Advocate</strong> helps taxpayers correct account errors and delays that result in overpayment. This is rooted in fairness and accuracy. At <strong>Tax Advocate Group</strong>, we often conduct deep reviews of wage garnishments or levies and uncover instances where our clients were overcharged—helping them get relief or refunds they might not have known they were entitled to.</p>",
+
+          "<h3>4. The Right to Challenge the IRS’s Position and Be Heard</h3>",
+          "<p><strong>The Tax Advocate</strong> supports taxpayers who dispute IRS notices or have been denied a voice. The principle here is due process. At <strong>Tax Advocate Group</strong>, we prepare detailed responses, appeals, and support documentation that ensure our clients' side of the story is taken seriously. We take pride in helping people be heard.</p>",
+
+          "<h3>5. The Right to Appeal an IRS Decision in an Independent Forum</h3>",
+          "<p><strong>The Tax Advocate</strong> ensures access to appeals and oversight when a taxpayer disagrees with a determination. This speaks to transparency and checks on power. At <strong>Tax Advocate Group</strong>, we guide our clients through IRS Appeals or Tax Court when needed, and make sure no one has to go it alone in front of the federal government.</p>",
+
+          "<h3>6. The Right to Finality</h3>",
+          "<p><strong>The Tax Advocate</strong> works to resolve cases efficiently and protect taxpayers from lingering uncertainty. The principle is closure and certainty. At <strong>Tax Advocate Group</strong>, we focus on giving clients timelines, realistic expectations, and clear endpoints. No one deserves to live under the shadow of tax debt forever.</p>",
+
+          "<h3>7. The Right to Privacy</h3>",
+          "<p><strong>The Tax Advocate</strong> makes sure IRS investigations and enforcement respect legal boundaries and minimize intrusion. The core idea is respect for personal and financial boundaries. At <strong>Tax Advocate Group</strong>, we advocate for protection from overreach and ensure that enforcement actions are proportional and legally grounded.</p>",
+
+          "<h3>8. The Right to Confidentiality</h3>",
+          "<p><strong>The Tax Advocate</strong> upholds strict safeguards against the misuse of personal information. Trust and discretion are the key values here. At <strong>Tax Advocate Group</strong>, every client record is treated with the highest degree of confidentiality—we understand that resolving your tax issues shouldn’t come at the cost of your privacy.</p>",
+
+          "<h3>9. The Right to Retain Representation</h3>",
+          "<p><strong>The Tax Advocate</strong> makes sure taxpayers know they can be represented at every stage of dealing with the IRS. This right stands for agency and protection. At <strong>Tax Advocate Group</strong>, we offer representation by licensed professionals who not only understand tax law but also protect clients from intimidation or procedural errors.</p>",
+
+          "<h3>10. The Right to a Fair and Just Tax System</h3>",
+          "<p><strong>The Tax Advocate</strong> helps taxpayers in hardship situations and works to reform systemic issues. The idea here is that justice must adapt to context. At <strong>Tax Advocate Group</strong>, we specialize in helping people whose tax problems stem from real financial strain—crafting solutions that restore balance, not just collect money.</p>",
+
+          "<h2>What It Means to Be a True <strong>Tax Advocate</strong></h2>",
+          "<p>The principles laid out in the Taxpayer Bill of Rights—fairness, transparency, accountability, respect, and the opportunity to be heard—are the foundation of what it means to serve people facing challenges with the Internal Revenue Service. At <strong>Tax Advocate Group</strong>, we strive every day to embody these values. Whether it's providing clear guidance, helping clients understand their options, or standing by them during tough times, our goal is to deliver the kind of support every taxpayer deserves. Being a true <strong>Tax Advocate</strong> means making sure people aren’t just represented—it means making sure they’re respected.</p>",
+        ],
+      },
+      {
         id: "understanding-tax-relief",
         title: "Understanding Tax Relief",
         image: "/images/tax-relief.png",
