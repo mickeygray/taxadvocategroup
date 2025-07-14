@@ -55,7 +55,7 @@ const Footer = () => {
           <ul>
             <li>
               <a href="/tax-news/tax-advocate-bill-of-rights">
-                How a Tax Advocate Embodies the Taxpayer Bill of Rights
+                Your Rights as a Taxpayer and How We Embody Them
               </a>
             </li>
             <li>
