@@ -7,9 +7,79 @@ const useBlogData = () => {
     // Simulated API fetch (Replace with actual API call)
     setBlogs([
       {
+        id: "irs-cp501-notice-guide",
+        title: "What to Do If You Receive an IRS CP501 Notice",
+        image: "/images/CP501.png", // Replace with your actual image path
+        teaser:
+          "The IRS CP501 is your first official notice that a tax balance is due. Learn what it means, why you received it, and what to do before collections escalate.",
+        contentTitle: "What to Do If You Receive an IRS CP501 Notice",
+        contentBody: [
+          "<h2>What Is an IRS CP501 Notice?</h2>",
+          "<p>If you’ve received a <strong>CP501 notice</strong> from the <strong>IRS</strong>, it means the government believes you <strong>owe taxes</strong> — and they want to make sure you know it. The CP501 is the <strong>first formal balance due notice</strong> issued by the IRS. While it doesn’t come with threats or enforcement action, it signals that <strong>you’re now officially in the IRS collection system</strong>.</p>",
+
+          "<h2>Who Sends the CP501?</h2>",
+          "<p>The CP501 is sent by the IRS’s <strong>Automated Collection System (ACS)</strong> — not a Revenue Officer. That’s important: it means your file hasn’t yet been escalated to a field agent or enforcement team. But the clock has started ticking.</p>",
+
+          "<h2>What’s in the CP501?</h2>",
+          "<ul>",
+          "<li>The <strong>amount the IRS says you owe</strong></li>",
+          "<li>The <strong>tax year</strong> in question</li>",
+          "<li><strong>Penalties and interest</strong>, if applicable</li>",
+          "<li>A <strong>due date</strong> (usually 21 days from the notice date)</li>",
+          "<li><strong>IRS contact information</strong> and payment options</li>",
+          "</ul>",
+          "<p>It’s mailed by standard USPS First Class — not certified or tracked. That doesn’t make it less serious — just early in the process.</p>",
+
+          "<h2>Common Issues With CP501 Notices</h2>",
+          "<ul>",
+          "<li><strong>Already paid?</strong> You might still receive a CP501 due to <em>processing delays</em>.</li>",
+          "<li><strong>Wrong balance?</strong> Notices may be based on <em>estimates or errors</em>, especially after late or amended filings.</li>",
+          "<li><strong>Multiple CP501s?</strong> You may owe for <em>more than one tax year</em>.</li>",
+          "<li><strong>Unexpected bill?</strong> CP501s often result from <em>underreported income</em>, incorrect withholdings, or missing 1099s/W-2s.</li>",
+          "</ul>",
+
+          "<h2>What the CP501 Is — and Isn’t</h2>",
+          "<p><strong>✅ It IS:</strong></p>",
+          "<ul>",
+          "<li>A <strong>formal balance due notice</strong> from the IRS</li>",
+          "<li>A sign that you're <strong>in the collections system</strong></li>",
+          "<li>An <strong>early opportunity</strong> to respond or resolve</li>",
+          "</ul>",
+          "<p><strong>❌ It is NOT:</strong></p>",
+          "<ul>",
+          "<li>A <strong>levy or lien notice</strong></li>",
+          "<li>Issued by a <strong>Revenue Officer</strong></li>",
+          "<li>Connected to <strong>passport revocation</strong> or asset seizure</li>",
+          "</ul>",
+
+          "<h2>Steps to Take After Receiving a CP501</h2>",
+          "<ol>",
+          "<li><strong>Request your IRS transcripts</strong> — wage/income and account transcripts confirm the balance.</li>",
+          "<li><strong>Review your tax return</strong> for errors or missing income.</li>",
+          "<li><strong>Document your financials</strong> in case you qualify for relief programs.</li>",
+          "<li><strong>Explore resolution options</strong>:",
+          "<ul>",
+          "<li>Installment Agreement</li>",
+          "<li>Offer in Compromise</li>",
+          "<li>Currently Not Collectible status</li>",
+          "<li>Penalty abatement</li>",
+          "</ul>",
+          "</li>",
+          "<li><strong>Talk to a professional</strong> — especially if you’ve received multiple notices or your balance is growing.</li>",
+          "</ol>",
+
+          "<h2>Why Early Action Matters</h2>",
+          "<p>The <strong>CP501 won’t lead to a levy</strong> or garnishment on its own, but <strong>ignoring it will trigger more serious notices</strong> like the <strong>CP503</strong>, <strong>CP504</strong>, or <strong>LT11</strong>. Each step increases your enforcement risk. Acting early preserves your options and can help you avoid IRS collections altogether.</p>",
+
+          "<h2>Tax Advocate Group Can Help</h2>",
+          "<p>At <strong>Tax Advocate Group</strong>, we help taxpayers understand IRS letters and resolve their tax debt quickly and affordably. Whether you're trying to verify your balance or explore settlement options, we’re here to help you respond confidently to the IRS.</p>",
+          "<p><strong>Received a CP501?</strong> Contact us today to schedule a <em>free consultation</em> and learn your options.</p>",
+        ],
+      },
+      {
         id: "tax-advocate-bill-of-rights",
         title: "How a Tax Advocate Embodies the Taxpayer Bill of Rights",
-        image: "/images/BillOfRights.png",
+        image: "/images/Rights.png",
         teaser:
           "Every taxpayer is protected by ten fundamental rights. Learn what these rights mean, how a Tax Advocate embodies them in their work.",
         contentTitle: "How a Tax Advocate Embodies the Taxpayer Bill of Rights",
