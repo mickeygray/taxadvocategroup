@@ -53,6 +53,12 @@ const Footer = () => {
         <div className="footer-column">
           <h4>Recent Posts</h4>
           <ul>
+            {" "}
+            <li>
+              <a href="/tax-news/irs-cp501-notice-guide">
+                IRS Notice CP 501 - What does it means?
+              </a>
+            </li>
             <li>
               <a href="/tax-news/tax-advocate-bill-of-rights">
                 Your Rights as a Taxpayer and How We Embody Them
