@@ -58,7 +58,7 @@ const ContactUs = () => {
           <i className="fas fa-phone-alt"></i>
           <h3>Contacts</h3>
           <p>
-            <a href="tel:+18669643565">800-517-1807</a>
+            <a href="tel:+18669643565">1-800-517-1807</a>
           </p>
           <p>
             <a href="mailto:inquiry@Tax Advocate Grouptaxgroup.com">

@@ -79,7 +79,7 @@ const useBlogData = () => {
       {
         id: "tax-advocate-bill-of-rights",
         title: "How a Tax Advocate Embodies the Taxpayer Bill of Rights",
-        image: "/images/Rights.png",
+        image: "/images/BillOfRights.png",
         teaser:
           "Every taxpayer is protected by ten fundamental rights. Learn what these rights mean, how a Tax Advocate embodies them in their work.",
         contentTitle: "How a Tax Advocate Embodies the Taxpayer Bill of Rights",
