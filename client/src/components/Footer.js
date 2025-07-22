@@ -45,7 +45,7 @@ const Footer = () => {
           <p>Chatsworth, CA 91331</p>
           <p>
             <i className="fa-solid fa-phone"></i>
-            {"   "} 800-517-1807
+            {"   "} 1-800-517-1807
           </p>
         </div>
 
