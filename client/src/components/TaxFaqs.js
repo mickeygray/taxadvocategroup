@@ -64,7 +64,7 @@ const TaxFaqs = () => {
         className="faq-hero-section"
         aria-label="Page Title Bar"
         style={{
-          backgroundImage: `url("/images/hero-2.png")`,
+          backgroundImage: `url(${process.env.PUBLIC_URL}/images/hero-2.png)`,
         }}
       >
         <div className="faq-hero-content">
