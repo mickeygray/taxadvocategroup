@@ -4,8 +4,60 @@ const useBlogData = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    // Simulated API fetch (Replace with actual API call)
     setBlogs([
+      {
+        id: "irs-cp503-notice-guide",
+        title: "What to Do If You Receive an IRS CP503 Notice",
+        image: "/images/CP503.png", // Replace with your actual image path
+        teaser:
+          "The IRS CP503 is your second official notice that a tax balance remains unpaid. Learn why you received it, how it differs from CP501, and what steps to take before collections escalate.",
+        contentTitle: "What to Do If You Receive an IRS CP503 Notice",
+        contentBody: [
+          "<h2>What Is an IRS CP503 Notice?</h2>",
+          "<p>The <strong>IRS CP503 notice</strong> is the <strong>second reminder</strong> that you still owe a tax balance. It’s sent when you haven’t responded to the first notice (CP501) or haven’t paid in full. While it’s not a levy threat yet, it shows the IRS is escalating its collection process and warning you about potential liens if you continue to ignore it.</p>",
+
+          "<h2>Who Sends the CP503?</h2>",
+          "<p>Like CP501, this notice is sent by the <strong>IRS Automated Collection System (ACS)</strong>. It’s still considered an early-stage collection notice and is delivered by regular mail — not certified. However, the tone and language are more urgent because you’ve already been contacted once.</p>",
+
+          "<h2>How CP503 Differs from CP501</h2>",
+          "<ul>",
+          "<li><strong>Heading change:</strong> CP503 says <em>“Second reminder: You have unpaid taxes for [tax year]”</em> instead of CP501’s softer <em>“You have unpaid taxes for [tax year]”</em>.</li>",
+          "<li><strong>Deadline language:</strong> CP503 includes specific due dates and warns of <em>additional penalties and interest</em> if you don’t pay immediately.</li>",
+          "<li><strong>Lien mention:</strong> CP503 introduces the possibility of a <em>Notice of Federal Tax Lien</em> — something CP501 doesn’t mention.</li>",
+          "</ul>",
+          "<p>This is the IRS’s way of documenting non-response and preparing for stronger collection actions.</p>",
+
+          "<h2>Why Did You Receive CP503?</h2>",
+          "<ul>",
+          "<li>You ignored or missed responding to CP501.</li>",
+          "<li>You made a partial payment, leaving a balance.</li>",
+          "<li>You haven’t set up a payment plan or contacted the IRS.</li>",
+          "</ul>",
+
+          "<h2>What Happens if You Ignore CP503?</h2>",
+          "<p>If you don’t respond to CP503, the IRS can:</p>",
+          "<ul>",
+          "<li>Apply more penalties and interest</li>",
+          "<li>File a <strong>Notice of Federal Tax Lien</strong>, which can affect your credit and ability to borrow</li>",
+          "<li>Send the next letter, <strong>CP504</strong>, often via certified mail, warning of an intent to levy</li>",
+          "</ul>",
+
+          "<h2>Steps to Take After Receiving a CP503</h2>",
+          "<ol>",
+          "<li><strong>Check your IRS account</strong> to confirm the balance is correct.</li>",
+          "<li><strong>Review your tax return</strong> for possible errors or missing income documents.</li>",
+          "<li><strong>Resolve your balance</strong> — pay in full, set up an installment agreement, or explore relief programs like an Offer in Compromise or hardship status.</li>",
+          "<li><strong>Seek professional help</strong> if you’re unable to pay or have received multiple notices.</li>",
+          "</ol>",
+
+          "<h2>Why Early Action Matters</h2>",
+          "<p>CP503 is not a levy or seizure notice, but it shows the IRS is escalating. If ignored, the next step (CP504) is often sent by certified mail and can lead to liens and levies. Early action preserves your options and prevents more aggressive collection measures.</p>",
+
+          "<h2>Tax Advocate Group Can Help</h2>",
+          "<p>At <strong>Tax Advocate Group</strong>, we help taxpayers navigate IRS notices and resolve tax debt before it escalates. Whether it’s verifying your balance, stopping penalty growth, or negotiating payment plans, our team is ready to help.</p>",
+          "<p><strong>Received a CP503?</strong> Contact us today for a <em>free consultation</em> and get ahead of IRS collections.</p>",
+        ],
+      },
       {
         id: "irs-cp501-notice-guide",
         title: "What to Do If You Receive an IRS CP501 Notice",

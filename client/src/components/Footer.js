@@ -55,6 +55,11 @@ const Footer = () => {
           <ul>
             {" "}
             <li>
+              <a href="/tax-news/irs-cp503-notice-guide">
+                IRS Notice CP 503 - Your Second Warning
+              </a>
+            </li>
+            <li>
               <a href="/tax-news/irs-cp501-notice-guide">
                 IRS Notice CP 501 - What does it means?
               </a>
@@ -62,17 +67,6 @@ const Footer = () => {
             <li>
               <a href="/tax-news/tax-advocate-bill-of-rights">
                 Your Rights as a Taxpayer and How We Embody Them
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/understanding-tax-relief">
-                Understanding Tax Relief: Solutions to Ease Your Financial
-                Burden
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/irs-negotiation-tips">
-                Tax Resolution Truth: How to Really Negotiate with the IRS
               </a>
             </li>
             <li>
