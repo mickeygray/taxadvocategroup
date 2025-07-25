@@ -23,8 +23,8 @@
     "eject": "react-scripts eject"
   },
   "reactSnap": {
-    "inlineCss": true,
-    "minifyCss": true
+    "inlineCss": false,
+    "fixWebpackChunksIssue": true
   },
   "eslintConfig": {
     "extends": [
