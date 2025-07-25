@@ -24,7 +24,8 @@
   },
   "reactSnap": {
     "inlineCss": false,
-    "fixWebpackChunksIssue": true
+    "fixWebpackChunksIssue": true,
+    "minifyCss": true
   },
   "eslintConfig": {
     "extends": [
