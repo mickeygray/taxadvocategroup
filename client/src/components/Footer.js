@@ -55,6 +55,11 @@ const Footer = () => {
           <ul>
             {" "}
             <li>
+              <a href="/tax-news/small-business-tax-pitfalls">
+                Small Business Tax Pitfalls
+              </a>
+            </li>
+            <li>
               <a href="/tax-news/irs-cp503-notice-guide">
                 IRS Notice CP 503 - Your Second Warning
               </a>

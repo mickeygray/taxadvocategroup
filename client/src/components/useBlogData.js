@@ -6,6 +6,68 @@ const useBlogData = () => {
   useEffect(() => {
     setBlogs([
       {
+        id: "small-business-tax-pitfalls",
+        title: "7 Tax Pitfalls Small Businesses Face and How to Avoid Them",
+        image: "/images/small-business-taxes.jpg", // Replace with your actual image path
+        teaser:
+          "Many small businesses fall into common tax traps that cost time, money, and peace of mind. Learn what they are, how they affect you, and how Tax Advocate Group helps you stay compliant and confident.",
+        contentTitle:
+          "7 Tax Pitfalls Small Businesses Face and How to Avoid Them",
+        contentBody: [
+          "<h2>1. Mixing Business and Personal Finances</h2>",
+          "<p><em>“It’s all my money anyway; I can figure it out at tax time.”</em></p>",
+          "<h3>The Reality</h3>",
+          "<p>Business finances should be separate from personal spending. When accounts and cards are mixed, it becomes difficult to track true business performance, document deductions, and protect yourself in an audit. Blended finances also weaken liability protection for some business structures.</p>",
+          "<h3>The Right Approach</h3>",
+          "<p>Keep business accounts separate and maintain clear expense records. <strong>Tax Advocate Group</strong> helps set up systems that keep finances clean and deductions easy to document, reducing stress and audit risk.</p>",
+
+          "<h2>2. Ignoring Quarterly Estimated Taxes</h2>",
+          "<p><em>“I’ll just pay everything when I file my taxes next year.”</em></p>",
+          "<h3>The Reality</h3>",
+          "<p>Quarterly tax payments cover income not subject to withholding. Skipping them often leads to IRS penalties and a large, unexpected tax bill at year-end, which can strain cash flow and disrupt operations.</p>",
+          "<h3>The Right Approach</h3>",
+          "<p>Plan ahead with accurate quarterly estimates to avoid penalties. <strong>Tax Advocate Group</strong> calculates estimates and helps you manage cash flow so taxes are handled smoothly and on time.</p>",
+
+          "<h2>3. Poor Record-Keeping</h2>",
+          "<p><em>“I’ll just keep my receipts and figure it out later.”</em></p>",
+          "<h3>The Reality</h3>",
+          "<p>Record keeping is more than saving receipts—it’s tracking every dollar in and out. Without organized records, you risk missed deductions, filing errors, and limited insight into your business’s financial health. Audits become harder to defend and financial decisions become guesswork.</p>",
+          "<h3>The Right Approach</h3>",
+          "<p>Maintain accurate, year-round records to support tax filings and business planning. <strong>Tax Advocate Group</strong> helps implement simple, reliable systems that keep your books accurate and audit-ready.</p>",
+
+          "<h2>4. Misclassifying Workers</h2>",
+          "<p><em>“It’s easier to call everyone a contractor and skip payroll headaches.”</em></p>",
+          "<h3>The Reality</h3>",
+          "<p>Worker classification determines how taxes are handled and who bears responsibility for payroll. Misclassifying employees as contractors can lead to penalties, back taxes, and legal disputes.</p>",
+          "<h3>The Right Approach</h3>",
+          "<p>Classify workers correctly based on IRS guidelines. <strong>Tax Advocate Group</strong> reviews your workforce and helps ensure compliance to avoid costly mistakes.</p>",
+
+          "<h2>5. Waiting Until Tax Season to Think About Taxes</h2>",
+          "<p><em>“Taxes are a once-a-year problem.”</em></p>",
+          "<h3>The Reality</h3>",
+          "<p>Taxes affect every business decision, from purchases to hiring. Waiting until filing season misses planning opportunities and often leads to higher taxes and more stress.</p>",
+          "<h3>The Right Approach</h3>",
+          "<p>Take a year-round approach to tax planning. <strong>Tax Advocate Group</strong> monitors your business throughout the year and adjusts strategies proactively so you save money and avoid last-minute scrambling.</p>",
+
+          "<h2>6. Missing Deductions and Credits</h2>",
+          "<p><em>“Small deductions don’t make much difference.”</em></p>",
+          "<h3>The Reality</h3>",
+          "<p>Deductions and credits reduce your tax bill, and small ones add up quickly. Ignoring them or assuming they’re not worth tracking can cost thousands over time.</p>",
+          "<h3>The Right Approach</h3>",
+          "<p>Document and claim every eligible deduction and credit. <strong>Tax Advocate Group</strong> identifies opportunities and ensures you claim all benefits legally available to your business.</p>",
+
+          "<h2>7. Using the Wrong Business Entity Structure</h2>",
+          "<p><em>“I started as a sole proprietor; changing is too complicated.”</em></p>",
+          "<h3>The Reality</h3>",
+          "<p>Your business entity determines how taxes are calculated and how much liability protection you have. An incorrect structure can mean higher taxes and unnecessary personal risk.</p>",
+          "<h3>The Right Approach</h3>",
+          "<p>Select the right structure to optimize taxes and protect assets. <strong>Tax Advocate Group</strong> reviews your goals and finances and helps implement entity changes that work best for you.</p>",
+
+          "<h2>Take Control of Your Taxes</h2>",
+          "<p>These pitfalls don’t just cause paperwork—they create stress, financial risk, and lost opportunities. <strong>Tax Advocate Group</strong> helps small businesses stay organized, compliant, and confident year-round. <a href='#'>Contact us today</a> to schedule your free consultation and take control of your business finances.</p>",
+        ],
+      },
+      {
         id: "irs-cp503-notice-guide",
         title: "What to Do If You Receive an IRS CP503 Notice",
         image: "/images/CP503.png", // Replace with your actual image path
