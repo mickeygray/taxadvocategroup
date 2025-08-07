@@ -53,7 +53,11 @@ const Footer = () => {
         <div className="footer-column">
           <h4>Recent Posts</h4>
           <ul>
-            {" "}
+            <li>
+              <a href="/tax-news/retirement-tax-guide">
+                Retirement Account Tax Concerns
+              </a>
+            </li>
             <li>
               <a href="/tax-news/small-business-tax-pitfalls">
                 Small Business Tax Pitfalls
@@ -78,7 +82,7 @@ const Footer = () => {
               <a href="/tax-news/irs-wage-garnishment-guide">
                 IRS Wage Garnishment: What It Is and How To Stop It
               </a>
-            </li>{" "}
+            </li>
             <li>
               <a href="/tax-news/irs-bank-levy-guide">
                 Bank Levy: What It Means When the IRS Freezes Your Account
