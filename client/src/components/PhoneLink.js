@@ -28,56 +28,10 @@ export default function PhoneLink({ rawNumber = "", className = "" }) {
   const tel = `tel:${toE164(rawNumber)}`;
   const display = formatUS(rawNumber);
 
-  const trackContact = () => {
-    // Prefer sendBeacon to avoid losing the event on navigation
-    try {
-      const payload = JSON.stringify({
-        event: "Contact",
-        contact_method: "phone",
-        label: "PhoneLink",
-        ts: Date.now(),
-      });
-
-      // GA4 optional
-      if (typeof window !== "undefined" && typeof window.gtag === "function") {
-        window.gtag("event", "contact", {
-          method: "phone",
-          event_label: "PhoneLink",
-        });
-      }
-
-      // Meta Pixel
-      if (typeof window !== "undefined" && typeof window.fbq === "function") {
-        window.fbq("track", "Contact", {
-          contact_method: "phone",
-          label: "PhoneLink",
-        });
-      }
-
-      // Try to persist something even if fbq is blocked (analytics endpoint you own)
-      if (navigator.sendBeacon) {
-        // Replace with your own endpoint if you want server logs
-        navigator.sendBeacon("/beacon/contact", payload);
-      }
-    } catch (_) {}
-  };
-
-  const handleClick = (e) => {
-    // Strategy 1: fire and let the browser immediately open the dialer.
-    // Works well with sendBeacon; keeps UX snappy.
-    trackContact();
-
-    // If you see drops on iOS, switch to Strategy 2 below:
-    // e.preventDefault();
-    // trackContact();
-    // setTimeout(() => { window.location.href = tel; }, 200);
-  };
-
   return (
     <a
       href={tel}
       className={`phone-button ${className}`}
-      onClick={handleClick}
       aria-label={`Call ${display}`}
     >
       <i className="fa-solid fa-phone" aria-hidden="true"></i> CALL: {display}
