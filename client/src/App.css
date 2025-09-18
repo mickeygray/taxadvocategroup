@@ -589,7 +589,26 @@ body {
     font-size: 1rem;
   }
 }
+.phone-button {
+  display: inline-block;
+  margin: 10px 0;
+  text-align: center;
+  font-weight: bold;
+  color: #fff !important;
+  background: #0073e6;
+  border: none;
+  text-decoration: none;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+}
 
+.phone-button:hover {
+  background: #005bb5;
+  transform: translateY(-2px);
+}
 /* Even smaller devices */
 @media (max-width: 480px) {
   .landing-hero-title {
