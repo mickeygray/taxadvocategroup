@@ -40,8 +40,7 @@ const ThankYou = () => {
           <div className="hero-text-overlay">
             <h1 className="landing-hero-company-name">Tax Advocate Group</h1>
             <h1 className="landing-hero-title">
-              Thank You For Your Submission, Someone Will Be Calling You
-              Shortly.
+              Thank You For Your Submission, Someone Will Call You Shortly.
             </h1>
 
             <div className="hero-buttons">
