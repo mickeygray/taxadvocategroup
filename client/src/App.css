@@ -603,11 +603,13 @@ body {
   font-size: 1.25rem;
   padding: 1rem 2rem;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .phone-button:hover {
   background: #005bb5;
   transform: translateY(-2px);
+  cursor: pointer;
 }
 /* Even smaller devices */
 @media (max-width: 480px) {
