@@ -181,10 +181,7 @@ const Navbar = () => {
                 <Link to="/tax-news">Tax News</Link>
               </li>
               <li className="nav-phone">
-                <a href="tel:+18005171807" className="nav-btn">
-                  <i className="fa-solid fa-phone"></i>
-                  <PhoneLink rawNumber="18005171807" />
-                </a>
+                <PhoneLink rawNumber="18005171807" />
               </li>
             </ul>
           </nav>
@@ -230,9 +227,7 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li className="nav-phone">
-                    <a href="tel:+18669643565" onClick={toggleMenu}>
-                      Call: 800-517-1807
-                    </a>
+                    <PhoneLink rawNumber="18005171807" />
                   </li>
                 </ul>
               </div>
