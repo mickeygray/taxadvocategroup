@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// Ensure you have a separate CSS file
+import PhoneLink from "./PhoneLink";
 
 const Footer = () => {
   return (
@@ -44,8 +44,7 @@ const Footer = () => {
           <p>21625 Prairie Street, Suite #200</p>
           <p>Chatsworth, CA 91331</p>
           <p>
-            <i className="fa-solid fa-phone"></i>
-            {"   "} 1-800-517-1807
+            <PhoneLink rawNumber="18005171807" />
           </p>
         </div>
 

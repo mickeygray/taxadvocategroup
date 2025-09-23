@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import leadContext from "../context/leadContext";
+import PhoneLink from "./PhoneLink";
 const ContactUs = () => {
   const { sendEmail } = useContext(leadContext);
 
@@ -58,7 +59,7 @@ const ContactUs = () => {
           <i className="fas fa-phone-alt"></i>
           <h3>Contacts</h3>
           <p>
-            <a href="tel:+18669643565">1-800-517-1807</a>
+            <PhoneLink rawNumber="18005171807" />
           </p>
           <p>
             <a href="mailto:inquiry@Tax Advocate Grouptaxgroup.com">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import PhoneLink from "./PhoneLink";
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
@@ -183,7 +183,7 @@ const Navbar = () => {
               <li className="nav-phone">
                 <a href="tel:+18005171807" className="nav-btn">
                   <i className="fa-solid fa-phone"></i>
-                  {"  "} CALL: 800-517-1807
+                  <PhoneLink rawNumber="18005171807" />
                 </a>
               </li>
             </ul>
