@@ -1,5 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 import useBlogData from "./useBlogData";
+import SEO from "./SEO";
+import { orgSchema, blogPostingSchema } from "../utils/structuredData";
+
+const FALLBACK_HERO = "/images/contact-hero.png";
 
 const TaxNewsArticle = () => {
   const { id } = useParams();
@@ -43,10 +47,16 @@ const TaxNewsArticle = () => {
 
   return (
     <div className="tax-news-detail">
+      <SEO
+        title={`${blog.contentTitle} | Tax Advocate Group`}
+        description={blog.teaser}
+        canonical={`/tax-news/${blog.id}`}
+        structuredData={[orgSchema, blogPostingSchema(blog)]}
+      />
       {/* Hero with overlay */}
       <header
         className="tax-news-hero"
-        style={{ backgroundImage: `url(${blog.image})` }}
+        style={{ backgroundImage: `url(${blog.image || FALLBACK_HERO})` }}
       >
         <div className="tax-news-overlay"></div>
         <div className="tax-news-content">

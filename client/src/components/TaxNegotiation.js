@@ -1,8 +1,16 @@
 import React from "react";
+import SEO from "./SEO";
+import { orgSchema, serviceSchema } from "../utils/structuredData";
 
 const TaxNegotiation = () => {
   return (
     <div className="tax-negotiation-page">
+      <SEO
+        title="Tax Negotiation Services | Offer in Compromise & Payment Plans | Tax Advocate Group"
+        description="Tax negotiation services including offers in compromise, installment agreements, penalty abatement, and currently not collectible status. Call Tax Advocate Group."
+        canonical="/tax-negotiation"
+        structuredData={[orgSchema, serviceSchema("Tax Negotiation", "Tax negotiation services including offers in compromise, installment agreements, and penalty abatement.", "Tax Negotiation")]}
+      />
       {/* Hero Section */}
       <section
         className="tax-negotiation-hero"

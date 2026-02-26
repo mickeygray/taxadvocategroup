@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PhoneLink from "./PhoneLink";
+import useBlogData from "./useBlogData";
 
 const Footer = () => {
+  const { blogs } = useBlogData();
+  const recentPosts = blogs.slice(0, 5);
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -15,6 +19,9 @@ const Footer = () => {
             </li>
             <li>
               <Link to="/our-tax-services">Services</Link>
+            </li>
+            <li>
+              <Link to="/state-tax-guide">State Tax Guide</Link>
             </li>
             <li>
               <Link to="/tax-faqs">Tax FAQs</Link>
@@ -48,55 +55,15 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Column 4: Recent Posts */}
+        {/* Column 3: Recent Posts (dynamic) */}
         <div className="footer-column">
           <h4>Recent Posts</h4>
           <ul>
-            <li>
-              <a href="/tax-news/irs-cp504-final-notice-guide">
-                IRS Notice CP-504 - The Final Notice
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/questions-about-my-1099-truck-driver-edition">
-                Questions About My 1099: Truck Driver Edition
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/retirement-tax-guide">
-                Retirement Account Tax Questions And Answers
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/small-business-tax-pitfalls">
-                Small Business Tax Pitfalls
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/irs-cp503-notice-guide">
-                IRS Notice CP 503 - Your Second Warning
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/irs-cp501-notice-guide">
-                IRS Notice CP 501 - What does it means?
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/tax-advocate-bill-of-rights">
-                Your Rights as a Taxpayer and How We Embody Them
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/irs-wage-garnishment-guide">
-                IRS Wage Garnishment: What It Is and How To Stop It
-              </a>
-            </li>
-            <li>
-              <a href="/tax-news/irs-bank-levy-guide">
-                Bank Levy: What It Means When the IRS Freezes Your Account
-              </a>
-            </li>
+            {recentPosts.map((post) => (
+              <li key={post.id}>
+                <Link to={`/tax-news/${post.id}`}>{post.title}</Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
@@ -104,7 +71,7 @@ const Footer = () => {
       {/* Bottom Disclaimer */}
       <div className="footer-bottom">
         <p className="footer-disclaimer">
-          By clicking “SUBSCRIBE” or “SUBMIT,” I agree to be contacted by Tax
+          By clicking "SUBSCRIBE" or "SUBMIT," I agree to be contacted by Tax
           Advocate Group and its affiliates via prerecorded and/or telemarketing
           calls and/or SMS/MMS text messages...
         </p>

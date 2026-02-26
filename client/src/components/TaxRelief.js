@@ -1,8 +1,16 @@
 import React from "react";
+import SEO from "./SEO";
+import { orgSchema, serviceSchema } from "../utils/structuredData";
 
 const TaxRelief = () => {
   return (
     <div className="tax-relief-page">
+      <SEO
+        title="Tax Relief Services | Consultation, Preparation & Settlement | Tax Advocate Group"
+        description="Professional tax relief services including consultation, preparation, and settlement. Tax Advocate Group resolves IRS tax issues with expert guidance."
+        canonical="/tax-relief"
+        structuredData={[orgSchema, serviceSchema("Tax Relief", "Professional tax relief services including consultation, preparation, and settlement.", "Tax Relief")]}
+      />
       {/* Hero Section */}
       <section
         className="tax-relief-hero"

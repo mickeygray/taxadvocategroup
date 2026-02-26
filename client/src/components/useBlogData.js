@@ -48,8 +48,8 @@ const useBlogData = () => {
           "<h2>The Labor Day Takeaway</h2>",
           "<p>Labor Day celebrates the value of your hard work. When it comes to taxes, protecting that work means making smart choices. The <strong>standard deduction</strong> offers simplicity and protection, while <strong>itemizing</strong> can bring bigger savings if you keep thorough records. Either way, preparation ensures your work translates into maximum financial benefit.</p>",
 
-          "<h2>How Wynn Tax Solutions Can Help</h2>",
-          "<p>At <strong>Wynn Tax Solutions</strong>, we help workers make the most of their deductions while staying clear of audit risks. Our team compares standard vs. itemized outcomes, reviews your records, and ensures you claim every deduction you deserve. We focus on protecting your income and minimizing your liability, so your labor truly pays off.</p>",
+          "<h2>How Tax Advocate Group Can Help</h2>",
+          "<p>At <strong>Tax Advocate Group</strong>, we help workers make the most of their deductions while staying clear of audit risks. Our team compares standard vs. itemized outcomes, reviews your records, and ensures you claim every deduction you deserve. We focus on protecting your income and minimizing your liability, so your labor truly pays off.</p>",
           "<p>If you’re unsure whether to take the standard deduction or itemize, contact us today for a free consultation. This Labor Day, take control of your taxes and safeguard the results of your hard work.</p>",
         ],
       },

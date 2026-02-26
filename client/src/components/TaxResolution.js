@@ -1,8 +1,16 @@
 import React from "react";
+import SEO from "./SEO";
+import { orgSchema, serviceSchema } from "../utils/structuredData";
 
 const TaxResolution = () => {
   return (
     <div className="tax-resolution-page">
+      <SEO
+        title="Tax Resolution Services | IRS Representation & Dispute Resolution | Tax Advocate Group"
+        description="Expert tax resolution services including IRS representation, innocent spouse relief, and statute of limitations guidance. Resolve your tax disputes with Tax Advocate Group."
+        canonical="/tax-resolution"
+        structuredData={[orgSchema, serviceSchema("Tax Resolution", "Expert tax resolution services including IRS representation, innocent spouse relief, and dispute resolution.", "Tax Resolution")]}
+      />
       {/* Hero Section */}
       <section
         className="tax-resolution-hero"

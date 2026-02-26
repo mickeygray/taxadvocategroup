@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import leadContext from "../context/leadContext";
 import { useNavigate } from "react-router-dom";
 import PhoneLink from "./PhoneLink";
+import SEO from "./SEO";
+import { orgSchema } from "../utils/structuredData";
 
 const LandingPopupForm = ({ onClose }) => {
   const navigate = useNavigate();
@@ -149,6 +151,12 @@ const LandingPage1 = () => {
 
   return (
     <div className="landing-page-root">
+      <SEO
+        title="Qualify Now | Free Tax Consultation | Tax Advocate Group"
+        description="See if you qualify for IRS tax relief. Free consultation with Tax Advocate Group — resolve tax debt, stop wage garnishments, and settle for less."
+        canonical="/qualify-now"
+        structuredData={[orgSchema]}
+      />
       <div className="landing-page-content">
         {/* Hero Section */}
         <section className="landing-page-hero">

@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import leadContext from "../context/leadContext";
 import PhoneLink from "./PhoneLink";
+import SEO from "./SEO";
+import { orgSchema } from "../utils/structuredData";
+
 const ContactUs = () => {
   const { sendEmail } = useContext(leadContext);
 
@@ -37,6 +40,12 @@ const ContactUs = () => {
   };
   return (
     <div>
+      <SEO
+        title="Contact Us | Free Tax Consultation | Tax Advocate Group"
+        description="Contact Tax Advocate Group for a free tax consultation. Call 1-800-517-1807 or fill out our form. We resolve IRS tax issues for individuals and businesses."
+        canonical="/contact-us"
+        structuredData={[orgSchema]}
+      />
       {/* Hero Section */}
       <section
         className="contact-hero"

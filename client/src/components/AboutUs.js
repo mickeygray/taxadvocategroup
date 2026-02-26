@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from "./SEO";
+import { orgSchema } from "../utils/structuredData";
+
 const AboutUs = () => {
   return (
     <div className="about-page-container">
+      <SEO
+        title="About Us | Tax Advocate Group | Experienced Tax Professionals"
+        description="Learn about Tax Advocate Group — a team of enrolled agents, tax accountants, and consultants dedicated to resolving complex tax issues for individuals and businesses."
+        canonical="/about-us"
+        structuredData={[orgSchema]}
+      />
       {/* About Page Hero Section */}
       <section
         className="about-hero"

@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from "./SEO";
 
 const TermsOfService = () => {
   return (
     <div className="terms-page">
+      <SEO
+        title="Terms of Service | Tax Advocate Group"
+        description="Read the Terms of Service for Tax Advocate Group. Understand your rights and obligations when using our tax resolution and consulting services."
+        canonical="/terms-of-service"
+        noindex={true}
+      />
       {/* Hero Section */}
       <section className="terms-hero">
         <div className="terms-hero-overlay"></div>

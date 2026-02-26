@@ -1,8 +1,16 @@
 import React from "react";
+import SEO from "./SEO";
+import { orgSchema, serviceSchema } from "../utils/structuredData";
 
 const TaxProtectionPlans = () => {
   return (
     <div className="tax-protection-page">
+      <SEO
+        title="Tax Protection Plans | Proactive Tax Defense | Tax Advocate Group"
+        description="Protect yourself with Tax Advocate Group's Tax Protection Plans. Audit defense, IRS communication support, and proactive tax planning at every level."
+        canonical="/tax-protection-plans"
+        structuredData={[orgSchema, serviceSchema("Tax Protection Plans", "Proactive tax protection plans including audit defense, IRS communication, and tax planning.", "Tax Protection")]}
+      />
       {/* Hero Section */}
       <section
         className="tax-protection-hero"
