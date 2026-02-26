@@ -1,37 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PhoneLink from "./PhoneLink";
+
 const services = [
   {
     title: "Tax Relief",
     description:
-      "Dealing with tax issues can feel overwhelming, but you’re not alone. We specialize in providing personalized tax relief services that help individuals and businesses resolve their tax challenges efficiently and effectively.",
-    link: "/tax-relief/",
-    image:
-      "https://taxproblemassistance.com/wp-content/uploads/2025/01/shutterstock_25525225971.jpg",
+      "Dealing with tax issues can feel overwhelming, but you're not alone. We specialize in providing personalized tax relief services that help individuals and businesses resolve their tax challenges efficiently and effectively.",
+    link: "/tax-relief",
+    image: "/images/hero-5.png",
   },
   {
     title: "Tax Resolution",
     description:
       "Dealing with tax challenges can feel like an uphill battle, but we are here to help. Our tax resolution services provide expert guidance and comprehensive solutions to help you regain financial peace of mind.",
-    link: "/tax-resolution/",
-    image:
-      "https://taxproblemassistance.com/wp-content/uploads/2025/01/shutterstock_158232020.jpg",
+    link: "/tax-resolution",
+    image: "/images/hero-3.png",
   },
   {
     title: "Tax Negotiation",
     description:
       "Facing tax debt can be overwhelming, but we provide the solutions you need. Our tax negotiation services are designed to help you resolve your tax issues and regain financial stability.",
-    link: "/tax-negotiation/",
-    image:
-      "https://taxproblemassistance.com/wp-content/uploads/2025/01/shutterstock_163940900.jpg",
+    link: "/tax-negotiation",
+    image: "/images/contact-hero.png",
   },
   {
     title: "Tax Protection Plans",
     description:
       "We believe in providing peace of mind through proactive support and protection. Our Tax Protection Plans are designed to safeguard your financial well-being with varying levels of service.",
-    link: "https://taxproblemassistance.com/tax-protection-plans/",
-    image:
-      "https://taxproblemassistance.com/wp-content/uploads/2025/01/shutterstock_82390135.jpg",
+    link: "/tax-protection-plans",
+    image: "/images/hero-5.png",
   },
 ];
 
@@ -48,7 +46,7 @@ const OurTaxServices = () => {
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <h1 className="services-hero-title">Our Tax Services</h1>
-          <nav className="breadcrumb">
+          <nav className="breadcrumb" aria-label="Breadcrumb">
             <ol>
               <li>
                 <Link to="/">Home</Link>
@@ -62,14 +60,11 @@ const OurTaxServices = () => {
       <section className="tax-services">
         <div className="container">
           <div className="row">
-            {/* Left Column (Tagline) */}
             <div className="column one-third">
               <div className="service-tagline">
                 <p>Tax solutions that protect your assets.</p>
               </div>
             </div>
-
-            {/* Right Column (Description) */}
             <div className="column two-thirds">
               <h2 className="section-title">Our Tax Services</h2>
               <p className="section-description">
@@ -83,19 +78,12 @@ const OurTaxServices = () => {
             </div>
           </div>
         </div>
-      </section>{" "}
+      </section>
       <section className="tax-services-grid">
         <div className="grid-container">
           {services.map((service, index) => (
-            <a
-              href={service.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flip-box"
-              key={index}
-            >
+            <Link to={service.link} className="flip-box" key={index}>
               <div className="flip-box-inner">
-                {/* Front Side */}
                 <div
                   className="flip-box-front"
                   style={{ backgroundImage: `url(${service.image})` }}
@@ -106,23 +94,19 @@ const OurTaxServices = () => {
                   </div>
                   <h3 className="flip-box-title">{service.title}</h3>
                 </div>
-
-                {/* Back Side */}
                 <div className="flip-box-back">
                   <h3 className="flip-box-title">{service.title}</h3>
                   <p className="flip-box-text">{service.description}</p>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
-      </section>{" "}
+      </section>
       <section className="services-cta-section">
         <div className="services-cta-container">
           <p className="services-cta-text">Contact To Book an Appointment</p>
-          <a href="tel:+18663796253" className="services-cta-button">
-            <i className="fas fa-phone-alt"></i> 800-517-1807
-          </a>
+          <PhoneLink rawNumber="18005171807" className="services-cta-phone" />
         </div>
       </section>
     </>

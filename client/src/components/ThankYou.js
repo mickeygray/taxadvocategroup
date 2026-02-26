@@ -63,7 +63,7 @@ const ThankYou = () => {
             <div className="step">
               <img
                 className="step-icon"
-                src="https://d9hhrg4mnvzow.cloudfront.net/hire.wynntaxsolutions.com/consultation/a9bbfa4e-frame-15031-1.svg"
+                src="/images/trust-builder-IRS-Provider.png"
                 alt="Step 1"
               />
               <h3 className="step-title">Legal Representation</h3>
@@ -75,7 +75,7 @@ const ThankYou = () => {
             <div className="step">
               <img
                 className="step-icon"
-                src="https://d9hhrg4mnvzow.cloudfront.net/hire.wynntaxsolutions.com/consultation/a9bbfa4e-frame-15031-1.svg"
+                src="/images/trust-builder-IRS-Provider.png"
                 alt="Step 1"
               />
               <h3 className="step-title">Guaranteed Compliance</h3>
@@ -87,7 +87,7 @@ const ThankYou = () => {
             <div className="step">
               <img
                 className="step-icon"
-                src="https://d9hhrg4mnvzow.cloudfront.net/hire.wynntaxsolutions.com/consultation/a9bbfa4e-frame-15031-1.svg"
+                src="/images/trust-builder-IRS-Provider.png"
                 alt="Step 1"
               />
               <h3 className="step-title">Best Resolution</h3>
@@ -114,7 +114,7 @@ const ThankYou = () => {
             {/* Image Side */}
             <div className="features-image">
               <img
-                src="/images/wynn-gilf.png" /* Replace with actual image */
+                src="/images/TAG-Home-Page-Image-1.png"
                 alt="Feature visual"
               />
             </div>
@@ -237,9 +237,7 @@ const ThankYou = () => {
               Our experts are ready to help you reduce and resolve your IRS tax
               liability.
             </p>
-            <a href="tel:+18667163921" className="landing-callout-button">
-              CALL NOW
-            </a>
+            <PhoneLink rawNumber="18005171807" />
           </div>
         </section>
 

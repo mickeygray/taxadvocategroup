@@ -109,7 +109,7 @@ const Footer = () => {
           calls and/or SMS/MMS text messages...
         </p>
         <p className="footer-copyright">
-          © 2025 Tax Advocate Group, LLC. All Rights Reserved. |
+          &copy; {new Date().getFullYear()} Tax Advocate Group, LLC. All Rights Reserved. |
           <Link to="/privacy-policy"> Privacy Policy</Link> |
           <Link to="/terms-of-service"> Terms of Service</Link> |
         </p>

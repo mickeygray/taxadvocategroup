@@ -8,7 +8,7 @@ const SaveTimeSection = () => {
         {/* Left Column - Image */}
         <div className="save-time-image">
           <img
-            src="https://taxproblemassistance.com/wp-content/uploads/2025/01/macbook-03.png"
+            src="/images/TAG-Home-Page-Image-1.png"
             alt="Tax Debt Solutions Provider"
           />
         </div>

@@ -62,8 +62,8 @@ const ContactUs = () => {
             <PhoneLink rawNumber="18005171807" />
           </p>
           <p>
-            <a href="mailto:inquiry@Tax Advocate Grouptaxgroup.com">
-              inquiry@TaxAdvocateGroup.com
+            <a href="mailto:inquiry@taxadvocategroup.com">
+              inquiry@taxadvocategroup.com
             </a>
           </p>
         </div>

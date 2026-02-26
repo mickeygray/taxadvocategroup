@@ -13,7 +13,7 @@ const Main = () => {
           <div className="consultation-card">
             <div className="consultation-content">
               <span className="call-text">Get a FREE Consultation Today</span>
-              <a href="tel:+18005171807" class="call-button">
+              <a href="tel:+18005171807" className="call-button">
                 <i className="fa-solid fa-phone"></i> 800-517-1807
               </a>
             </div>
@@ -42,7 +42,7 @@ const Main = () => {
             support growth, streamline operations, and reduce administrative
             burdens. From entity formation and payroll setup to ongoing
             compliance and quarterly tax filings, our team helps businesses stay
-            organized and efficent. We work closely with owners and management
+            organized and efficient. We work closely with owners and management
             teams to establish sound processes, maintain accurate records, and
             navigate state and federal requirements—so you can stay focused on
             running your business.

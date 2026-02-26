@@ -5,7 +5,7 @@ import PhoneLink from "./PhoneLink";
 
 const LandingPopupForm = ({ onClose }) => {
   const navigate = useNavigate();
-  const { sendLeadForm } = useContext(leadContext);
+  const { sendEmail } = useContext(leadContext);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     debtAmount: "",
@@ -23,7 +23,12 @@ const LandingPopupForm = ({ onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendLeadForm(formData);
+    sendEmail({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: `Debt: ${formData.debtAmount}, Filed all taxes: ${formData.filedAllTaxes}, Best time: ${formData.bestTime}`,
+    });
 
     navigate("/thank-you");
   };
@@ -173,13 +178,13 @@ const LandingPage1 = () => {
             <div className="hero-buttons">
               <PhoneLink rawNumber="18005171807" />
 
-              <a
+              <button
                 className="phone-button"
-                style={{ background: "#333" }}
+                style={{ background: "#333", border: "none", cursor: "pointer" }}
                 onClick={() => setShowPopup(true)}
               >
                 Get Free Consultation
-              </a>
+              </button>
             </div>
           </div>
           <div className="hero-overlay"></div>
@@ -191,7 +196,7 @@ const LandingPage1 = () => {
             <div className="step">
               <img
                 className="step-icon"
-                src="https://d9hhrg4mnvzow.cloudfront.net/hire.wynntaxsolutions.com/consultation/a9bbfa4e-frame-15031-1.svg"
+                src="/images/trust-builder-IRS-Provider.png"
                 alt="Step 1"
               />
               <h3 className="step-title">Legal Representation</h3>
@@ -203,7 +208,7 @@ const LandingPage1 = () => {
             <div className="step">
               <img
                 className="step-icon"
-                src="https://d9hhrg4mnvzow.cloudfront.net/hire.wynntaxsolutions.com/consultation/a9bbfa4e-frame-15031-1.svg"
+                src="/images/trust-builder-IRS-Provider.png"
                 alt="Step 1"
               />
               <h3 className="step-title">Guaranteed Compliance</h3>
@@ -215,7 +220,7 @@ const LandingPage1 = () => {
             <div className="step">
               <img
                 className="step-icon"
-                src="https://d9hhrg4mnvzow.cloudfront.net/hire.wynntaxsolutions.com/consultation/a9bbfa4e-frame-15031-1.svg"
+                src="/images/trust-builder-IRS-Provider.png"
                 alt="Step 1"
               />
               <h3 className="step-title">Best Resolution</h3>
@@ -242,7 +247,7 @@ const LandingPage1 = () => {
             {/* Image Side */}
             <div className="features-image">
               <img
-                src="/images/wynn-gilf.png" /* Replace with actual image */
+                src="/images/TAG-Home-Page-Image-1.png"
                 alt="Feature visual"
               />
             </div>
@@ -320,7 +325,7 @@ const LandingPage1 = () => {
             <div className="landing-testimonial-card">
               <div className="landing-testimonial-stars">★★★★★</div>
               <p className="landing-testimonial-text">
-                "Wynn went above and beyond to help me through my tax debt. I
+                "They went above and beyond to help me through my tax debt. I
                 have and will continue to recommend your company to everyone."
               </p>
               <div className="landing-testimonial-author">Anedia R.</div>
