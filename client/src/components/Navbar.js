@@ -131,6 +131,9 @@ const Navbar = () => {
                 )}
               </li>
               <li>
+                <Link to="/state-tax-guide">State Tax Guide</Link>
+              </li>
+              <li>
                 <Link to="/tax-faqs">Tax FAQs</Link>
               </li>
               <li>
@@ -164,6 +167,7 @@ const Navbar = () => {
                 <ul>
                   <li><Link to="/" onClick={closeMenu}>Home</Link></li>
                   <li><Link to="/our-tax-services" onClick={closeMenu}>Services</Link></li>
+                  <li><Link to="/state-tax-guide" onClick={closeMenu}>State Tax Guide</Link></li>
                   <li><Link to="/tax-faqs" onClick={closeMenu}>Tax FAQs</Link></li>
                   <li><Link to="/about-us" onClick={closeMenu}>About Us</Link></li>
                   <li><Link to="/contact-us" onClick={closeMenu}>Contact Us</Link></li>

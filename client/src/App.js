@@ -19,6 +19,8 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsOfService from "./components/TermsOfService";
 import LandingPage1 from "./components/LandingPage1";
 import ThankYou from "./components/ThankYou";
+import StateTaxHub from "./components/StateTaxHub";
+import StateTaxPage from "./components/StateTaxPage";
 import LeadState from "./context/LeadState";
 import "./App.css";
 
@@ -40,6 +42,8 @@ const App = () => {
             <Route path="/tax-resolution" element={<TaxResolution />} />
             <Route path="/tax-negotiation" element={<TaxNegotiation />} />
             <Route path="/tax-protection-plans" element={<TaxProtectionPlans />} />
+            <Route path="/state-tax-guide" element={<StateTaxHub />} />
+            <Route path="/state-tax-guide/:stateSlug" element={<StateTaxPage />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/tax-news" element={<TaxNews />} />
             <Route path="/tax-news/:id" element={<TaxNewsArticle />} />

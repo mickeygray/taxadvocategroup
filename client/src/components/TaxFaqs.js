@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "./SEO";
+import { faqSchema, orgSchema } from "../utils/structuredData";
 
 const faqs = [
   {
@@ -59,6 +61,12 @@ const TaxFaqs = () => {
 
   return (
     <div className="tax-faqs-page">
+      <SEO
+        title="Tax FAQs | Common Tax Questions Answered | Tax Advocate Group"
+        description="Get answers to common tax questions about IRS resolution, offers in compromise, installment plans, penalty abatement, and more from Tax Advocate Group."
+        canonical="/tax-faqs"
+        structuredData={[orgSchema, faqSchema]}
+      />
       {/* Hero Section */}
       <section
         className="faq-hero-section"
