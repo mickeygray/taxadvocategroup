@@ -5,50 +5,49 @@ import { faqSchema, orgSchema } from "../utils/structuredData";
 
 const faqs = [
   {
-    question: "What services do you offer?",
+    question: "What makes Tax Advocate Group different from other tax firms?",
     answer:
-      "We offer a wide range of tax services, including tax preparation, tax consultation, tax resolution, tax negotiation, and protection plans. Whether you need help with IRS notices, tax debt settlement, or proactive planning, we have the expertise to assist you.",
+      "We follow a structured three-phase process—Investigation, Compliance, and Resolution—that ensures we fully understand your situation before recommending a path forward. Our team includes enrolled agents and tax attorneys who handle cases in all 50 states, and we back our work with a money-back guarantee if we accept your case.",
   },
   {
-    question: "How does the tax resolution process work?",
+    question: "How does your tax resolution process work?",
     answer:
-      "The process begins with a consultation to understand your tax issues and financial situation. From there, we identify the best resolution options, such as installment agreements, penalty abatements, or offers in compromise. We handle communication with the IRS on your behalf and work to secure the most favorable outcome.",
+      "We start by filing Power of Attorney so we can pull your IRS transcripts and assess your full tax picture. Next, we bring all unfiled returns current—this compliance step often reduces what you owe. Finally, we negotiate the best available resolution: an installment agreement, Offer in Compromise, penalty abatement, or Currently Not Collectible status, depending on your circumstances.",
   },
   {
-    question:
-      "What is the difference between tax resolution and tax negotiation?",
+    question: "What if I haven’t filed taxes in several years?",
     answer:
-      "Tax resolution refers to the overall process of resolving tax debt or disputes with the IRS, while tax negotiation focuses specifically on working with the IRS to establish payment plans, reduce penalties, or settle for less than the full amount owed. Both aim to provide relief and financial stability.",
+      "Unfiled returns are one of the most common issues we handle. The IRS may have filed substitute returns on your behalf that overstate your liability. We prepare accurate returns for each missing year, which frequently lowers the total balance owed and opens the door to resolution options that weren’t previously available.",
   },
   {
-    question: "How long does it take to resolve tax debt?",
+    question: "How long does it typically take to resolve my case?",
     answer:
-      "The time frame for resolving tax debt varies depending on the complexity of your case and the resolution method. Some cases may be resolved in a few weeks, while others can take several months.",
+      "Straightforward cases like installment agreements can be set up in 30–60 days. More complex matters—Offers in Compromise, audit reconsiderations, or multi-year compliance projects—may take 4–8 months. During your free consultation, we’ll give you a realistic timeline based on your specific situation.",
   },
   {
-    question: "Can you help with state tax issues?",
+    question: "Do you handle state tax problems in addition to federal?",
     answer:
-      "Yes, we can assist with state tax issues, including back taxes, liens, and penalties. Our team is experienced in dealing with both federal and state tax authorities.",
+      "Yes. We work with all 50 state tax authorities in addition to the IRS. State agencies often have their own garnishment and lien procedures, and we know how to navigate each one. Visit our State Tax Guide for details on your state’s tax authority and resolution options.",
   },
   {
-    question: "What is a Tax Protection Plan, and which one should I choose?",
+    question: "What is an Offer in Compromise, and will I qualify?",
     answer:
-      "Our Tax Protection Plans provide proactive support and peace of mind by covering services such as audit defense, IRS communication, and tax planning. We offer Standard, Premium, and Professional plans, each providing different levels of coverage. We can help you select the plan that best fits your needs.",
+      "An Offer in Compromise (OIC) lets you settle your IRS debt for less than you owe. Qualification depends on your income, expenses, assets, and ability to pay. The IRS uses a specific formula to evaluate offers. We analyze your financials against this formula during your consultation so you’ll know upfront whether an OIC is a realistic option for you.",
   },
   {
-    question: "Will you represent me in an IRS audit?",
+    question: "Can you stop a wage garnishment or bank levy that’s already active?",
     answer:
-      "Yes, we provide full audit representation to protect your rights and ensure your case is handled properly.",
+      "Yes, and quickly. Once we file Power of Attorney, we contact the IRS or state agency to request an immediate release or reduction of the levy. In many cases, we can get garnishments stopped within days by demonstrating financial hardship or proposing an alternative collection arrangement.",
   },
   {
-    question: "What is an Offer in Compromise, and how do I qualify?",
+    question: "How much does your service cost?",
     answer:
-      "An Offer in Compromise allows taxpayers to settle their tax debt for less than the full amount owed. Eligibility depends on your financial situation and ability to pay.",
+      "Our fees depend on the complexity of your case. We provide a clear, fixed-price quote after your free consultation—no hidden charges and no hourly surprises. If we don’t believe we can improve your situation, we’ll tell you honestly and won’t charge you anything.",
   },
   {
-    question: "How do I get started?",
+    question: "What do I need for my free consultation?",
     answer:
-      "Getting started is easy. Reach out to us to schedule a consultation, and we’ll review your situation, answer any questions, and recommend the best solutions to resolve your tax challenges.",
+      "Just your most recent IRS notice (if you have one) and a general idea of the tax years involved. We handle the rest—including pulling your IRS transcripts. Call us at 1-800-517-1807 or fill out the form on our Contact page to get started.",
   },
 ];
 
@@ -93,11 +92,10 @@ const TaxFaqs = () => {
         <div className="faq-section">
           <h2 className="faq-header">Frequently Asked Questions</h2>
           <p className="faq-description">
-            At Tax Advocate Group, we understand that navigating tax challenges
-            can be confusing. Below, you’ll find answers to some of the most
-            common questions we receive. If you don’t see your question listed,
-            feel free to <Link to="/contact-us">contact us</Link> for more
-            information.
+            We hear these questions every day from taxpayers across the country.
+            If you don’t find what you’re looking for below,{" "}
+            <Link to="/contact-us">reach out to our team</Link> for a free,
+            no-obligation consultation.
           </p>
         </div>
         <div className="faq-list">

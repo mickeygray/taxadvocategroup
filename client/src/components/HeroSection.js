@@ -62,9 +62,9 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
   return (
     <div className={`embedded-lead-form ${variant}`}>
       <div className="embedded-form-header">
-        <span className="form-badge">Free Assessment</span>
-        <h3>Get Your Tax Case Review</h3>
-        <p>Tell us about your situation — we'll reach out immediately.</p>
+        <span className="form-badge">Free Case Evaluation</span>
+        <h3>See What You Qualify For</h3>
+        <p>Answer two quick questions and a tax specialist will call you back.</p>
       </div>
 
       {/* Progress indicator */}
@@ -89,12 +89,12 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
               onChange={handleChange}
               required
             >
-              <option value="">Select an amount</option>
-              <option value="<10000">Less than $10,000</option>
-              <option value="10000-25000">$10,000 – $25,000</option>
-              <option value="25000-50000">$25,000 – $50,000</option>
-              <option value="50000-100000">$50,000 – $100,000</option>
-              <option value=">100000">More than $100,000</option>
+              <option value="">Select a range</option>
+              <option value="under-10k">Under $10,000</option>
+              <option value="10k-30k">$10,000 – $30,000</option>
+              <option value="30k-75k">$30,000 – $75,000</option>
+              <option value="75k-150k">$75,000 – $150,000</option>
+              <option value="over-150k">$150,000+</option>
             </select>
           </div>
 
@@ -207,7 +207,7 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
             className="form-btn form-btn-submit"
             disabled={!isStep2Valid}
           >
-            Get Free Assessment
+            Request My Case Review
           </button>
           <button
             type="button"
@@ -318,16 +318,16 @@ const HeroSection = () => {
                 {/* Stats row */}
                 <div className="hero__stats">
                   <div className="hero__stat">
-                    <span className="hero__stat-value">20+</span>
-                    <span className="hero__stat-label">Years Experience</span>
+                    <span className="hero__stat-value">$300M+</span>
+                    <span className="hero__stat-label">Tax Debt Resolved</span>
                   </div>
                   <div className="hero__stat">
-                    <span className="hero__stat-value">5,000+</span>
-                    <span className="hero__stat-label">Clients Helped</span>
+                    <span className="hero__stat-value">A+</span>
+                    <span className="hero__stat-label">BBB Rating</span>
                   </div>
                   <div className="hero__stat">
                     <span className="hero__stat-value">50</span>
-                    <span className="hero__stat-label">States Served</span>
+                    <span className="hero__stat-label">States Covered</span>
                   </div>
                 </div>
 

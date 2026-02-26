@@ -37,141 +37,138 @@ const AboutUs = () => {
 
       {/* Introduction */}
       <section className="about-intro">
-        {" "}
         <h1 className="about-title">
-          <i className="fa fa-check-circle" aria-hidden="true"></i> Protecting
-          You from IRS and State Tax Collections
+          <i className="fa fa-check-circle" aria-hidden="true"></i> Your
+          Dedicated Tax Resolution Partner
         </h1>
         <p>
-          At Tax Advocate Group, we know that few things cause more stress than
-          IRS wage garnishments, bank levies, and aggressive collection actions.
-          If you’re worried about losing your paycheck or having your bank
-          account frozen, you’re not alone. We’ve know how devastating these
-          actions can be—especially when they prevent you from covering
-          essentials like rent, utilities, or groceries.
+          Tax Advocate Group was founded on a simple principle: every taxpayer
+          deserves knowledgeable, accessible representation when dealing with
+          the IRS. Our team of enrolled agents, tax attorneys, and CPAs brings
+          decades of combined experience to the table—experience that translates
+          directly into results for our clients.
         </p>
         <p>
-          Our mission is to protect you from these financial hardships and
-          restore your peace of mind. With years of experience handling complex
-          tax cases, we specialize in stopping garnishments, lifting levies, and
-          negotiating directly with the IRS or state tax agencies to resolve
-          your tax issues.
-        </p>
-      </section>
-
-      {/* Stopping Wage Garnishments & Bank Levies */}
-      <section className="about-section">
-        <h2>Stopping Wage Garnishments & Bank Levies</h2>
-        <p>
-          The IRS and state tax agencies have broad collection powers, and when
-          you owe back taxes, they can take money straight from your paycheck or
-          freeze your bank account. If you’ve received a{" "}
-          <strong>Notice of Intent to Levy</strong>, it’s critical to act fast.
-        </p>
-        <p>
-          At Tax Advocate Group, we work quickly to lift IRS wage garnishments
-          and release bank levies. Unlike firms that take a standard approach,
-          we assess your unique situation and find the best strategy for your
-          case. Whether that means negotiating directly with the IRS, proving
-          financial hardship, or leveraging legal exemptions, we fight to
-          protect your income and assets.
+          We’ve built our practice around the cases other firms turn away.
+          Complex multi-year liabilities, business payroll disputes, unfiled
+          returns spanning a decade—these are the challenges where our team
+          excels. We don’t believe in cookie-cutter solutions because your tax
+          situation is as unique as your financial story.
         </p>
       </section>
 
-      {/* Smart & Creative Tax Resolution Strategies */}
+      {/* Our Approach */}
       <section className="about-section">
-        <h2>Smart & Creative Tax Resolution Strategies</h2>
+        <h2>A Methodical Approach to Tax Resolution</h2>
         <p>
-          Many firms take a one-size-fits-all approach to tax relief, but we
-          know every case is different. We explore every possible option to
-          reduce or eliminate your tax burden. Some of the solutions we use
-          include:
+          Every case at Tax Advocate Group follows a proven three-phase process
+          designed to achieve the best possible outcome:
         </p>
         <ul>
           <li>
-            {" "}
-            <strong>Challenging unfair IRS actions</strong> – If the IRS has
-            overstepped, we push back.
+            <strong>Phase 1: Investigation</strong> – We pull your complete IRS
+            transcripts, analyze your filing history, and identify every
+            compliance gap before recommending a strategy.
           </li>
           <li>
-            {" "}
-            <strong>Financial Hardship Exemptions</strong> – If paying your tax
-            debt would cause severe financial distress, we work to have your
-            account placed in <em>Currently Not Collectible (CNC)</em> status.
+            <strong>Phase 2: Compliance</strong> – Before we can negotiate, we
+            ensure all returns are filed accurately. This step alone often
+            reduces a client’s total liability significantly.
           </li>
           <li>
-            {" "}
-            <strong>Offer in Compromise (OIC)</strong> – If eligible, we
-            negotiate with the IRS to settle your debt for less than what you
-            owe.
-          </li>
-          <li>
-            {" "}
-            <strong>Installment Agreements</strong> – We help set up a
-            manageable payment plan that prevents further IRS enforcement.
-          </li>
-          <li>
-            {" "}
-            <strong>Innocent Spouse Relief</strong> – If you’re being held
-            responsible for a spouse’s tax debt unfairly, we can help.
+            <strong>Phase 3: Resolution</strong> – Armed with complete records
+            and a clear financial picture, we pursue the resolution that puts
+            you in the strongest position—whether that’s an Offer in Compromise,
+            installment plan, penalty abatement, or currently-not-collectible
+            status.
           </li>
         </ul>
       </section>
 
-      {/* Preventing Future IRS Actions */}
+      {/* Who We Serve */}
       <section className="about-section">
-        <h2>Preventing Future IRS Actions</h2>
+        <h2>Who We Serve</h2>
         <p>
-          While we’re experts at stopping IRS enforcement, we also focus on
-          long-term solutions to prevent future tax troubles. We assist with:
+          Our clients range from individual wage earners who fell behind on
+          filings to small business owners facing trust fund recovery penalties.
+          Common situations we handle include:
         </p>
         <ul>
-          <li>Filing past-due tax returns</li>
-          <li>Reducing or eliminating penalties</li>
-          <li>Keeping you compliant with the IRS</li>
+          <li>
+            Individuals with <strong>unfiled returns</strong> going back
+            multiple years
+          </li>
+          <li>
+            Business owners with <strong>941 payroll tax debt</strong> and
+            personal liability assessments
+          </li>
+          <li>
+            Taxpayers facing <strong>active wage garnishments</strong> or bank
+            levies who need immediate intervention
+          </li>
+          <li>
+            Couples navigating <strong>joint liability disputes</strong> after
+            separation or divorce
+          </li>
+          <li>
+            Self-employed professionals with{" "}
+            <strong>estimated tax shortfalls</strong> and mounting penalties
+          </li>
         </ul>
-        <p>
-          Our goal is not just to fix today’s problem but to make sure you never
-          face this stress again.
-        </p>
       </section>
 
-      {/* Why Choose Us? */}
+      {/* What Sets Us Apart */}
       <section className="about-section">
-        <h2>Why Choose Tax Advocate Group?</h2>
+        <h2>What Sets Us Apart</h2>
+        <p>
+          The tax resolution industry is crowded, and many firms make promises
+          they can’t keep. Here’s what makes Tax Advocate Group different:
+        </p>
         <ul>
           <li>
-            {" "}
-            <strong>Proven Success</strong> – We’ve helped countless clients
-            escape tax levies and garnishments.
+            <strong>Direct IRS Communication</strong> – We file Power of
+            Attorney on day one, so the IRS contacts us—not you.
           </li>
           <li>
-            {" "}
-            <strong>Aggressive & Creative Approach</strong> – We fight for you
-            where others might give up.
+            <strong>Transparent Pricing</strong> – You’ll know the full cost
+            before we start. No hidden fees, no surprise charges.
           </li>
           <li>
-            {" "}
-            <strong>Personalized Service</strong> – No two cases are the same,
-            and we tailor our solutions to fit your needs.
+            <strong>Ongoing Compliance Support</strong> – After resolution,
+            we offer tax preparation and monitoring to keep you in good standing.
           </li>
           <li>
-            <strong>Fast Action</strong> – The IRS won’t wait, and neither do
-            we.
+            <strong>Nationwide Coverage</strong> – Licensed to practice in all
+            50 states, handling both federal and state tax authorities.
           </li>
         </ul>
+      </section>
+
+      {/* Our Guarantee */}
+      <section className="about-section">
+        <h2>Our Commitment to You</h2>
+        <p>
+          We stand behind our work with a straightforward guarantee: if we
+          accept your case, we will deliver a resolution. Our consultation
+          process is honest and upfront—if we don’t believe we can improve
+          your situation, we’ll tell you so and won’t charge you a dime.
+        </p>
+        <p>
+          That’s the Tax Advocate Group difference. We earn our reputation one
+          resolved case at a time.
+        </p>
       </section>
 
       {/* Call to Action */}
       <section className="cta-section">
-        <h2>Take Action Today</h2>
+        <h2>Schedule Your Free Consultation</h2>
         <p className="cta-text">
-          If you’re facing IRS collections, garnishments, or levies, don’t
-          wait—every day counts. The sooner you act, the better your chances of
-          stopping the IRS before they take further action.
+          The first step is always a conversation. Tell us about your situation,
+          and we’ll lay out your options—clearly and honestly. No pressure, no
+          obligation.
         </p>
         <a href="/contact-us" className="cta-button">
-          Get Help Now
+          Start Your Case Review
         </a>
       </section>
     </div>

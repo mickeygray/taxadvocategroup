@@ -51,10 +51,10 @@ export const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What services does Tax Advocate Group offer?",
+      name: "What makes Tax Advocate Group different from other tax firms?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We offer tax preparation, tax consultation, tax resolution, tax negotiation, and protection plans. Whether you need help with IRS notices, tax debt settlement, or proactive planning, we have the expertise to assist you.",
+        text: "We follow a structured three-phase process—Investigation, Compliance, and Resolution—that ensures we fully understand your situation before recommending a path forward. Our team includes enrolled agents and tax attorneys licensed in all 50 states, and we back our work with a money-back guarantee.",
       },
     },
     {
@@ -62,39 +62,39 @@ export const faqSchema = {
       name: "How does the tax resolution process work?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "The process begins with a free consultation to understand your tax issues and financial situation. From there, we identify the best resolution options, such as installment agreements, penalty abatements, or offers in compromise. We handle all communication with the IRS on your behalf.",
+        text: "We file Power of Attorney to pull your IRS transcripts and assess your full tax picture. Next, we bring all unfiled returns current. Finally, we negotiate the best available resolution: an installment agreement, Offer in Compromise, penalty abatement, or Currently Not Collectible status.",
       },
     },
     {
       "@type": "Question",
-      name: "What is an Offer in Compromise, and how do I qualify?",
+      name: "What is an Offer in Compromise, and will I qualify?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "An Offer in Compromise allows taxpayers to settle their tax debt for less than the full amount owed. Eligibility depends on your financial situation, ability to pay, and compliance history. Tax Advocate Group can evaluate whether you qualify.",
+        text: "An Offer in Compromise lets you settle IRS debt for less than you owe. Qualification depends on income, expenses, assets, and ability to pay. We analyze your financials against the IRS formula during your free consultation so you'll know upfront whether an OIC is realistic.",
       },
     },
     {
       "@type": "Question",
-      name: "Can you help with state tax issues?",
+      name: "Can you stop a wage garnishment or bank levy?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, we assist with state tax issues including back taxes, liens, garnishments, and penalties. Our team is experienced in dealing with both federal and state tax authorities across all 50 states.",
+        text: "Yes. Once we file Power of Attorney, we contact the IRS or state agency to request an immediate release or reduction of the levy. In many cases, we can get garnishments stopped within days by demonstrating financial hardship or proposing an alternative arrangement.",
       },
     },
     {
       "@type": "Question",
-      name: "Will you represent me in an IRS audit?",
+      name: "Do you handle state tax problems?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, we provide full audit representation to protect your rights and ensure your case is handled properly.",
+        text: "Yes. We work with all 50 state tax authorities in addition to the IRS. State agencies have their own garnishment and lien procedures, and we know how to navigate each one.",
       },
     },
     {
       "@type": "Question",
-      name: "How do I get started?",
+      name: "What do I need for my free consultation?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Call us at 1-800-517-1807 or fill out our contact form for a free consultation. We'll review your situation, answer your questions, and recommend the best solutions for your tax challenges.",
+        text: "Just your most recent IRS notice (if you have one) and a general idea of the tax years involved. We handle the rest, including pulling your IRS transcripts. Call 1-800-517-1807 or fill out our contact form to get started.",
       },
     },
   ],
