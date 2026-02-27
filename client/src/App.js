@@ -21,6 +21,7 @@ import LandingPage1 from "./components/LandingPage1";
 import ThankYou from "./components/ThankYou";
 import StateTaxHub from "./components/StateTaxHub";
 import StateTaxPage from "./components/StateTaxPage";
+import BarnabyWidget from "./components/BarnabyWidget";
 import LeadState from "./context/LeadState";
 import "./App.css";
 
@@ -53,6 +54,7 @@ const App = () => {
           </Routes>
         </div>
         <Footer />
+        <BarnabyWidget />
       </Router>
     </LeadState>
   );

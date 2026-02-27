@@ -35,8 +35,22 @@ const LeadState = (props) => {
     }
   };
 
+  const askTaxQuestion = async (question) => {
+    try {
+      const res = await axios.post(
+        "/api/answer",
+        { question },
+        { withCredentials: true }
+      );
+      return res.data;
+    } catch (err) {
+      console.error("askTaxQuestion failed:", err);
+      return { ok: false, error: "Network error" };
+    }
+  };
+
   return (
-    <LeadContext.Provider value={{ sendEmail, sendLeadForm }}>
+    <LeadContext.Provider value={{ sendEmail, sendLeadForm, askTaxQuestion }}>
       {props.children}
     </LeadContext.Provider>
   );
