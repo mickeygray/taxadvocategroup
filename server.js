@@ -27,7 +27,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 connectDB();
 app.use(express.json({ limit: "1mb" }));
-app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cookieParser(process.env.COOKIE_SECRET || "dev-secret-change-me"));
 app.use(
   cors({
     origin: ["http://localhost:3000", "https://www.taxadvocategroup.com"],
@@ -49,7 +49,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = process.env.OPENAI_API_KEY
+  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  : null;
 
 /* -------------------------------------------------------------------------- */
 /*                        TAX BARNABY HISTORY COOKIE                          */
@@ -340,6 +342,10 @@ app.post("/api/answer", questionCounter, async (req, res) => {
       });
     }
 
+    if (!openai) {
+      return res.status(503).json({ ok: false, error: "AI service not configured" });
+    }
+
     const resp = await openai.responses.create({
       model: "gpt-4o-mini",
       instructions: TAX_SYSTEM_PROMPT,
@@ -559,7 +565,9 @@ app.post("/api/finalize-submission", async (req, res) => {
     const userAgent = req.headers["user-agent"];
 
     const userData = { name, email, phone, issues, balanceBand, noticeType, taxScope, state, filerType };
-    const aiSummary = await generateAISummary(openai, userData);
+    const aiSummary = openai
+      ? await generateAISummary(openai, userData)
+      : intakeSummary || "AI summary unavailable";
 
     const BarnabySubmission = require("./models/BarnabySubmission");
     const submission = new BarnabySubmission({
