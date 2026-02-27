@@ -19,31 +19,73 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "node scripts/generate-sitemap.js",
     "build": "react-scripts build",
-    "postbuild": "react-snap || echo 'react-snap skipped (Chromium not available)'",
+    "postbuild": "react-snap",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "reactSnap": {
     "inlineCss": false,
     "fixWebpackChunksIssue": "CRA2",
-    "minifyCss": true,
+    "minifyCss": false,
     "include": [
-      "/",
-      "/about-us",
-      "/our-tax-services",
-      "/tax-relief",
-      "/tax-resolution",
-      "/tax-negotiation",
-      "/tax-protection-plans",
-      "/tax-faqs",
-      "/contact-us",
-      "/tax-news",
-      "/state-tax-guide",
+      "/thank-you",
       "/qualify-now",
-      "/privacy-policy",
-      "/terms-of-service"
-    ]
+      "/state-tax-guide",
+      "/state-tax-guide/state-income-tax-help-alabama",
+      "/state-tax-guide/state-income-tax-help-alaska",
+      "/state-tax-guide/state-income-tax-help-arizona",
+      "/state-tax-guide/state-income-tax-help-arkansas",
+      "/state-tax-guide/state-income-tax-help-california",
+      "/state-tax-guide/state-income-tax-help-colorado",
+      "/state-tax-guide/state-income-tax-help-connecticut",
+      "/state-tax-guide/state-income-tax-help-delaware",
+      "/state-tax-guide/state-income-tax-help-florida",
+      "/state-tax-guide/state-income-tax-help-georgia",
+      "/state-tax-guide/state-income-tax-help-hawaii",
+      "/state-tax-guide/state-income-tax-help-idaho",
+      "/state-tax-guide/state-income-tax-help-illinois",
+      "/state-tax-guide/state-income-tax-help-indiana",
+      "/state-tax-guide/state-income-tax-help-iowa",
+      "/state-tax-guide/state-income-tax-help-kansas",
+      "/state-tax-guide/state-income-tax-help-kentucky",
+      "/state-tax-guide/state-income-tax-help-louisiana",
+      "/state-tax-guide/state-income-tax-help-maine",
+      "/state-tax-guide/state-income-tax-help-maryland",
+      "/state-tax-guide/state-income-tax-help-massachusetts",
+      "/state-tax-guide/state-income-tax-help-michigan",
+      "/state-tax-guide/state-income-tax-help-minnesota",
+      "/state-tax-guide/state-income-tax-help-mississippi",
+      "/state-tax-guide/state-income-tax-help-missouri",
+      "/state-tax-guide/state-income-tax-help-montana",
+      "/state-tax-guide/state-income-tax-help-nebraska",
+      "/state-tax-guide/state-income-tax-help-nevada",
+      "/state-tax-guide/state-income-tax-help-new-hampshire",
+      "/state-tax-guide/state-income-tax-help-new-jersey",
+      "/state-tax-guide/state-income-tax-help-new-mexico",
+      "/state-tax-guide/state-income-tax-help-new-york",
+      "/state-tax-guide/state-income-tax-help-north-carolina",
+      "/state-tax-guide/state-income-tax-help-north-dakota",
+      "/state-tax-guide/state-income-tax-help-ohio",
+      "/state-tax-guide/state-income-tax-help-oklahoma",
+      "/state-tax-guide/state-income-tax-help-oregon",
+      "/state-tax-guide/state-income-tax-help-pennsylvania",
+      "/state-tax-guide/state-income-tax-help-rhode-island",
+      "/state-tax-guide/state-income-tax-help-south-carolina",
+      "/state-tax-guide/state-income-tax-help-south-dakota",
+      "/state-tax-guide/state-income-tax-help-tennessee",
+      "/state-tax-guide/state-income-tax-help-texas",
+      "/state-tax-guide/state-income-tax-help-utah",
+      "/state-tax-guide/state-income-tax-help-vermont",
+      "/state-tax-guide/state-income-tax-help-virginia",
+      "/state-tax-guide/state-income-tax-help-washington",
+      "/state-tax-guide/state-income-tax-help-west-virginia",
+      "/state-tax-guide/state-income-tax-help-wisconsin",
+      "/state-tax-guide/state-income-tax-help-wyoming",
+      "/state-tax-guide/state-income-tax-help-district-of-columbia"
+    ],
+    "skipThirdPartyRequests": true
   },
   "eslintConfig": {
     "extends": [
@@ -55,13 +97,17 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "chrome 60"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "puppeteer": "^24.15.0"
   },
   "proxy": "http://localhost:5000"
 }
