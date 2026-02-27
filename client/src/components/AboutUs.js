@@ -14,33 +14,31 @@ const AboutUs = () => {
       />
       {/* About Page Hero Section */}
       <section
-        className="about-hero"
+        className="about-hero-section"
         style={{
           backgroundImage: `url("/images/contact-hero.png")`,
         }}
       >
-        {" "}
         <div className="about-hero-overlay"></div>
         <div className="about-hero-content">
-          {" "}
-          <h1 className="about-hero-title">About Us</h1>{" "}
+          <h1 className="about-hero-title">About Us</h1>
           <nav className="breadcrumb">
             <ol>
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>/About Us</li>
+              <li>About Us</li>
             </ol>
           </nav>
-        </div>{" "}
+        </div>
       </section>
 
       {/* Introduction */}
       <section className="about-intro">
-        <h1 className="about-title">
+        <h2 className="about-intro__title">
           <i className="fa fa-check-circle" aria-hidden="true"></i> Your
           Dedicated Tax Resolution Partner
-        </h1>
+        </h2>
         <p>
           Tax Advocate Group was founded on a simple principle: every taxpayer
           deserves knowledgeable, accessible representation when dealing with
@@ -49,10 +47,10 @@ const AboutUs = () => {
           directly into results for our clients.
         </p>
         <p>
-          We’ve built our practice around the cases other firms turn away.
+          We've built our practice around the cases other firms turn away.
           Complex multi-year liabilities, business payroll disputes, unfiled
           returns spanning a decade—these are the challenges where our team
-          excels. We don’t believe in cookie-cutter solutions because your tax
+          excels. We don't believe in cookie-cutter solutions because your tax
           situation is as unique as your financial story.
         </p>
       </section>
@@ -73,12 +71,12 @@ const AboutUs = () => {
           <li>
             <strong>Phase 2: Compliance</strong> – Before we can negotiate, we
             ensure all returns are filed accurately. This step alone often
-            reduces a client’s total liability significantly.
+            reduces a client's total liability significantly.
           </li>
           <li>
             <strong>Phase 3: Resolution</strong> – Armed with complete records
             and a clear financial picture, we pursue the resolution that puts
-            you in the strongest position—whether that’s an Offer in Compromise,
+            you in the strongest position—whether that's an Offer in Compromise,
             installment plan, penalty abatement, or currently-not-collectible
             status.
           </li>
@@ -122,7 +120,7 @@ const AboutUs = () => {
         <h2>What Sets Us Apart</h2>
         <p>
           The tax resolution industry is crowded, and many firms make promises
-          they can’t keep. Here’s what makes Tax Advocate Group different:
+          they can't keep. Here's what makes Tax Advocate Group different:
         </p>
         <ul>
           <li>
@@ -130,7 +128,7 @@ const AboutUs = () => {
             Attorney on day one, so the IRS contacts us—not you.
           </li>
           <li>
-            <strong>Transparent Pricing</strong> – You’ll know the full cost
+            <strong>Transparent Pricing</strong> – You'll know the full cost
             before we start. No hidden fees, no surprise charges.
           </li>
           <li>
@@ -150,26 +148,26 @@ const AboutUs = () => {
         <p>
           We stand behind our work with a straightforward guarantee: if we
           accept your case, we will deliver a resolution. Our consultation
-          process is honest and upfront—if we don’t believe we can improve
-          your situation, we’ll tell you so and won’t charge you a dime.
+          process is honest and upfront—if we don't believe we can improve
+          your situation, we'll tell you so and won't charge you a dime.
         </p>
         <p>
-          That’s the Tax Advocate Group difference. We earn our reputation one
+          That's the Tax Advocate Group difference. We earn our reputation one
           resolved case at a time.
         </p>
       </section>
 
       {/* Call to Action */}
-      <section className="cta-section">
+      <section className="about-cta-section">
         <h2>Schedule Your Free Consultation</h2>
-        <p className="cta-text">
+        <p className="about-cta-text">
           The first step is always a conversation. Tell us about your situation,
-          and we’ll lay out your options—clearly and honestly. No pressure, no
+          and we'll lay out your options—clearly and honestly. No pressure, no
           obligation.
         </p>
-        <a href="/contact-us" className="cta-button">
+        <Link to="/contact-us" className="about-cta-button">
           Start Your Case Review
-        </a>
+        </Link>
       </section>
     </div>
   );

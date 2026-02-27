@@ -8,7 +8,7 @@ const Main = () => {
       <section className="metrics-bar">
         <div className="metrics-bar__inner">
           <div className="metrics-bar__item">
-            <span className="metrics-bar__number">$300M+</span>
+            <span className="metrics-bar__number">$150M+</span>
             <span className="metrics-bar__label">Tax Debt Resolved</span>
           </div>
           <div className="metrics-bar__divider" />
@@ -86,7 +86,7 @@ const Main = () => {
         <div className="home-about__inner">
           <div className="home-about__text">
             <span className="section-label">Who We Are</span>
-            <h2>Enrolled Agents. Forensic Accountants. Your Advocates.</h2>
+            <h2>Enrolled Agents. Tax Attorneys. Your Advocates.</h2>
             <p>
               Tax Advocate Group is a team of licensed professionals who
               specialize in resolving complex tax issues for individuals and
