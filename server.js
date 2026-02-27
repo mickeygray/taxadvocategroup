@@ -45,7 +45,7 @@ const transporter = nodemailer.createTransport({
   secure: false,
   auth: {
     user: "apikey",
-    pass: process.env.TAXAD_API_KEY,
+    pass: process.env.TAG_API_KEY,
   },
 });
 
@@ -286,7 +286,7 @@ app.post("/send-email", async (req, res) => {
 
   const mailOptions = {
     from: "inquiry@taxadvocategroup.com",
-    to: "office@taxadvocategroup.com",
+    to: "inquiry@taxadvocategroup.com",
     subject: `New Inquiry from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage:\n${message}`,
   };
@@ -294,11 +294,11 @@ app.post("/send-email", async (req, res) => {
   try {
     await transporter.sendMail(mailOptions);
 
-    // Also post to webhook for real-time visitor tracking
-    await postToWebhook(
-      { name, email, phone, city: "", state: "", message },
-      "contact-form"
-    );
+    // TODO: webhook integration — uncomment once webhook endpoint is configured
+    // await postToWebhook(
+    //   { name, email, phone, city: "", state: "", message },
+    //   "contact-form"
+    // );
 
     res.status(200).json({ success: "Email sent successfully!" });
   } catch (error) {
@@ -586,11 +586,11 @@ app.post("/api/finalize-submission", async (req, res) => {
     await submission.save();
     console.log("[/finalize-submission] Saved to MongoDB:", submission._id);
 
-    // POST to webhook for CRM + real-time tracking
-    const webhookResult = await postToWebhook(
-      { name, email, phone, city: "", state: state || "", message: aiSummary },
-      "tax-barnaby-verified"
-    );
+    // TODO: webhook integration — uncomment once webhook endpoint is configured
+    // const webhookResult = await postToWebhook(
+    //   { name, email, phone, city: "", state: state || "", message: aiSummary },
+    //   "caitlyn-verified"
+    // );
 
     // Send follow-up email
     if (email && (contactPref === "email" || contactPref === "both")) {
@@ -606,7 +606,7 @@ app.post("/api/finalize-submission", async (req, res) => {
     // Notify internal team
     await transporter.sendMail({
       from: "inquiry@taxadvocategroup.com",
-      to: "office@taxadvocategroup.com",
+      to: "inquiry@taxadvocategroup.com",
       subject: `New Caitlyn Lead: ${name}`,
       text: `New verified lead from Caitlyn chatbot:\n\nName: ${name}\nEmail: ${email || "N/A"}\nPhone: ${phone || "N/A"}\nContact Pref: ${contactPref}\n\nSituation:\n${intakeSummary}\n\nQuestion: ${question}\n\nAI Summary:\n${aiSummary}\n\nSubmission ID: ${submission._id}`,
     });
@@ -663,7 +663,7 @@ app.post("/api/track-abandon", async (req, res) => {
     if (partial.lastPhase === "verification" && (partial.email || partial.phone)) {
       await transporter.sendMail({
         from: "inquiry@taxadvocategroup.com",
-        to: "office@taxadvocategroup.com",
+        to: "inquiry@taxadvocategroup.com",
         subject: `Abandoned Chat Session - ${partial.name || "Unknown"}`,
         text: `A visitor abandoned the Caitlyn chatbot at the VERIFICATION step.\n\nName: ${partial.name || "Not provided"}\nEmail: ${partial.email || "Not provided"}\nPhone: ${partial.phone || "Not provided"}\nPhase: ${partial.lastPhase}\n\nThis is a high-priority lead — they were very close to completing.`,
       });
@@ -701,20 +701,20 @@ app.post("/api/track-visitor", async (req, res) => {
       });
     }
 
-    // Forward to webhook for real-time pipeline
-    if (process.env.WEBHOOK_URL && process.env.LEAD_WEBHOOK_SECRET) {
-      await axios.post(
-        `${process.env.WEBHOOK_URL}/visitor-event`,
-        { visitorId, page, referrer, timestamp, ipAddress, userAgent, source: "taxadvocategroup" },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "x-webhook-key": process.env.LEAD_WEBHOOK_SECRET,
-          },
-          timeout: 5000,
-        }
-      ).catch((err) => console.warn("[VISITOR] Webhook failed:", err.message));
-    }
+    // TODO: webhook integration — uncomment once webhook endpoint is configured
+    // if (process.env.WEBHOOK_URL && process.env.LEAD_WEBHOOK_SECRET) {
+    //   await axios.post(
+    //     `${process.env.WEBHOOK_URL}/visitor-event`,
+    //     { visitorId, page, referrer, timestamp, ipAddress, userAgent, source: "taxadvocategroup" },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         "x-webhook-key": process.env.LEAD_WEBHOOK_SECRET,
+    //       },
+    //       timeout: 5000,
+    //     }
+    //   ).catch((err) => console.warn("[VISITOR] Webhook failed:", err.message));
+    // }
 
     return res.json({ ok: true, visitorId });
   } catch (error) {
@@ -740,6 +740,7 @@ app.get("/sitemap.xml", async (req, res) => {
     { url: "/contact-us", changefreq: "yearly", priority: 0.5 },
     { url: "/tax-news", changefreq: "weekly", priority: 0.6 },
     { url: "/state-tax-guide", changefreq: "monthly", priority: 0.8 },
+    { url: "/qualify-now", changefreq: "monthly", priority: 0.6 },
     { url: "/privacy-policy", changefreq: "yearly", priority: 0.3 },
     { url: "/terms-of-service", changefreq: "yearly", priority: 0.3 },
   ];
@@ -773,6 +774,30 @@ app.get("/sitemap.xml", async (req, res) => {
   ];
   statesSlugs.forEach((slug) => {
     links.push({ url: `/state-tax-guide/${slug}`, changefreq: "monthly", priority: 0.6 });
+  });
+
+  // Sub-pages (service detail pages)
+  const subPages = [
+    "tax-relief/tax-consultation",
+    "tax-relief/tax-preparation",
+    "tax-relief/tax-settlement",
+    "tax-resolution/tax-representation",
+    "tax-resolution/dealing-with-the-irs",
+    "tax-resolution/irs-innocent-spouse",
+    "tax-resolution/state-tax-relief",
+    "tax-resolution/statute-of-limitations",
+    "tax-resolution/tax-prep-and-planning",
+    "tax-resolution/unified-tax-returns",
+    "tax-resolution/irs-tax-discharge",
+    "tax-resolution/payroll-tax-relief",
+    "tax-resolution/wage-garnishment-relief",
+    "tax-negotiation/currently-not-collectible",
+    "tax-negotiation/irs-installment-plans",
+    "tax-negotiation/penalty-abatement",
+    "tax-negotiation/offer-in-compromise",
+  ];
+  subPages.forEach((slug) => {
+    links.push({ url: `/${slug}`, changefreq: "monthly", priority: 0.5 });
   });
 
   const blogRoutes = ["understanding-tax-relief", "irs-negotiation-tips"];

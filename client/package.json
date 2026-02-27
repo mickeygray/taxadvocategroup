@@ -27,7 +27,23 @@
   "reactSnap": {
     "inlineCss": false,
     "fixWebpackChunksIssue": true,
-    "minifyCss": true
+    "minifyCss": true,
+    "include": [
+      "/",
+      "/about-us",
+      "/our-tax-services",
+      "/tax-relief",
+      "/tax-resolution",
+      "/tax-negotiation",
+      "/tax-protection-plans",
+      "/tax-faqs",
+      "/contact-us",
+      "/tax-news",
+      "/state-tax-guide",
+      "/qualify-now",
+      "/privacy-policy",
+      "/terms-of-service"
+    ]
   },
   "eslintConfig": {
     "extends": [

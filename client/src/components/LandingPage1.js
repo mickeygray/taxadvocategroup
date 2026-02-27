@@ -163,7 +163,7 @@ const LandingPage1 = () => {
           <div className="hero-image-container">
             {!isMobile ? (
               <img
-                src="/images/wynn-landing-hero.png"
+                src="/images/tag-landing-hero.png"
                 alt="Tax Advocate Group Hero"
               />
             ) : (
