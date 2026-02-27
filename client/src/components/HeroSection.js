@@ -325,7 +325,12 @@ const HeroSection = () => {
       {!isMobile && (
       <section className="hero hero-desktop-version" aria-label="Tax Advocate Group introduction">
         <div className="hero__media">
-          <video autoPlay muted loop playsInline className="hero__video">
+          <video
+            autoPlay muted loop playsInline
+            preload="none"
+            poster="/images/Cover-Video-by-Shutterstock-1111048265-compressed_9.jpeg"
+            className="hero__video"
+          >
             <source
               src="/images/Cover-Video-by-Shutterstock-1111048265-compressed.mp4"
               type="video/mp4"
@@ -389,6 +394,7 @@ const HeroSection = () => {
                 alt="BBB Accredited Business"
                 width="40"
                 height="40"
+                loading="lazy"
               />
               <span>BBB A+ Rated</span>
             </div>
@@ -398,6 +404,7 @@ const HeroSection = () => {
                 alt="IRS Authorized Provider"
                 width="40"
                 height="40"
+                loading="lazy"
               />
               <span>IRS Licensed</span>
             </div>

@@ -2,6 +2,9 @@
 const fs = require("fs");
 const path = require("path");
 
+const subPageData = require("../src/data/subPageData");
+const blogData = require("../src/data/blogData");
+
 const DOMAIN = "https://www.taxadvocategroup.com";
 
 const states = [
@@ -35,31 +38,6 @@ const staticPages = [
   { loc: "/terms-of-service", priority: "0.2", changefreq: "yearly" },
 ];
 
-const subPages = [
-  "tax-relief/tax-consultation",
-  "tax-relief/tax-preparation",
-  "tax-relief/tax-settlement",
-  "tax-resolution/tax-representation",
-  "tax-resolution/dealing-with-the-irs",
-  "tax-resolution/irs-innocent-spouse",
-  "tax-resolution/state-tax-relief",
-  "tax-resolution/statute-of-limitations",
-  "tax-resolution/tax-prep-and-planning",
-  "tax-resolution/unified-tax-returns",
-  "tax-resolution/irs-tax-discharge",
-  "tax-resolution/payroll-tax-relief",
-  "tax-resolution/wage-garnishment-relief",
-  "tax-negotiation/currently-not-collectible",
-  "tax-negotiation/irs-installment-plans",
-  "tax-negotiation/penalty-abatement",
-  "tax-negotiation/offer-in-compromise",
-];
-
-const blogSlugs = [
-  "understanding-tax-relief",
-  "irs-negotiation-tips",
-];
-
 const toEntry = ({ loc, priority, changefreq }) =>
   `  <url>
     <loc>${DOMAIN}${loc}</loc>
@@ -67,12 +45,12 @@ const toEntry = ({ loc, priority, changefreq }) =>
     <priority>${priority}</priority>
   </url>`;
 
-const subPageEntries = subPages.map((slug) =>
+const subPageEntries = Object.keys(subPageData).map((slug) =>
   toEntry({ loc: `/${slug}`, priority: "0.6", changefreq: "monthly" }),
 );
 
-const blogEntries = blogSlugs.map((slug) =>
-  toEntry({ loc: `/tax-news/${slug}`, priority: "0.6", changefreq: "monthly" }),
+const blogEntries = blogData.map((blog) =>
+  toEntry({ loc: `/tax-news/${blog.id}`, priority: "0.6", changefreq: "monthly" }),
 );
 
 const stateEntries = states.map((s) =>

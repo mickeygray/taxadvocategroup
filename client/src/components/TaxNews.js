@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import useBlogData from "./useBlogData";
+import blogData from "../data/blogData";
 import SEO from "./SEO";
 import { orgSchema } from "../utils/structuredData";
 
 const TaxNews = () => {
-  const { blogs } = useBlogData();
+  const blogs = blogData;
 
   return (
     <div className="tax-news-container">

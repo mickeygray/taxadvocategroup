@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PhoneLink from "./PhoneLink";
-import useBlogData from "./useBlogData";
+import blogData from "../data/blogData";
 
 const Footer = () => {
-  const { blogs } = useBlogData();
-  const recentPosts = blogs.slice(0, 5);
+  const recentPosts = blogData.slice(0, 5);
 
   return (
     <footer className="footer">

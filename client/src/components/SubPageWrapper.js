@@ -1,14 +1,13 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useSubPageData from "./useSubPageData";
+import subPageData from "../data/subPageData";
 import SubPage from "./SubPage";
 
 const SubPageWrapper = () => {
-  const { category, slug } = useParams(); // Get the route param
-  const pages = useSubPageData();
+  const { category, slug } = useParams();
   const pageKey = `${category}/${slug}`;
 
-  const pageData = pages[pageKey];
+  const pageData = subPageData[pageKey];
 
   // If page data is not found, return a 404 page
   if (!pageData) {

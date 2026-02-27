@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import useBlogData from "./useBlogData";
+import blogData from "../data/blogData";
 import SEO from "./SEO";
 import { orgSchema, blogPostingSchema } from "../utils/structuredData";
 
@@ -7,8 +7,7 @@ const FALLBACK_HERO = "/images/contact-hero.png";
 
 const TaxNewsArticle = () => {
   const { id } = useParams();
-  const { getBlogById } = useBlogData();
-  const blog = getBlogById(id);
+  const blog = blogData.find((b) => b.id === id);
 
   if (!blog) return <p>Blog not found.</p>;
 
