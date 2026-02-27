@@ -112,7 +112,7 @@ function rebuildMessagesFromSavedData(saved) {
 
   msgs.push({
     id: rid(), who: "bot",
-    text: "Hi! I'm Barnaby, your tax guide. Let's figure out your tax situation. What are your current tax problems? Select all that apply.",
+    text: "Hello, my name is Caitlyn, your virtual tax expert. Let's figure out your tax situation. What are your current tax problems? Select all that apply.",
   });
 
   if (saved.issues?.length > 0) {
@@ -246,7 +246,7 @@ export default function TaxBarnaby() {
   }
 
   const [messages, setMessages] = useState([
-    { id: genId(), who: "bot", text: "Hi! I'm Barnaby, your tax guide. Let's figure out your tax situation. What are your current tax problems? Select all that apply." },
+    { id: genId(), who: "bot", text: "Hello, my name is Caitlyn, your virtual tax expert. Let's figure out your tax situation. What are your current tax problems? Select all that apply." },
     { id: genId(), who: "bot", type: "intake_issues", text: "" },
   ]);
 
@@ -609,7 +609,7 @@ export default function TaxBarnaby() {
             if (m.type !== "intake_issues" && m.type !== "intake_step" && m.type !== "contact_buttons") {
               return (
                 <div key={m.id} style={{ ...styles.msg, ...(m.who === "you" ? styles.user : styles.bot) }}>
-                  <div style={styles.role}>{m.who === "you" ? "You" : "Tax Barnaby"}</div>
+                  <div style={styles.role}>{m.who === "you" ? "You" : "Caitlyn"}</div>
                   <div style={styles.bubble} dangerouslySetInnerHTML={renderMessage(m)} />
                 </div>
               );
@@ -707,7 +707,7 @@ export default function TaxBarnaby() {
 
           {loading && (
             <div style={{ ...styles.msg, ...styles.bot }}>
-              <div style={styles.role}>Tax Barnaby</div>
+              <div style={styles.role}>Caitlyn</div>
               <div style={styles.bubble}>Thinking...</div>
             </div>
           )}

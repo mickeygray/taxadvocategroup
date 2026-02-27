@@ -147,3 +147,14 @@ export const statePageSchema = (state) => ({
   serviceType: "Tax Relief",
   url: `https://www.taxadvocategroup.com/state-tax-guide/${state.slug}`,
 });
+
+export const breadcrumbSchema = (items) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: item.name,
+    item: `https://www.taxadvocategroup.com${item.path}`,
+  })),
+});

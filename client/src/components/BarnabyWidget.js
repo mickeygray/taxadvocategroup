@@ -64,14 +64,14 @@ export default function BarnabyWidget() {
                 &times;
               </button>
               <p>Have a tax question?</p>
-              <span>Ask Barnaby for free expert guidance</span>
+              <span>Get free expert tax guidance</span>
               <div className="barnaby-hint-arrow"></div>
             </div>
           )}
 
           <button
             onClick={handleBarnabyClick}
-            aria-label="Open Ask Barnaby"
+            aria-label="Open tax question chat"
             className="barnaby-fab"
           >
             <div className="barnaby-fab-icon">
@@ -82,7 +82,7 @@ export default function BarnabyWidget() {
                 />
               </svg>
             </div>
-            <span className="barnaby-fab-text">Ask Barnaby</span>
+            <span className="barnaby-fab-text">Have A Question?</span>
           </button>
         </div>
       )}
@@ -99,10 +99,10 @@ export default function BarnabyWidget() {
           <div className="barnaby-modal">
             <div className="barnaby-modal-header">
               <div className="barnaby-modal-title">
-                <div className="barnaby-avatar">B</div>
+                <div className="barnaby-avatar">C</div>
                 <div>
-                  <div className="barnaby-name">Ask Barnaby</div>
-                  <div className="barnaby-subtitle">Tax education by TAG</div>
+                  <div className="barnaby-name">Have A Question?</div>
+                  <div className="barnaby-subtitle">Tax help by TAG</div>
                 </div>
               </div>
               <button onClick={() => setOpen(false)} className="barnaby-close">

@@ -29,10 +29,14 @@
     />
     <meta
       property="og:image"
-      content="/images/tax-advocate-group-logo-small.png"
+      content="https://www.taxadvocategroup.com/images/tax-advocate-group-logo-small.png"
     />
-    <meta property="og:url" content="https://taxadvocategroup.com" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://www.taxadvocategroup.com" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Tax Advocate Group" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -44,37 +48,125 @@
       name="twitter:description"
       content="Struggling with IRS debt? Tax Advocate Group provides expert guidance, relief solutions, and financial support for individuals and businesses alike."
     />
-    <meta name="twitter:image" content="%PUBLIC_URL%/images/twitter-card.png" />
+    <meta name="twitter:image" content="https://www.taxadvocategroup.com/images/tax-advocate-group-logo-small.png" />
     <meta name="twitter:site" content="@taxadvocategroup" />
 
     <!-- Canonical Tag -->
     <link rel="canonical" href="https://www.taxadvocategroup.com" />
 
-    <!-- Structured Data (JSON-LD) for SEO -->
+    <!-- Structured Data (JSON-LD) — ProfessionalService -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "ProfessionalService",
         "name": "Tax Advocate Group",
         "url": "https://www.taxadvocategroup.com",
         "logo": "https://www.taxadvocategroup.com/images/tax-advocate-group-logo-small.png",
-
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+18005171807",
-          "contactType": "customer service",
-          "areaServed": "US",
-          "availableLanguage": "English"
-        },
+        "image": "https://www.taxadvocategroup.com/images/tax-advocate-group-logo-small.png",
+        "telephone": "+1-800-517-1807",
+        "email": "office@taxadvocategroup.com",
+        "priceRange": "$$",
         "description": "Tax Advocate Group provides expert tax resolution services to help individuals and businesses resolve tax debt, negotiate with the IRS, and secure their financial future.",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "21625 Prairie Ave",
+          "streetAddress": "21625 Prairie Street, Suite #200",
           "addressLocality": "Chatsworth",
           "addressRegion": "CA",
           "postalCode": "91331",
           "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 34.2572,
+          "longitude": -118.5981
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-800-517-1807",
+          "contactType": "customer service",
+          "areaServed": "US",
+          "availableLanguage": "English"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "07:00",
+          "closes": "17:00"
+        },
+        "areaServed": { "@type": "Country", "name": "US" },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Tax Resolution Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tax Relief", "description": "Comprehensive tax relief solutions including Offer in Compromise, penalty abatement, and Currently Not Collectible status." }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "IRS Negotiation", "description": "Expert IRS negotiation for installment agreements, payment plans, and tax debt settlement." }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tax Resolution", "description": "Full-service tax resolution including audit representation, unfiled returns, and compliance." }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "State Tax Help", "description": "State tax authority negotiation and resolution services in all 50 states." }}
+          ]
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "312",
+          "bestRating": "5"
         }
+      }
+    </script>
+
+    <!-- Structured Data (JSON-LD) — WebSite with SearchAction -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Tax Advocate Group",
+        "url": "https://www.taxadvocategroup.com",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.taxadvocategroup.com/state-tax-guide?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <!-- Structured Data (JSON-LD) — FAQPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What makes Tax Advocate Group different from other tax firms?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We follow a structured three-phase process—Investigation, Compliance, and Resolution—that ensures we fully understand your situation before recommending a path forward. Our team includes enrolled agents and tax attorneys licensed in all 50 states, and we back our work with a money-back guarantee."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the tax resolution process work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We file Power of Attorney to pull your IRS transcripts and assess your full tax picture. Next, we bring all unfiled returns current. Finally, we negotiate the best available resolution: an installment agreement, Offer in Compromise, penalty abatement, or Currently Not Collectible status."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you stop a wage garnishment or bank levy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Once we file Power of Attorney, we contact the IRS or state agency to request an immediate release or reduction of the levy. In many cases, we can get garnishments stopped within days by demonstrating financial hardship or proposing an alternative arrangement."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you handle state tax problems?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We work with all 50 state tax authorities in addition to the IRS. State agencies have their own garnishment and lien procedures, and we know how to navigate each one."
+            }
+          }
+        ]
       }
     </script>
 

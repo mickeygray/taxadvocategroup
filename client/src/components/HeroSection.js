@@ -331,89 +331,83 @@ const HeroSection = () => {
               type="video/mp4"
             />
           </video>
-          <div className="hero__overlay"></div>
+          <div className="hero__overlay hero__overlay--center"></div>
         </div>
 
-        <div className="hero__content">
-          <div className="hero__grid">
-            {/* Left side — Text content */}
-            <div className="hero__text">
-              <span className="hero__badge">
-                <span className="badge-dot"></span>
-                Trusted Tax Professionals
-              </span>
+        <div className="hero__content hero__content--centered">
+          {/* Centered headline block */}
+          <div className="hero__headline-block">
+            <span className="hero__badge hero__badge--center">
+              <i className="fas fa-shield-alt" aria-hidden="true"></i>
+              Trusted Tax Professionals
+            </span>
 
-              <h1 className="hero__title">
-                <span className="hero__title-line">Tax Advocate</span>
-                <span className="hero__title-line hero__title-accent">Group</span>
-              </h1>
+            <h1 className="hero__title hero__title--centered">
+              <span className="hero__title-sweep">Tax Advocate Group</span>
+            </h1>
 
-              <p className="hero__subtitle">
-                Individual and Business Tax Consulting
-              </p>
+            <p className="hero__tagline">
+              Individual &amp; Business Tax Consulting
+            </p>
 
-              <p className="hero__description">
-                We work with businesses and individuals from all over the U.S.,
-                providing comprehensive and tailored solutions to resolve your
-                tax challenges.
-              </p>
+            <p className="hero__blurb">
+              Comprehensive and tailored solutions for businesses and individuals
+              across all 50 states.
+            </p>
+          </div>
 
-              {/* Stats row */}
-              <div className="hero__stats">
-                <div className="hero__stat">
-                  <span className="hero__stat-value">$150M+</span>
-                  <span className="hero__stat-label">Tax Debt Resolved</span>
-                </div>
-                <div className="hero__stat">
-                  <span className="hero__stat-value">A+</span>
-                  <span className="hero__stat-label">BBB Rating</span>
-                </div>
-                <div className="hero__stat">
-                  <span className="hero__stat-value">50</span>
-                  <span className="hero__stat-label">States Covered</span>
-                </div>
-              </div>
-
-              {/* CTA buttons */}
-              <div className="hero__buttons">
-                <Link to="/our-tax-services" className="hero__btn hero__btn--primary">
-                  <i className="fa-solid fa-folder" aria-hidden="true"></i> Our Services
-                </Link>
-                <Link to="/contact-us" className="hero__btn hero__btn--secondary">
-                  <i className="fa-solid fa-phone" aria-hidden="true"></i> Free Consultation
-                </Link>
-              </div>
-
-              {/* Trust badges */}
-              <div className="hero__trust">
-                <div className="hero__trust-badge">
-                  <img
-                    src="/images/bbb-accredited-business.png"
-                    alt="BBB Accredited Business"
-                    width="48"
-                    height="48"
-                  />
-                  <span>BBB A+ Rated</span>
-                </div>
-                <div className="hero__trust-badge">
-                  <img
-                    src="/images/trust-builder-IRS-Provider.png"
-                    alt="IRS Authorized Provider"
-                    width="48"
-                    height="48"
-                  />
-                  <span>IRS Licensed</span>
-                </div>
-                <div className="hero__trust-badge">
-                  <i className="fas fa-check-circle" aria-hidden="true"></i>
-                  <span>All 50 States</span>
-                </div>
-              </div>
+          {/* Stats chips */}
+          <div className="hero__chips">
+            <div className="hero__chip">
+              <span className="hero__chip-value">$150M+</span>
+              <span className="hero__chip-label">Resolved</span>
             </div>
+            <div className="hero__chip">
+              <span className="hero__chip-value">A+</span>
+              <span className="hero__chip-label">BBB Rating</span>
+            </div>
+            <div className="hero__chip">
+              <span className="hero__chip-value">50</span>
+              <span className="hero__chip-label">States</span>
+            </div>
+            <div className="hero__chip">
+              <span className="hero__chip-value">24hr</span>
+              <span className="hero__chip-label">Response</span>
+            </div>
+          </div>
 
-            {/* Right side — Form */}
-            <div className="hero__form-wrapper">
-              <EmbeddedLeadForm variant="desktop-hero" />
+          {/* Form — centered card */}
+          <div className="hero__form-card">
+            <EmbeddedLeadForm variant="desktop-hero" />
+          </div>
+
+          {/* Trust row below form */}
+          <div className="hero__trust hero__trust--center">
+            <div className="hero__trust-badge">
+              <img
+                src="/images/bbb-accredited-business.png"
+                alt="BBB Accredited Business"
+                width="40"
+                height="40"
+              />
+              <span>BBB A+ Rated</span>
+            </div>
+            <div className="hero__trust-badge">
+              <img
+                src="/images/trust-builder-IRS-Provider.png"
+                alt="IRS Authorized Provider"
+                width="40"
+                height="40"
+              />
+              <span>IRS Licensed</span>
+            </div>
+            <div className="hero__trust-badge">
+              <i className="fas fa-check-circle" aria-hidden="true"></i>
+              <span>All 50 States</span>
+            </div>
+            <div className="hero__trust-badge">
+              <i className="fas fa-lock" aria-hidden="true"></i>
+              <span>Secure &amp; Confidential</span>
             </div>
           </div>
         </div>

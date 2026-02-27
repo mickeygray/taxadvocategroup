@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SEO from "./SEO";
 import { orgSchema } from "../utils/structuredData";
 import stateData from "../data/stateData";
 import PhoneLink from "./PhoneLink";
+import USMapSVG from "./UsMapSvg";
 
 const StateTaxHub = () => {
+  const navigate = useNavigate();
   const [filter, setFilter] = useState("");
+  const [activeState, setActiveState] = useState(null);
+
+  const handleStateClick = (abbr) => {
+    setActiveState(abbr);
+    const state = stateData.find((s) => s.abbreviation === abbr);
+    if (state) navigate(`/state-tax-guide/${state.slug}`);
+  };
 
   const noIncomeTax = stateData.filter((s) => s.incomeType === "none").length;
   const withIncomeTax = stateData.length - noIncomeTax;
@@ -81,6 +90,19 @@ const StateTaxHub = () => {
               )}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ─── INTERACTIVE MAP ─── */}
+      <section className="state-hub__map">
+        <div className="state-hub__map-inner">
+          <h2>Click Your State</h2>
+          <p>Select a state on the map to view tax authority info and resolution options.</p>
+          <USMapSVG
+            activeState={activeState}
+            onStateClick={handleStateClick}
+            interactive
+          />
         </div>
       </section>
 

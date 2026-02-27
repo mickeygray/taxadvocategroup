@@ -144,7 +144,7 @@ const NON_TAX_REFUSAL =
   "I specialize in U.S. tax matters and can't provide guidance on that topic. However, if you have tax questions related to your situation, I'm here to help. Would you like to schedule a call with a Tax Advocate Group consultant to discuss your needs?";
 
 const TAX_SYSTEM_PROMPT = `
-You are Tax Barnaby, a specialized U.S. tax education assistant for Tax Advocate Group.
+You are Caitlyn, a specialized U.S. tax education assistant for Tax Advocate Group.
 
 CONTEXT AWARENESS:
 You may have information about the user's tax situation from their intake selections. Use this context to provide personalized guidance.
@@ -599,8 +599,8 @@ app.post("/api/finalize-submission", async (req, res) => {
     await transporter.sendMail({
       from: "inquiry@taxadvocategroup.com",
       to: "office@taxadvocategroup.com",
-      subject: `New Barnaby Lead: ${name}`,
-      text: `New verified lead from Tax Barnaby:\n\nName: ${name}\nEmail: ${email || "N/A"}\nPhone: ${phone || "N/A"}\nContact Pref: ${contactPref}\n\nSituation:\n${intakeSummary}\n\nQuestion: ${question}\n\nAI Summary:\n${aiSummary}\n\nSubmission ID: ${submission._id}`,
+      subject: `New Caitlyn Lead: ${name}`,
+      text: `New verified lead from Caitlyn chatbot:\n\nName: ${name}\nEmail: ${email || "N/A"}\nPhone: ${phone || "N/A"}\nContact Pref: ${contactPref}\n\nSituation:\n${intakeSummary}\n\nQuestion: ${question}\n\nAI Summary:\n${aiSummary}\n\nSubmission ID: ${submission._id}`,
     });
 
     res.clearCookie("tb_qc", { path: "/" });
@@ -656,8 +656,8 @@ app.post("/api/track-abandon", async (req, res) => {
       await transporter.sendMail({
         from: "inquiry@taxadvocategroup.com",
         to: "office@taxadvocategroup.com",
-        subject: `Abandoned Barnaby Session - ${partial.name || "Unknown"}`,
-        text: `A visitor abandoned the Tax Barnaby chatbot at the VERIFICATION step.\n\nName: ${partial.name || "Not provided"}\nEmail: ${partial.email || "Not provided"}\nPhone: ${partial.phone || "Not provided"}\nPhase: ${partial.lastPhase}\n\nThis is a high-priority lead — they were very close to completing.`,
+        subject: `Abandoned Chat Session - ${partial.name || "Unknown"}`,
+        text: `A visitor abandoned the Caitlyn chatbot at the VERIFICATION step.\n\nName: ${partial.name || "Not provided"}\nEmail: ${partial.email || "Not provided"}\nPhone: ${partial.phone || "Not provided"}\nPhase: ${partial.lastPhase}\n\nThis is a high-priority lead — they were very close to completing.`,
       });
       console.log("[TRACK-ABANDON] High priority alert sent");
     }
