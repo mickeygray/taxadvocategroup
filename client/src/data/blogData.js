@@ -57,7 +57,7 @@ const blogData = [
   {
     id: "offer-in-compromise-myth-vs-fact",
     title: "Offer in Compromise: Myth vs Fact (What the IRS Actually Looks At)",
-    image: "/images/placeholder.png",
+    image: "/images/oic-myth-vs-fact.png",
     teaser:
       "Offer in Compromise sounds like “settle for pennies,” but that’s not how the IRS evaluates it. Here’s a clean Myth vs Fact breakdown of who actually qualifies, what the IRS looks at, and why many offers fail.",
     contentTitle:
@@ -112,7 +112,7 @@ const blogData = [
     id: "currently-not-collectible-cnc-how-it-works",
     title:
       "Currently Not Collectible (CNC): When the IRS Can Pause Collections Because You Can’t Afford to Pay",
-    image: "/images/placeholder.png",
+    image: "/images/cnc-currently-not-collectible.png",
     teaser:
       "If paying the IRS would keep you from covering basic living expenses, you may be able to request a temporary collection delay called Currently Not Collectible (CNC). Here’s what CNC is, what it isn’t, what the IRS may require, and what to expect while your account is in hardship status.",
     contentTitle:
@@ -176,7 +176,7 @@ const blogData = [
     id: "irs-penalty-abatement-first-time-abate-reasonable-cause",
     title:
       "IRS Penalty Abatement: First Time Abate vs Reasonable Cause (and What Actually Works)",
-    image: "/images/placeholder.png",
+    image: "/images/irs-penalty-abatement.png",
     teaser:
       "If you owe the IRS, penalties can add up fast. The good news: in many cases you can request penalty relief through First Time Abate (FTA) or Reasonable Cause. Here’s what each option means, who may qualify, and how to request it without making the situation worse.",
     contentTitle:
@@ -251,7 +251,7 @@ const blogData = [
     id: "1099-vs-scorp-sole-prop-when-to-incorporate-yourself",
     title:
       "1099 vs Sole Proprietor vs S‑Corp: When Does It Make Sense to “Incorporate Yourself”?",
-    image: "/images/placeholder.png",
+    image: "/images/1099-vs-scorp.png",
     teaser:
       "A 1099 is a tax form — not a business structure. Most 1099 workers are sole proprietors by default. The real question is: when does it make sense to stay Schedule C vs elect S‑Corp status for potential savings (and added complexity)? Here’s a simple breakdown with real numbers.",
     contentTitle:
@@ -363,7 +363,7 @@ const blogData = [
     id: "irs-collection-notices-cp14-cp501-cp503-cp504-lt11-1058",
     title:
       "IRS Collection Notices Explained: CP14, CP501, CP503, CP504, LT11 — and What to Do If You Owe",
-    image: "/images/placeholder.png",
+    image: "/images/irs-collection-notices.png",
     teaser:
       "If you owe the IRS, you’ll usually see a series of balance-due and collection notices that escalate over time. Here’s what the most common letters mean (CP14 through CP504, LT11/Letter 1058), what you might see next, and the safest way to respond without making things worse.",
     contentTitle:
@@ -436,7 +436,7 @@ const blogData = [
     id: "live-work-different-states-surprise-tax-bill",
     title:
       "Live in One State, Work in Another? Here’s How Blue-Collar Workers End Up Owing Taxes They Didn’t Expect",
-    image: "/images/placeholder.png",
+    image: "/images/live-work-different-states.png",
     teaser:
       "If you cross state lines for work — trucking, construction, field service, owner-operator, or side jobs — you can end up owing state taxes you didn’t even know were coming. Here’s why it happens, how to avoid the surprise bill, and what to do if you’re already getting notices.",
     contentTitle:
@@ -508,7 +508,7 @@ const blogData = [
     id: "1099-filing-tips-2025-return",
     title:
       "Best Tips for Filing Your 1099 Taxes This Year (2025 Return): What to Gather, What Changed, and How to Avoid Surprises",
-    image: "/images/placeholder.png",
+    image: "/images/1099-filing-tips.png",
     teaser:
       "If you’re a 1099 contractor, gig worker, or small business owner, filing taxes can feel messy—until you break it into a simple checklist. Here are the best tips for filing your 2025 return, including what to track, what forms matter, and a key 1099-K reporting change that affects payment apps and online marketplaces.",
     contentTitle:
@@ -585,7 +585,7 @@ const blogData = [
     id: "possible-government-shutdown-tax-season-what-to-do-now",
     title:
       "Possible Government Shutdown: What It Could Mean for Tax Season (and Why You Should Prepare Right Now)",
-    image: "/images/placeholder.png",
+    image: "/images/gov_shutdown_tax-season.png",
     teaser:
       "With a late-January funding deadline, a partial government shutdown is possible right as tax season gets underway. Here’s what a shutdown could mean for IRS services, what happened during the 2025 shutdown, and why getting your documents together now matters—especially if you already owe.",
     contentTitle:
@@ -657,7 +657,7 @@ const blogData = [
     id: "irs-now-accepting-2025-returns-what-to-file-what-if-you-owe-catch-up",
     title:
       "IRS Is Now Accepting 2025 Tax Returns: What You Need to File, What to Do If You Owe, and How to Catch Up",
-    image: "/images/placeholder.png",
+    image: "/images/irs_accepting_2025_returns_expressive.png",
     teaser:
       "The IRS is officially accepting 2025 federal tax returns. Here’s a practical checklist of what you need to file, what to do if you owe (pay in full vs payment plan vs extension), and how to handle unfiled returns from prior years.",
     contentTitle:
@@ -738,7 +738,7 @@ const blogData = [
     id: "irs-opens-filing-season-jan-26-2026-obbba-individual-changes",
     title:
       "IRS Opens the 2026 Filing Season on Jan. 26: What to Do Now + Key Individual Changes Under the One, Big, Beautiful Bill Act",
-    image: "/images/placeholder.png",
+    image: "/images/irs_open_2026.png",
     teaser:
       "The IRS officially begins accepting 2025 tax returns on Monday, Jan. 26, 2026. Here’s what to do before you file — plus a plain-English breakdown of major individual tax changes now in effect under the One, Big, Beautiful Bill Act.",
     contentTitle:
@@ -822,7 +822,7 @@ const blogData = [
     id: "1099-threshold-changes-2026-2000-20000",
     title:
       "1099 Threshold Changes: The New $2,000 Rule for 1099-NEC/1099-MISC (2026) and the 1099-K Shift for Payment Apps",
-    image: "/images/placeholder.png",
+    image: "/images/1099_thresholds.png",
     teaser:
       "A new federal law changes multiple 1099 reporting thresholds. Starting in 2026, the reporting threshold for Forms 1099-NEC and 1099-MISC rises from $600 to $2,000 (and then adjusts for inflation). The law also restores the 1099-K payment app/marketplace threshold to the pre-$600 rule. Here’s what changed, what it does NOT mean, and how to protect yourself from surprise tax bills.",
     contentTitle:
@@ -896,7 +896,7 @@ const blogData = [
     id: "gambling-loss-deduction-90-percent-rule-2026",
     title:
       "New Gambling Loss Deduction Limit: The 90% Rule Starting in 2026 (Why Break‑Even Can Still Be Taxable)",
-    image: "/images/placeholder.png",
+    image: "/images/gamblingloss90.png",
     teaser:
       "A new federal tax law changes how gambling losses work starting in 2026. Instead of deducting 100% of losses (up to winnings), the deduction is reduced—meaning some gamblers can owe taxes even in a break‑even year. Here’s what changed, simple examples, and what to do if it triggers an unexpected IRS balance.",
     contentTitle:
@@ -957,7 +957,7 @@ const blogData = [
     id: "10-percent-credit-card-interest-cap-irs-tax-debt",
     title:
       "Trump’s Proposed 10% Credit Card Interest Cap: Could Paying the IRS With a Card Save You Money?",
-    image: "/images/placeholder.png",
+    image: "/images/creditcardcap10.png",
     teaser:
       "President Donald Trump floated a one-year 10% cap on credit card interest rates. If something like this ever became law, it could change the math for taxpayers carrying an IRS balance — because IRS penalties can add up faster than most people realize, especially if you haven’t filed yet.",
     contentTitle:
@@ -1063,7 +1063,7 @@ const blogData = [
     id: "tariffs-2025-impact-tax-debt",
     title:
       "Tariffs in 2025: Rising Costs, Higher Prices, and Why Now Is the Time to Resolve Your Tax Debt",
-    image: "/images/placeholder.png",
+    image: "/images/tarriffs2025.png",
     teaser:
       "New tariffs in 2025 are driving up the cost of goods across key industries, squeezing household budgets nationwide. Learn how these rising expenses may actually strengthen your case for IRS relief — and why now is the time to resolve back taxes.",
     contentTitle:
@@ -1123,7 +1123,7 @@ const blogData = [
     id: "affordability-crisis-2025-tax-debt-relief",
     title:
       "The 2025 Affordability Crisis: Why Tackling Tax Debt Makes Life More Affordable",
-    image: "/images/placeholder.png",
+    image: "/images/affordability2025.png",
     teaser:
       "With costs climbing and the holidays approaching, many families feel financially overwhelmed. Learn how the 2025 affordability crisis impacts IRS relief options—and why addressing back taxes now can actually free up room in your budget.",
     contentTitle:
@@ -1179,7 +1179,7 @@ const blogData = [
     id: "government-shutdown-2025-complete-guide",
     title:
       "The 2025 Government Shutdown: What Happened and What It Means for Taxpayers",
-    image: "/images/placeholder.png",
+    image: "/images/governmentshutdown2025.png",
     teaser:
       "From October 1st to November 12th, 2025, the U.S. experienced the longest government shutdown in history. Here’s a clear breakdown of what caused it, how it impacted the IRS, federal workers, and the average American — and what it means for taxpayers moving forward.",
     contentTitle:
@@ -1732,7 +1732,7 @@ const blogData = [
   {
     id: "understanding-tax-relief",
     title: "Understanding Tax Relief",
-    image: "/images/placeholder.png",
+    image: "/images/Tax-Resolution-Truth.jpg",
     teaser:
       "Tax relief can help individuals and businesses reduce their tax burdens through deductions, credits, settlements, and negotiations with the IRS. Understanding your options and the steps involved is key to securing the best outcome for your financial situation...",
     contentTitle:
