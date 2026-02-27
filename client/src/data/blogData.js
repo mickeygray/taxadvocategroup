@@ -3,7 +3,6 @@ const blogData = [
     id: "state-of-the-union-2026-tax-money-highlights",
     title:
       "State of the Union (2/24): Tax & Money Highlights — What Was Mentioned and What It Could Mean for Your Return",
-    image: "/images/placeholder.png",
     teaser:
       "The 2/24 State of the Union included several tax-related claims and financial proposals — from “no tax on tips/overtime/Social Security” to tariffs and new retirement savings ideas. Here’s what was said, what to watch for, and what to do if you already owe back taxes.",
     contentTitle:
@@ -57,7 +56,6 @@ const blogData = [
   {
     id: "offer-in-compromise-myth-vs-fact",
     title: "Offer in Compromise: Myth vs Fact (What the IRS Actually Looks At)",
-    image: "/images/oic-myth-vs-fact.png",
     teaser:
       "Offer in Compromise sounds like “settle for pennies,” but that’s not how the IRS evaluates it. Here’s a clean Myth vs Fact breakdown of who actually qualifies, what the IRS looks at, and why many offers fail.",
     contentTitle:
@@ -112,7 +110,6 @@ const blogData = [
     id: "currently-not-collectible-cnc-how-it-works",
     title:
       "Currently Not Collectible (CNC): When the IRS Can Pause Collections Because You Can’t Afford to Pay",
-    image: "/images/cnc-currently-not-collectible.png",
     teaser:
       "If paying the IRS would keep you from covering basic living expenses, you may be able to request a temporary collection delay called Currently Not Collectible (CNC). Here’s what CNC is, what it isn’t, what the IRS may require, and what to expect while your account is in hardship status.",
     contentTitle:
@@ -176,7 +173,6 @@ const blogData = [
     id: "irs-penalty-abatement-first-time-abate-reasonable-cause",
     title:
       "IRS Penalty Abatement: First Time Abate vs Reasonable Cause (and What Actually Works)",
-    image: "/images/irs-penalty-abatement.png",
     teaser:
       "If you owe the IRS, penalties can add up fast. The good news: in many cases you can request penalty relief through First Time Abate (FTA) or Reasonable Cause. Here’s what each option means, who may qualify, and how to request it without making the situation worse.",
     contentTitle:
@@ -251,7 +247,6 @@ const blogData = [
     id: "1099-vs-scorp-sole-prop-when-to-incorporate-yourself",
     title:
       "1099 vs Sole Proprietor vs S‑Corp: When Does It Make Sense to “Incorporate Yourself”?",
-    image: "/images/1099-vs-scorp.png",
     teaser:
       "A 1099 is a tax form — not a business structure. Most 1099 workers are sole proprietors by default. The real question is: when does it make sense to stay Schedule C vs elect S‑Corp status for potential savings (and added complexity)? Here’s a simple breakdown with real numbers.",
     contentTitle:
@@ -363,7 +358,6 @@ const blogData = [
     id: "irs-collection-notices-cp14-cp501-cp503-cp504-lt11-1058",
     title:
       "IRS Collection Notices Explained: CP14, CP501, CP503, CP504, LT11 — and What to Do If You Owe",
-    image: "/images/irs-collection-notices.png",
     teaser:
       "If you owe the IRS, you’ll usually see a series of balance-due and collection notices that escalate over time. Here’s what the most common letters mean (CP14 through CP504, LT11/Letter 1058), what you might see next, and the safest way to respond without making things worse.",
     contentTitle:
@@ -436,7 +430,6 @@ const blogData = [
     id: "live-work-different-states-surprise-tax-bill",
     title:
       "Live in One State, Work in Another? Here’s How Blue-Collar Workers End Up Owing Taxes They Didn’t Expect",
-    image: "/images/live-work-different-states.png",
     teaser:
       "If you cross state lines for work — trucking, construction, field service, owner-operator, or side jobs — you can end up owing state taxes you didn’t even know were coming. Here’s why it happens, how to avoid the surprise bill, and what to do if you’re already getting notices.",
     contentTitle:
@@ -508,7 +501,6 @@ const blogData = [
     id: "1099-filing-tips-2025-return",
     title:
       "Best Tips for Filing Your 1099 Taxes This Year (2025 Return): What to Gather, What Changed, and How to Avoid Surprises",
-    image: "/images/1099-filing-tips.png",
     teaser:
       "If you’re a 1099 contractor, gig worker, or small business owner, filing taxes can feel messy—until you break it into a simple checklist. Here are the best tips for filing your 2025 return, including what to track, what forms matter, and a key 1099-K reporting change that affects payment apps and online marketplaces.",
     contentTitle:
@@ -585,7 +577,6 @@ const blogData = [
     id: "possible-government-shutdown-tax-season-what-to-do-now",
     title:
       "Possible Government Shutdown: What It Could Mean for Tax Season (and Why You Should Prepare Right Now)",
-    image: "/images/gov_shutdown_tax-season.png",
     teaser:
       "With a late-January funding deadline, a partial government shutdown is possible right as tax season gets underway. Here’s what a shutdown could mean for IRS services, what happened during the 2025 shutdown, and why getting your documents together now matters—especially if you already owe.",
     contentTitle:
@@ -657,7 +648,6 @@ const blogData = [
     id: "irs-now-accepting-2025-returns-what-to-file-what-if-you-owe-catch-up",
     title:
       "IRS Is Now Accepting 2025 Tax Returns: What You Need to File, What to Do If You Owe, and How to Catch Up",
-    image: "/images/irs_accepting_2025_returns_expressive.png",
     teaser:
       "The IRS is officially accepting 2025 federal tax returns. Here’s a practical checklist of what you need to file, what to do if you owe (pay in full vs payment plan vs extension), and how to handle unfiled returns from prior years.",
     contentTitle:
@@ -738,7 +728,6 @@ const blogData = [
     id: "irs-opens-filing-season-jan-26-2026-obbba-individual-changes",
     title:
       "IRS Opens the 2026 Filing Season on Jan. 26: What to Do Now + Key Individual Changes Under the One, Big, Beautiful Bill Act",
-    image: "/images/irs_open_2026.png",
     teaser:
       "The IRS officially begins accepting 2025 tax returns on Monday, Jan. 26, 2026. Here’s what to do before you file — plus a plain-English breakdown of major individual tax changes now in effect under the One, Big, Beautiful Bill Act.",
     contentTitle:
@@ -822,7 +811,6 @@ const blogData = [
     id: "1099-threshold-changes-2026-2000-20000",
     title:
       "1099 Threshold Changes: The New $2,000 Rule for 1099-NEC/1099-MISC (2026) and the 1099-K Shift for Payment Apps",
-    image: "/images/1099_thresholds.png",
     teaser:
       "A new federal law changes multiple 1099 reporting thresholds. Starting in 2026, the reporting threshold for Forms 1099-NEC and 1099-MISC rises from $600 to $2,000 (and then adjusts for inflation). The law also restores the 1099-K payment app/marketplace threshold to the pre-$600 rule. Here’s what changed, what it does NOT mean, and how to protect yourself from surprise tax bills.",
     contentTitle:
@@ -896,7 +884,6 @@ const blogData = [
     id: "gambling-loss-deduction-90-percent-rule-2026",
     title:
       "New Gambling Loss Deduction Limit: The 90% Rule Starting in 2026 (Why Break‑Even Can Still Be Taxable)",
-    image: "/images/gamblingloss90.png",
     teaser:
       "A new federal tax law changes how gambling losses work starting in 2026. Instead of deducting 100% of losses (up to winnings), the deduction is reduced—meaning some gamblers can owe taxes even in a break‑even year. Here’s what changed, simple examples, and what to do if it triggers an unexpected IRS balance.",
     contentTitle:
@@ -957,7 +944,6 @@ const blogData = [
     id: "10-percent-credit-card-interest-cap-irs-tax-debt",
     title:
       "Trump’s Proposed 10% Credit Card Interest Cap: Could Paying the IRS With a Card Save You Money?",
-    image: "/images/creditcardcap10.png",
     teaser:
       "President Donald Trump floated a one-year 10% cap on credit card interest rates. If something like this ever became law, it could change the math for taxpayers carrying an IRS balance — because IRS penalties can add up faster than most people realize, especially if you haven’t filed yet.",
     contentTitle:
@@ -1063,7 +1049,6 @@ const blogData = [
     id: "tariffs-2025-impact-tax-debt",
     title:
       "Tariffs in 2025: Rising Costs, Higher Prices, and Why Now Is the Time to Resolve Your Tax Debt",
-    image: "/images/tarriffs2025.png",
     teaser:
       "New tariffs in 2025 are driving up the cost of goods across key industries, squeezing household budgets nationwide. Learn how these rising expenses may actually strengthen your case for IRS relief — and why now is the time to resolve back taxes.",
     contentTitle:
@@ -1123,7 +1108,6 @@ const blogData = [
     id: "affordability-crisis-2025-tax-debt-relief",
     title:
       "The 2025 Affordability Crisis: Why Tackling Tax Debt Makes Life More Affordable",
-    image: "/images/affordability2025.png",
     teaser:
       "With costs climbing and the holidays approaching, many families feel financially overwhelmed. Learn how the 2025 affordability crisis impacts IRS relief options—and why addressing back taxes now can actually free up room in your budget.",
     contentTitle:
@@ -1179,7 +1163,6 @@ const blogData = [
     id: "government-shutdown-2025-complete-guide",
     title:
       "The 2025 Government Shutdown: What Happened and What It Means for Taxpayers",
-    image: "/images/governmentshutdown2025.png",
     teaser:
       "From October 1st to November 12th, 2025, the U.S. experienced the longest government shutdown in history. Here’s a clear breakdown of what caused it, how it impacted the IRS, federal workers, and the average American — and what it means for taxpayers moving forward.",
     contentTitle:
@@ -1247,7 +1230,6 @@ const blogData = [
     id: "w2-standard-vs-itemized-guide",
     title:
       "Labor Day Spotlight: Standard vs. Itemized Deductions for W-2 Workers",
-    image: "/images/itemizedvsstandard.png",
     teaser:
       "W-2 workers face an important tax decision each year: take the standard deduction or itemize. Learn the differences, pitfalls, advantages, and how to protect yourself from audit risk — all with a Labor Day focus on the value of your work.",
     contentTitle:
@@ -1293,8 +1275,7 @@ const blogData = [
   },
   {
     id: "irs-revenue-officer-guide",
-    title: "What to Do If the IRS Assigns a Revenue Officer to Your Case",
-    image: "/images/revenue-officer.png", // Replace with your actual image path
+    title: "What to Do If the IRS Assigns a Revenue Officer to Your Case", // Replace with your actual image path
     teaser:
       "An IRS Revenue Officer is a local field collector with broad enforcement power. Learn who they are, how they differ from ACS, how they contact you, what to do when assigned, and why Tax Advocate Group is uniquely equipped to protect your income and assets.",
     contentTitle:
@@ -1339,7 +1320,6 @@ const blogData = [
   {
     id: "irs-cp504-final-notice-guide",
     title: "What to Do If You Receive an IRS CP504 Final Notice",
-    image: "/images/cp504.png",
     teaser:
       "The IRS CP504 Final Notice is a serious warning: you have 30 days to act before the IRS can seize your income, bank accounts, or property. Learn what it means, what’s at risk based on your balance and assets, and how to protect yourself.",
     contentTitle: "What to Do If You Receive an IRS CP504 Final Notice",
@@ -1402,7 +1382,6 @@ const blogData = [
   {
     id: "questions-about-my-1099-truck-driver-edition",
     title: "Questions About My 1099 – Truck Driver Edition",
-    image: "/images/1099-trucker-hero.png",
     teaser:
       "If you're a truck driver—or any 1099 contractor—taxes don't auto-deduct from your paycheck. You're both the worker and the accountant. This guide walks you through what to expect, common pitfalls, and how Tax Advocate Group can step in when life throws curveballs.",
     contentTitle: "Questions About My 1099 – Truck Driver Edition",
@@ -1449,7 +1428,6 @@ const blogData = [
   {
     id: "retirement-tax-guide",
     title: "How Retirement Accounts Affect Your Taxes at Every Stage",
-    image: "/images/Retirement-Tax-Guide.png",
     teaser:
       "Retirement accounts like 401(k)s and IRAs are powerful tools for financial freedom, but they also come with important tax implications. This guide walks you through the impact of taxes at each stage—from contributing to withdrawing—so you can plan better and avoid costly surprises.",
     contentTitle: "How Retirement Accounts Affect Your Taxes at Every Stage",
@@ -1491,8 +1469,7 @@ const blogData = [
 
   {
     id: "small-business-tax-pitfalls",
-    title: "7 Tax Pitfalls Small Businesses Face and How to Avoid Them",
-    image: "/images/small-business-taxes.jpg", // Replace with your actual image path
+    title: "7 Tax Pitfalls Small Businesses Face and How to Avoid Them", // Replace with your actual image path
     teaser:
       "Many small businesses fall into common tax traps that cost time, money, and peace of mind. Learn what they are, how they affect you, and how Tax Advocate Group helps you stay compliant and confident.",
     contentTitle: "7 Tax Pitfalls Small Businesses Face and How to Avoid Them",
@@ -1552,8 +1529,7 @@ const blogData = [
   },
   {
     id: "irs-cp503-notice-guide",
-    title: "What to Do If You Receive an IRS CP503 Notice",
-    image: "/images/CP503.png", // Replace with your actual image path
+    title: "What to Do If You Receive an IRS CP503 Notice", // Replace with your actual image path
     teaser:
       "The IRS CP503 is your second official notice that a tax balance remains unpaid. Learn why you received it, how it differs from CP501, and what steps to take before collections escalate.",
     contentTitle: "What to Do If You Receive an IRS CP503 Notice",
@@ -1605,8 +1581,7 @@ const blogData = [
   },
   {
     id: "irs-cp501-notice-guide",
-    title: "What to Do If You Receive an IRS CP501 Notice",
-    image: "/images/CP501.png", // Replace with your actual image path
+    title: "What to Do If You Receive an IRS CP501 Notice", // Replace with your actual image path
     teaser:
       "The IRS CP501 is your first official notice that a tax balance is due. Learn what it means, why you received it, and what to do before collections escalate.",
     contentTitle: "What to Do If You Receive an IRS CP501 Notice",
@@ -1676,7 +1651,6 @@ const blogData = [
   {
     id: "tax-advocate-bill-of-rights",
     title: "How a Tax Advocate Embodies the Taxpayer Bill of Rights",
-    image: "/images/BillOfRights.png",
     teaser:
       "Every taxpayer is protected by ten fundamental rights. Learn what these rights mean, how a Tax Advocate embodies them in their work.",
     contentTitle: "How a Tax Advocate Embodies the Taxpayer Bill of Rights",
@@ -1732,7 +1706,6 @@ const blogData = [
   {
     id: "understanding-tax-relief",
     title: "Understanding Tax Relief",
-    image: "/images/Tax-Resolution-Truth.jpg",
     teaser:
       "Tax relief can help individuals and businesses reduce their tax burdens through deductions, credits, settlements, and negotiations with the IRS. Understanding your options and the steps involved is key to securing the best outcome for your financial situation...",
     contentTitle:
@@ -1781,7 +1754,6 @@ const blogData = [
   {
     id: "irs-negotiation-tips",
     title: "How to Really Negotiate with the IRS",
-    image: "/images/tax-negotiation.png",
     teaser:
       "Negotiating with the IRS doesn’t have to be overwhelming. With the right strategy, you can reduce penalties, set up manageable payment plans, or even settle your debt for less than you owe. Learn the key strategies to protect your financial future and get back on track...",
     contentTitle: "Tax Resolution Truth: How to Really Negotiate with the IRS",
@@ -1831,7 +1803,6 @@ const blogData = [
   {
     id: "irs-wage-garnishment-guide",
     title: "IRS Wage Garnishment: What It Is and How To Stop It",
-    image: "/images/WageGarnishment.png",
     teaser:
       "The IRS can legally garnish your wages if you owe back taxes and don’t take action. Learn how the garnishment process works, what signs to look for, and how Tax Advocate Group can help you stop it before your paycheck is affected.",
     contentTitle: "IRS Wage Garnishment: What It Is and How To Stop It",
@@ -1887,7 +1858,6 @@ const blogData = [
   {
     id: "irs-bank-levy-guide",
     title: "Bank Levy: What It Means When the IRS Freezes Your Account",
-    image: "/images/BankLevy.png",
     teaser:
       "A bank levy is one of the most aggressive IRS collection actions—and it can drain your account with no warning. Learn the signs, your rights, and how to stop or reverse a levy before it’s too late. This guide walks you through what to expect and how Tax Advocate Group can help.",
     contentTitle: "IRS Bank Levies: What They Are and How to Protect Yourself",

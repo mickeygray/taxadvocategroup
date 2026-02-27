@@ -3,8 +3,6 @@ import blogData from "../data/blogData";
 import SEO from "./SEO";
 import { orgSchema, blogPostingSchema } from "../utils/structuredData";
 
-const FALLBACK_HERO = "/images/contact-hero.png";
-
 const TaxNewsArticle = () => {
   const { id } = useParams();
   const blog = blogData.find((b) => b.id === id);
@@ -55,7 +53,7 @@ const TaxNewsArticle = () => {
       {/* Hero with overlay */}
       <header
         className="tax-news-hero"
-        style={{ backgroundImage: `url(${blog.image || FALLBACK_HERO})` }}
+        style={{ backgroundImage: `url("/images/hero-19.png")` }}
       >
         <div className="tax-news-overlay"></div>
         <div className="tax-news-content">
@@ -70,7 +68,10 @@ const TaxNewsArticle = () => {
 
       {/* Blog Content */}
       <div className="dynamic-article">
-        <h2>{blog.contentTitle}</h2>
+        <div className="dynamic-article-header">
+          <div className="dynamic-article-accent-line"></div>
+          <h2>{blog.contentTitle}</h2>
+        </div>
         {blog.contentBody.map((paragraph, index) => (
           <div
             key={index}

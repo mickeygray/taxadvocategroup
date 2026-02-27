@@ -18,12 +18,15 @@ const TaxNews = () => {
       <header
         className="tax-news-hero"
         style={{
-          backgroundImage: `url("/images/contact-hero.png")`,
+          backgroundImage: `url("/images/hero-19.png")`,
         }}
       >
         <div className="tax-news-overlay"></div>
         <div className="tax-news-content">
-          <h1>Tax News</h1>
+          <h1>Tax News &amp; Insights</h1>
+          <p className="tax-news-hero-sub">
+            Expert guidance on IRS issues, tax relief, and financial strategy
+          </p>
           <nav className="tax-news-breadcrumbs">
             <Link to="/">Home</Link> <span>/</span> <span>Tax News</span>
           </nav>
@@ -34,8 +37,12 @@ const TaxNews = () => {
       {blogs.length > 0 && (
         <div className="tax-news-content-container">
           <div className="tax-news-featured">
-            <div className="tax-news-featured-image">
-              <img src={blogs[0].image} alt={blogs[0].title} />
+            <div className="tax-news-featured-accent">
+              <img
+                src="/images/tax-advocate-group-logo-small.png"
+                alt="Tax Advocate Group"
+                className="tax-news-featured-logo"
+              />
               <span className="tax-news-featured-tag">Featured</span>
             </div>
             <div className="tax-news-featured-body">
@@ -54,12 +61,14 @@ const TaxNews = () => {
         <div className="tax-news-grid">
           {blogs.slice(1).map((blog) => (
             <div key={blog.id} className="tax-news-card">
-              <img src={blog.image} alt={blog.title} />
-              <h2>{blog.title}</h2>
-              <p>{blog.teaser}</p>
-              <Link to={`/tax-news/${blog.id}`} className="read-more">
-                Read More &rarr;
-              </Link>
+              <div className="tax-news-card-bar"></div>
+              <div className="tax-news-card-body">
+                <h2>{blog.title}</h2>
+                <p>{blog.teaser}</p>
+                <Link to={`/tax-news/${blog.id}`} className="read-more">
+                  Read More &rarr;
+                </Link>
+              </div>
             </div>
           ))}
         </div>

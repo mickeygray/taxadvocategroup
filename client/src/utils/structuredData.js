@@ -115,9 +115,7 @@ export const blogPostingSchema = (blog) => ({
   "@type": "BlogPosting",
   headline: blog.contentTitle,
   description: blog.teaser,
-  image: blog.image?.startsWith("http")
-    ? blog.image
-    : `https://www.taxadvocategroup.com${blog.image}`,
+  image: "https://www.taxadvocategroup.com/images/hero-19.png",
   author: organization,
   publisher: {
     "@type": "Organization",
