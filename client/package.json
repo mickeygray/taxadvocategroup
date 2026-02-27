@@ -20,13 +20,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap",
+    "postbuild": "react-snap || echo 'react-snap skipped (Chromium not available)'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "reactSnap": {
     "inlineCss": false,
-    "fixWebpackChunksIssue": true,
+    "fixWebpackChunksIssue": "CRA2",
     "minifyCss": true,
     "include": [
       "/",
