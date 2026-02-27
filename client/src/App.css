@@ -177,8 +177,8 @@ section {
   transform: scaleX(1);
 }
 
-.nav-phone a {
-  color: var(--color-cta) !important;
+.nav-phone a.phone-button {
+  color: #fff !important;
   font-weight: 700;
 }
 
