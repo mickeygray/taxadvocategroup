@@ -12,7 +12,7 @@ const LeadState = (props) => {
     dispatch({ type: "SENDING_EMAILS" });
     try {
       const response = await axios.post("/send-email", emailPayload);
-      dispatch({ type: "EMAILS_SENT", payload: response.data.message });
+      dispatch({ type: "EMAILS_SENT", payload: response.data.success });
     } catch (error) {
       console.error("Error sending emails:", error);
       dispatch({ type: "EMAILS_ERROR", payload: "Failed to send emails." });
@@ -28,7 +28,7 @@ const LeadState = (props) => {
         phone: formData.phone,
         message: `Lead form — Debt: ${formData.debtAmount || "N/A"}, Filed: ${formData.filedAllTaxes || "N/A"}, Best time: ${formData.bestTime || "Any"}${formData.state ? `, State: ${formData.state}` : ""}${formData.problemTypes ? `, Issues: ${formData.problemTypes}` : ""}${formData.owedAmount ? `, Amount: ${formData.owedAmount}` : ""}`,
       });
-      dispatch({ type: "FORM_SENT", payload: response.data.message });
+      dispatch({ type: "FORM_SENT", payload: response.data.success });
     } catch (error) {
       console.error("Error sending lead form:", error);
       dispatch({ type: "FORM_ERROR", payload: "Failed to send form data." });
