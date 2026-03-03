@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PhoneLink from "./PhoneLink";
+import SEO from "./SEO";
+import { orgSchema } from "../utils/structuredData";
 
 const services = [
   {
@@ -36,6 +38,12 @@ const services = [
 const OurTaxServices = () => {
   return (
     <>
+      <SEO
+        title="Our Tax Services | Tax Advocate Group"
+        description="Explore Tax Advocate Group's tax services: tax relief, tax resolution, IRS negotiation, and tax protection plans. Licensed professionals in all 50 states."
+        canonical="/our-tax-services"
+        structuredData={[orgSchema]}
+      />
       {/* Hero Section */}
       <section
         className="hero our-tax-services-hero"

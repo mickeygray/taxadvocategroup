@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import leadContext from "../context/leadContext";
 import PhoneLink from "./PhoneLink";
+import SEO from "./SEO";
 
 const ThankYou = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -21,6 +22,12 @@ const ThankYou = () => {
 
   return (
     <div className="landing-page-root">
+      <SEO
+        title="Thank You | Tax Advocate Group"
+        description="Thank you for contacting Tax Advocate Group. A team member will be in touch shortly to help you with your tax situation."
+        canonical="/thank-you"
+        noindex={true}
+      />
       <div className="landing-page-content">
         {/* Hero Section */}
         <section className="landing-page-hero">
@@ -38,7 +45,7 @@ const ThankYou = () => {
             )}
           </div>
           <div className="hero-text-overlay">
-            <h1 className="landing-hero-company-name">Tax Advocate Group</h1>
+            <p className="landing-hero-company-name">Tax Advocate Group</p>
             <h1 className="landing-hero-title">
               Thank You For Your Submission, Someone Will Call You Shortly.
             </h1>
@@ -64,7 +71,7 @@ const ThankYou = () => {
               <img
                 className="step-icon"
                 src="/images/trust-builder-IRS-Provider.png"
-                alt="Step 1"
+                alt="IRS authorized provider badge - Legal Representation"
               />
               <h3 className="step-title">Legal Representation</h3>
               <p className="step-description">
@@ -76,7 +83,7 @@ const ThankYou = () => {
               <img
                 className="step-icon"
                 src="/images/trust-builder-IRS-Provider.png"
-                alt="Step 1"
+                alt="IRS authorized provider badge - Guaranteed Compliance"
               />
               <h3 className="step-title">Guaranteed Compliance</h3>
               <p className="step-description">
@@ -88,7 +95,7 @@ const ThankYou = () => {
               <img
                 className="step-icon"
                 src="/images/trust-builder-IRS-Provider.png"
-                alt="Step 1"
+                alt="IRS authorized provider badge - Best Resolution"
               />
               <h3 className="step-title">Best Resolution</h3>
               <p className="step-description">
@@ -115,7 +122,7 @@ const ThankYou = () => {
             <div className="features-image">
               <img
                 src="/images/TAG-Home-Page-Image-1.png"
-                alt="Feature visual"
+                alt="Tax Advocate Group professionals helping clients"
               />
             </div>
 

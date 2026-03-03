@@ -174,7 +174,7 @@ const LandingPage1 = () => {
             )}
           </div>
           <div className="hero-text-overlay">
-            <h1 className="landing-hero-company-name">Tax Advocate Group</h1>
+            <p className="landing-hero-company-name">Tax Advocate Group</p>
             <h1 className="landing-hero-title">
               Reduce &amp; Resolve Your IRS Tax Liability, No Matter How Much
               You Owe
@@ -205,7 +205,7 @@ const LandingPage1 = () => {
               <img
                 className="step-icon"
                 src="/images/trust-builder-IRS-Provider.png"
-                alt="Step 1"
+                alt="IRS authorized provider badge - Legal Representation"
               />
               <h3 className="step-title">Legal Representation</h3>
               <p className="step-description">
@@ -217,7 +217,7 @@ const LandingPage1 = () => {
               <img
                 className="step-icon"
                 src="/images/trust-builder-IRS-Provider.png"
-                alt="Step 1"
+                alt="IRS authorized provider badge - Guaranteed Compliance"
               />
               <h3 className="step-title">Guaranteed Compliance</h3>
               <p className="step-description">
@@ -229,7 +229,7 @@ const LandingPage1 = () => {
               <img
                 className="step-icon"
                 src="/images/trust-builder-IRS-Provider.png"
-                alt="Step 1"
+                alt="IRS authorized provider badge - Best Resolution"
               />
               <h3 className="step-title">Best Resolution</h3>
               <p className="step-description">
@@ -256,7 +256,7 @@ const LandingPage1 = () => {
             <div className="features-image">
               <img
                 src="/images/TAG-Home-Page-Image-1.png"
-                alt="Feature visual"
+                alt="Tax Advocate Group professionals helping clients"
               />
             </div>
 

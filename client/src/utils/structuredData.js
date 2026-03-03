@@ -116,6 +116,8 @@ export const blogPostingSchema = (blog) => ({
   headline: blog.contentTitle,
   description: blog.teaser,
   image: "https://www.taxadvocategroup.com/images/hero-19.png",
+  datePublished: blog.datePublished || "2025-01-01",
+  dateModified: blog.dateModified || blog.datePublished || "2025-01-01",
   author: organization,
   publisher: {
     "@type": "Organization",
