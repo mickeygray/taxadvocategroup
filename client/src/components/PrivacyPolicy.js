@@ -1,9 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from "./SEO";
 
 const PrivacyPolicy = () => {
   return (
     <div className="privacy-policy-page">
+      <SEO
+        title="Privacy Policy | Tax Advocate Group"
+        description="Read the Privacy Policy for Tax Advocate Group. Learn how we collect, use, and protect your personal information."
+        canonical="/privacy-policy"
+        noindex={true}
+      />
       {/* Hero Section */}
       <section
         className="privacy-hero"
@@ -25,8 +32,7 @@ const PrivacyPolicy = () => {
         <h2>Introduction</h2>
         <p>
           This Privacy Policy describes how your personal information is
-          collected, used, and shared when you visit or make a purchase from{" "}
-          <strong>Tax Advocate GroupTaxGroup.com</strong> (the “Site”).
+          collected, used, and shared when you visit <strong>taxadvocategroup.com</strong> (the &quot;Site&quot;).
         </p>
 
         <h2>Information We Collect</h2>
@@ -61,17 +67,6 @@ const PrivacyPolicy = () => {
         <h2>Sharing Your Information</h2>
         <p>We share your Personal Information with third parties, including:</p>
         <ul>
-          <li>
-            <strong>Shopify</strong> for order processing (
-            <a
-              href="https://www.shopify.com/legal/privacy"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Privacy Policy
-            </a>
-            )
-          </li>
           <li>
             <strong>Google Analytics</strong> for tracking (
             <a
@@ -165,7 +160,7 @@ const PrivacyPolicy = () => {
         <p>
           For questions or complaints, contact us via email at{" "}
           <a href="mailto:inquiry@taxadvocategroup.com">
-            inquiry@Tax Advocate Grouptaxgroup.com
+            inquiry@taxadvocategroup.com
           </a>{" "}
           or by mail:
         </p>

@@ -30,7 +30,7 @@ blogRoutes.forEach((slug) => {
 // Generate sitemap
 async function generateSitemap() {
   const stream = new SitemapStream({
-    hostname: "https://www.amitytaxgroup.com",
+    hostname: "https://www.taxadvocategroup.com",
   });
   const writeStream = createWriteStream(`${publicPath}/sitemap.xml`);
 

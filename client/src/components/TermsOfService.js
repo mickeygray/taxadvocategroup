@@ -29,11 +29,11 @@ const TermsOfService = () => {
         <p>
           By accessing the website at{" "}
           <a
-            href="https://Tax Advocate Grouptaxgroup.com/"
+            href="https://www.taxadvocategroup.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Tax Advocate Grouptaxgroup.com
+            taxadvocategroup.com
           </a>
           , you agree to be bound by these terms of service, all applicable
           laws, and regulations, and acknowledge that you are responsible for
@@ -65,8 +65,8 @@ const TermsOfService = () => {
 
         <h2>Disclaimer</h2>
         <p>
-          The materials on this website are provided “as is.” Tax Group
-          Consultants makes no warranties, expressed or implied, and disclaims
+          The materials on this website are provided “as is.” Tax Advocate
+          Group makes no warranties, expressed or implied, and disclaims
           all other warranties, including but not limited to merchantability,
           fitness for a particular purpose, or non-infringement.
         </p>
@@ -89,8 +89,8 @@ const TermsOfService = () => {
           <li>Using this website for advertising or marketing</li>
         </ul>
         <p>
-          Certain areas of this website are restricted, and Tax Group
-          Consultants may further restrict access at its discretion.
+          Certain areas of this website are restricted, and Tax Advocate
+          Group may further restrict access at its discretion.
         </p>
 
         <h2>Accuracy of Materials</h2>

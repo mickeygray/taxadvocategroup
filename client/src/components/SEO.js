@@ -51,6 +51,8 @@ const SEO = ({ title, description, canonical, structuredData, noindex }) => {
 
     if (noindex) {
       setMeta("name", "robots", "noindex, nofollow");
+    } else {
+      setMeta("name", "robots", "index, follow");
     }
 
     // Inject structured data

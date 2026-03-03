@@ -1,9 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import SEO from "./SEO";
+import { serviceSchema, breadcrumbSchema } from "../utils/structuredData";
 
 const SubPage = ({ heroImage, heroTitle, breadcrumb, title, body }) => {
+  const { category, slug } = useParams();
+  const canonical = `/${category}/${slug}`;
+  const description = body[0] ? body[0].substring(0, 160) : title;
   return (
     <>
+      <SEO
+        title={`${title} | Tax Advocate Group`}
+        description={description}
+        canonical={canonical}
+        structuredData={[
+          serviceSchema(title, description, category === "tax-relief" ? "Tax Relief" : category === "tax-resolution" ? "Tax Resolution" : "Tax Negotiation"),
+          breadcrumbSchema(breadcrumb.map((b) => ({ name: b.label, path: b.link || canonical }))),
+        ]}
+      />
       {/* Hero Section */}
       <section
         className="subpage-hero"
@@ -32,7 +46,7 @@ const SubPage = ({ heroImage, heroTitle, breadcrumb, title, body }) => {
       <main className="subpage-container">
         {/* Page Title & Body Copy */}
         <section className="subpage-content">
-          <h1 className="page-title">{title}</h1>
+          <h2 className="page-title">{title}</h2>
           {body.map((paragraph, index) => (
             <p key={index} className="page-body">
               {paragraph}
