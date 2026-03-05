@@ -1,102 +1,208 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import leadContext from "../context/leadContext";
-import { useNavigate } from "react-router-dom";
 import PhoneLink from "./PhoneLink";
 import SEO from "./SEO";
 import { orgSchema } from "../utils/structuredData";
+import { trackCustomEvent, trackStandardEvent } from "../utils/fbq";
 
-const LandingPopupForm = ({ onClose }) => {
+/* ═══════════════════════════════════════════
+ *  INLINE MULTI-STEP FORM
+ * ═══════════════════════════════════════════ */
+const LeadForm = () => {
   const navigate = useNavigate();
-  const { sendEmail } = useContext(leadContext);
+  const { sendLeadForm } = useContext(leadContext);
   const [step, setStep] = useState(1);
+  const [submitted, setSubmitted] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
   const [formData, setFormData] = useState({
+    taxType: "",
+    filingStatus: "",
+    debtType: "",
     debtAmount: "",
-    filedAllTaxes: "",
     name: "",
     phone: "",
     email: "",
-    bestTime: "",
   });
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleNext = () => setStep(2);
+  const selectOption = (name, value) =>
+    setFormData({ ...formData, [name]: value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendEmail({
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      message: `Debt: ${formData.debtAmount}, Filed all taxes: ${formData.filedAllTaxes}, Best time: ${formData.bestTime}`,
+    if (!consentChecked) return;
+    setSubmitted(true);
+    sendLeadForm({
+      ...formData,
+      consentGiven: true,
+      source: "landing-qualify",
     });
-
-    navigate("/thank-you");
+    trackCustomEvent("LandingFormSubmitted", {
+      source: "QualifyNow",
+      has_email: !!formData.email,
+      has_phone: !!formData.phone,
+      debt_amount: formData.debtAmount || null,
+    });
+    trackStandardEvent("Lead");
+    setTimeout(() => navigate("/thank-you"), 800);
   };
 
+  const isStep1Valid = formData.taxType && formData.filingStatus;
+  const isStep2Valid = formData.debtType && formData.debtAmount;
+  const isStep3Valid =
+    formData.name.trim() &&
+    formData.phone.trim() &&
+    formData.email.trim() &&
+    consentChecked;
+
+  if (submitted) {
+    return (
+      <div className="lp-form">
+        <div className="lp-form__success">
+          <i className="fas fa-check-circle"></i>
+          <h3>Request Received!</h3>
+          <p>A Tax Advocate Group specialist will contact you shortly.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="landing-popup-overlay">
-      <div className="landing-popup-form">
-        <button className="landing-popup-close" onClick={onClose}>
-          ✕
-        </button>
-        {step === 1 && (
-          <form onSubmit={(e) => e.preventDefault()}>
-            <h2>How much do you owe?</h2>
-            <select
-              name="debtAmount"
-              value={formData.debtAmount}
-              onChange={handleChange}
-              required
+    <div className="lp-form">
+      <div className="lp-form__header">
+        <span className="lp-form__badge">Free Case Evaluation</span>
+        <h3>See If You Qualify for Tax Relief</h3>
+      </div>
+
+      {/* Progress */}
+      <div className="lp-form__progress">
+        {[1, 2, 3].map((n) => (
+          <React.Fragment key={n}>
+            {n > 1 && (
+              <div
+                className={`lp-form__progress-line ${step >= n ? "active" : ""}`}
+              />
+            )}
+            <div
+              className={`lp-form__progress-step ${step >= n ? "active" : ""}`}
             >
-              <option value="">Select an amount</option>
-              <option value="<10000">Less than $10,000</option>
-              <option value="10000-20000">$10,000 – $20,000</option>
-              <option value="20000-50000">$20,000 – $50,000</option>
-              <option value="50000-100000">$50,000 – $100,000</option>
-              <option value=">100000">More than $100,000</option>
-            </select>
-
-            <h2>Have you filed all your taxes?</h2>
-            <div className="landing-popup-radio-group">
-              <label>
-                <input
-                  type="radio"
-                  name="filedAllTaxes"
-                  value="yes"
-                  checked={formData.filedAllTaxes === "yes"}
-                  onChange={handleChange}
-                  required
-                />
-                Yes
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="filedAllTaxes"
-                  value="no"
-                  checked={formData.filedAllTaxes === "no"}
-                  onChange={handleChange}
-                  required
-                />
-                No
-              </label>
+              {step > n ? <i className="fas fa-check"></i> : n}
             </div>
+          </React.Fragment>
+        ))}
+      </div>
 
+      {/* Step 1 */}
+      {step === 1 && (
+        <div className="lp-form__step">
+          <div className="lp-form__group">
+            <label>Is this for business or individual taxes?</label>
+            <div className="lp-form__pills">
+              {["Individual", "Business", "Both"].map((val) => (
+                <button
+                  key={val}
+                  type="button"
+                  className={`lp-form__pill ${formData.taxType === val ? "selected" : ""}`}
+                  onClick={() => selectOption("taxType", val)}
+                >
+                  {val}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="lp-form__group">
+            <label>Filing status</label>
+            <select
+              name="filingStatus"
+              value={formData.filingStatus}
+              onChange={handleChange}
+            >
+              <option value="">Select status</option>
+              <option value="single">Single</option>
+              <option value="married-joint">Married Filing Jointly</option>
+              <option value="married-separate">
+                Married Filing Separately
+              </option>
+              <option value="head-of-household">Head of Household</option>
+              <option value="business-entity">Business Entity</option>
+            </select>
+          </div>
+          <button
+            type="button"
+            className="lp-form__btn"
+            onClick={() => setStep(2)}
+            disabled={!isStep1Valid}
+          >
+            Continue &rarr;
+          </button>
+        </div>
+      )}
+
+      {/* Step 2 */}
+      {step === 2 && (
+        <div className="lp-form__step">
+          <div className="lp-form__group">
+            <label>Is your tax debt federal, state, or both?</label>
+            <div className="lp-form__pills">
+              {["Federal", "State", "Both"].map((val) => (
+                <button
+                  key={val}
+                  type="button"
+                  className={`lp-form__pill ${formData.debtType === val ? "selected" : ""}`}
+                  onClick={() => selectOption("debtType", val)}
+                >
+                  {val}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="lp-form__group">
+            <label>Estimated amount owed</label>
+            <div className="lp-form__pills">
+              {[
+                { label: "Under $10K", value: "under-10k" },
+                { label: "$10K–$50K", value: "10k-50k" },
+                { label: "$50K–$100K", value: "50k-100k" },
+                { label: "$100K+", value: "over-100k" },
+              ].map((opt) => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  className={`lp-form__pill ${formData.debtAmount === opt.value ? "selected" : ""}`}
+                  onClick={() => selectOption("debtAmount", opt.value)}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="lp-form__btn-row">
             <button
               type="button"
-              className="landing-popup-next"
-              onClick={handleNext}
+              className="lp-form__btn-back"
+              onClick={() => setStep(1)}
             >
-              Next
+              &larr; Back
             </button>
-          </form>
-        )}
+            <button
+              type="button"
+              className="lp-form__btn"
+              onClick={() => setStep(3)}
+              disabled={!isStep2Valid}
+            >
+              Continue &rarr;
+            </button>
+          </div>
+        </div>
+      )}
 
-        {step === 2 && (
-          <form onSubmit={handleSubmit}>
-            <h2>Your Contact Information</h2>
+      {/* Step 3 */}
+      {step === 3 && (
+        <form onSubmit={handleSubmit} className="lp-form__step">
+          <div className="lp-form__group">
             <input
               type="text"
               name="name"
@@ -104,7 +210,10 @@ const LandingPopupForm = ({ onClose }) => {
               onChange={handleChange}
               placeholder="Full Name"
               required
+              aria-label="Full name"
             />
+          </div>
+          <div className="lp-form__group">
             <input
               type="tel"
               name="phone"
@@ -112,7 +221,10 @@ const LandingPopupForm = ({ onClose }) => {
               onChange={handleChange}
               placeholder="Phone Number"
               required
+              aria-label="Phone number"
             />
+          </div>
+          <div className="lp-form__group">
             <input
               type="email"
               name="email"
@@ -120,271 +232,233 @@ const LandingPopupForm = ({ onClose }) => {
               onChange={handleChange}
               placeholder="Email Address"
               required
+              aria-label="Email address"
             />
-            <input
-              type="text"
-              name="bestTime"
-              value={formData.bestTime}
-              onChange={handleChange}
-              placeholder="Best Time to Contact"
-            />
-            <button type="submit" className="landing-popup-submit">
-              Submit
+          </div>
+          <div className="lp-form__group lp-form__consent">
+            <label>
+              <input
+                type="checkbox"
+                checked={consentChecked}
+                onChange={(e) => setConsentChecked(e.target.checked)}
+                required
+              />
+              <span>
+                I agree to be contacted by Tax Advocate Group via phone, email,
+                or text. Message/data rates may apply. Consent is not required
+                to purchase. <Link to="/privacy-policy">Privacy Policy</Link>.
+              </span>
+            </label>
+          </div>
+          <div className="lp-form__btn-row">
+            <button
+              type="button"
+              className="lp-form__btn-back"
+              onClick={() => setStep(2)}
+            >
+              &larr; Back
             </button>
-          </form>
-        )}
+            <button
+              type="submit"
+              className="lp-form__btn lp-form__btn--submit"
+              disabled={!isStep3Valid}
+            >
+              Get My Free Evaluation
+            </button>
+          </div>
+        </form>
+      )}
+
+      <div className="lp-form__trust">
+        <span>
+          <i className="fas fa-lock"></i> Secure &amp; Confidential
+        </span>
+        <span>
+          <i className="fas fa-check-circle"></i> No Obligation
+        </span>
       </div>
     </div>
   );
 };
+
+/* ═══════════════════════════════════════════
+ *  LANDING PAGE
+ * ═══════════════════════════════════════════ */
 const LandingPage1 = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
-    <div className="landing-page-root">
+    <div className="lp">
       <SEO
         title="Qualify Now | Free Tax Consultation | Tax Advocate Group"
-        description="See if you qualify for IRS tax relief. Free consultation with Tax Advocate Group — resolve tax debt, stop wage garnishments, and settle for less."
+        description="See if you qualify for IRS tax relief. Free consultation — resolve tax debt, stop garnishments, settle for less."
         canonical="/qualify-now"
         structuredData={[orgSchema]}
+        noindex={true}
       />
-      <div className="landing-page-content">
-        {/* Hero Section */}
-        <section className="landing-page-hero">
-          <div className="hero-image-container">
-            {!isMobile ? (
-              <img
-                src="/images/tag-landing-hero.png"
-                alt="Tax Advocate Group Hero"
-              />
-            ) : (
-              <img
-                src="/images/cropped-hero.png"
-                alt="Tax Advocate Group Hero"
-              />
-            )}
-          </div>
-          <div className="hero-text-overlay">
-            <p className="landing-hero-company-name">Tax Advocate Group</p>
-            <h1 className="landing-hero-title">
-              Reduce &amp; Resolve Your IRS Tax Liability, No Matter How Much
-              You Owe
+
+      {/* ─── SLIM TOP BAR ─── */}
+      <header className="lp__topbar">
+        <img
+          src="/images/tax-advocate-group-logo-small.png"
+          alt="Tax Advocate Group"
+          className="lp__logo"
+        />
+        <PhoneLink rawNumber="18005171807" className="lp__phone" />
+      </header>
+
+      {/* ─── HERO: TEXT + FORM SIDE BY SIDE ─── */}
+      <section className="lp__hero">
+        <div className="lp__hero-bg">
+          <img src="/images/tag-landing-hero.png" alt="" aria-hidden="true" />
+          <div className="lp__hero-overlay" />
+        </div>
+        <div className="lp__hero-inner">
+          <div className="lp__hero-text">
+            <h1>
+              Resolve Your IRS Tax Debt —<br />
+              <span className="lp__hero-accent">
+                No Matter How Much You Owe
+              </span>
             </h1>
-            <p className="landing-hero-subtitle">
-              Tax Advocate Group professionals have saved taxpayers over $300
-              million in tax debt with comprehensive tax resolution services.
+            <p className="lp__hero-sub">
+              Tax Advocate Group professionals have saved taxpayers over
+              <strong> $300 million</strong> in tax debt with comprehensive
+              resolution services.
             </p>
-            <div className="hero-buttons">
-              <PhoneLink rawNumber="18005171807" />
-
-              <button
-                className="phone-button"
-                style={{ background: "#333", border: "none", cursor: "pointer" }}
-                onClick={() => setShowPopup(true)}
-              >
-                Get Free Consultation
-              </button>
+            <div className="lp__hero-stats">
+              <div className="lp__stat">
+                <span className="lp__stat-num">$300M+</span>
+                <span className="lp__stat-label">Tax Debt Resolved</span>
+              </div>
+              <div className="lp__stat">
+                <span className="lp__stat-num">5,000+</span>
+                <span className="lp__stat-label">Clients Helped</span>
+              </div>
+              <div className="lp__stat">
+                <span className="lp__stat-num">A+</span>
+                <span className="lp__stat-label">BBB Rated</span>
+              </div>
             </div>
           </div>
-          <div className="hero-overlay"></div>
-        </section>
-        {showPopup && <LandingPopupForm onClose={() => setShowPopup(false)} />}
-        {/* Steps */}
-        <div className="landing-container">
-          <section className="steps-section">
-            <div className="step">
-              <img
-                className="step-icon"
-                src="/images/trust-builder-IRS-Provider.png"
-                alt="IRS authorized provider badge - Legal Representation"
-              />
-              <h3 className="step-title">Legal Representation</h3>
-              <p className="step-description">
-                Our firm files a Power of Attorney to access your tax records
-                and begin the case review.
-              </p>
-            </div>
-            <div className="step">
-              <img
-                className="step-icon"
-                src="/images/trust-builder-IRS-Provider.png"
-                alt="IRS authorized provider badge - Guaranteed Compliance"
-              />
-              <h3 className="step-title">Guaranteed Compliance</h3>
-              <p className="step-description">
-                As part of our commitment to you we will make sure your filings
-                are correct and current.
-              </p>
-            </div>
-            <div className="step">
-              <img
-                className="step-icon"
-                src="/images/trust-builder-IRS-Provider.png"
-                alt="IRS authorized provider badge - Best Resolution"
-              />
-              <h3 className="step-title">Best Resolution</h3>
-              <p className="step-description">
-                Where possible we will reduce your liability by aggressive
-                application of tax law.
-              </p>
-            </div>
-            {/* Add Step 2, Step 3 similarly */}
-          </section>
+          <div className="lp__hero-form">
+            <LeadForm />
+          </div>
         </div>
-        <section className="features-section">
-          <div className="features-header">
-            <h2 className="features-title">
-              What makes Tax Advocate Group Different?
-            </h2>
-            <p className="features-subtitle">
-              Our Attorneys are some of the best in the nation with decades of
-              tax experience
-            </p>
-          </div>
+      </section>
 
-          <div className="features-grid">
-            {/* Image Side */}
-            <div className="features-image">
-              <img
-                src="/images/TAG-Home-Page-Image-1.png"
-                alt="Tax Advocate Group professionals helping clients"
-              />
-            </div>
-
-            {/* Text Boxes */}
-            <div className="features-boxes">
-              <div className="feature-box">
-                <span className="feature-icon">✔</span>
-                <div className="feature-text">
-                  <h4 className="feature-title">Free Consultation</h4>
-                  <p className="feature-description">
-                    We call the IRS with you, and if theres work we can do we
-                    let you know for free.
-                  </p>
-                </div>
-              </div>
-              <div className="feature-box">
-                <span className="feature-icon">✔</span>
-                <div className="feature-text">
-                  <h4 className="feature-title">Quick and Accurate Results</h4>
-                  <p className="feature-description">
-                    We will help you fix your state and federal tax liabilities
-                    starting on day one.
-                  </p>
-                </div>
-              </div>
-              <div className="feature-box">
-                <span className="feature-icon">✔</span>
-                <div className="feature-text">
-                  <h4 className="feature-title">100% Guarantee</h4>
-                  <p className="feature-description">
-                    We will provide a resolution to your case, and if you aren't
-                    satisfied you can have your money back.
-                  </p>
-                </div>
-              </div>
+      {/* ─── TRUST BAR ─── */}
+      <section className="lp__trust-bar">
+        <div className="lp__trust-inner">
+          <div className="lp__trust-item">
+            <i className="fas fa-gavel"></i>
+            <div>
+              <strong>IRS Licensed</strong>
+              <span>Enrolled Agents &amp; Tax Attorneys</span>
             </div>
           </div>
-        </section>
-        <div className="landing-container">
-          <section className="steps-section">
-            <div className="step">
-              <i className="fas fa-user-tie guarantee-icon"></i>
-              <h3 className="step-title">Tailored Tax Guidance</h3>
-              <p className="step-description">
-                Whether you have business or personal tax issues we will provide
-                you industry leading expert guidance. We help with state and
-                federal taxes for individuals, payroll taxes and entity
-                formation for small businesses.
-              </p>
+          <div className="lp__trust-item">
+            <i className="fas fa-shield-alt"></i>
+            <div>
+              <strong>100% Guarantee</strong>
+              <span>Resolution or your money back</span>
             </div>
-            <div className="step">
-              <i className="fas fa-handshake guarantee-icon"></i>
-              <h3 className="step-title">Open And Honest Accountability</h3>
-              <p className="step-description">
-                We are available to speak with you during regular business hours
-                and provide regular updates via email and text and allow you to
-                schedule appointments when you are available.
-              </p>
+          </div>
+          <div className="lp__trust-item">
+            <i className="fas fa-map-marked-alt"></i>
+            <div>
+              <strong>All 50 States</strong>
+              <span>Nationwide tax resolution</span>
             </div>
-            <div className="step">
-              <i className="fas fa-file-invoice-dollar guarantee-icon"></i>
-              <h3 className="step-title">Ongoing Tax Preparation Services</h3>
-              <p className="step-description">
-                Long after we have completed the work of preparing resolution,
-                we offer account monitoring and complementary tax filing for
-                some clients.
-              </p>
+          </div>
+          <div className="lp__trust-item">
+            <i className="fas fa-phone-alt"></i>
+            <div>
+              <strong>Free Consultation</strong>
+              <span>We call the IRS with you</span>
             </div>
-            {/* Add Step 2, Step 3 similarly */}
-          </section>
+          </div>
         </div>
-        <section className="landing-testimonials-section">
-          <div className="landing-testimonials-cards">
-            <div className="landing-testimonial-card">
-              <div className="landing-testimonial-stars">★★★★★</div>
-              <p className="landing-testimonial-text">
-                "They went above and beyond to help me through my tax debt. I
-                have and will continue to recommend your company to everyone."
-              </p>
-              <div className="landing-testimonial-author">Anedia R.</div>
-            </div>
+      </section>
 
-            <div className="landing-testimonial-card">
-              <div className="landing-testimonial-stars">★★★★★</div>
-              <p className="landing-testimonial-text">
-                "Tax Advocate Group gave me peace of mind. They negotiated a
-                payment plan and put me back in good standing with the IRS."
-              </p>
-              <div className="landing-testimonial-author">Samantha A.</div>
-            </div>
-
-            <div className="landing-testimonial-card">
-              <div className="landing-testimonial-stars">★★★★★</div>
-              <p className="landing-testimonial-text">
-                "Thank you for negotiating my balance and getting me filed and
-                up to date. I appreciate the help and quick response!"
-              </p>
-              <div className="landing-testimonial-author">N.S.</div>
-            </div>
-          </div>
-
-          <div className="landing-bbb-logo">
-            <img
-              src="images/bbb-accredited-business.png"
-              alt="BBB Accredited Business"
-            />
-          </div>
-        </section>
-        {/* CTA */}
-        <section
-          className="landing-callout-section"
-          style={{ backgroundImage: 'url("/images/hero-5.png")' }}
-        >
-          <div className="landing-callout-overlay"></div>
-          <div className="landing-callout-content">
-            <h2 className="landing-callout-title">
-              Take the Next Step Toward Tax Relief
-            </h2>
-            <p className="landing-callout-subtitle">
-              Our experts are ready to help you reduce and resolve your IRS tax
-              liability.
+      {/* ─── HOW IT WORKS ─── */}
+      <section className="lp__steps">
+        <h2>How It Works</h2>
+        <div className="lp__steps-grid">
+          <div className="lp__step">
+            <div className="lp__step-num">1</div>
+            <h3>Free Consultation</h3>
+            <p>
+              We review your tax situation and call the IRS with you to
+              understand your case.
             </p>
-            <PhoneLink rawNumber="18005171807" />
           </div>
-        </section>
+          <div className="lp__step">
+            <div className="lp__step-num">2</div>
+            <h3>Legal Representation</h3>
+            <p>
+              We file Power of Attorney to access your records and begin working
+              your case.
+            </p>
+          </div>
+          <div className="lp__step">
+            <div className="lp__step-num">3</div>
+            <h3>Resolution</h3>
+            <p>
+              We negotiate with the IRS to reduce your liability and establish
+              the best outcome.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        {/* Footer */}
-      </div>
+      {/* ─── TESTIMONIALS ─── */}
+      <section className="lp__testimonials">
+        <h2>What Our Clients Say</h2>
+        <div className="lp__testimonials-grid">
+          <div className="lp__testimonial">
+            <div className="lp__stars">★★★★★</div>
+            <p>
+              "They went above and beyond to help me through my tax debt. I have
+              and will continue to recommend your company to everyone."
+            </p>
+            <span className="lp__author">— Anedia R.</span>
+          </div>
+          <div className="lp__testimonial">
+            <div className="lp__stars">★★★★★</div>
+            <p>
+              "Tax Advocate Group gave me peace of mind. They negotiated a
+              payment plan and put me back in good standing with the IRS."
+            </p>
+            <span className="lp__author">— Samantha A.</span>
+          </div>
+          <div className="lp__testimonial">
+            <div className="lp__stars">★★★★★</div>
+            <p>
+              "Thank you for negotiating my balance and getting me filed and up
+              to date. I appreciate the help and quick response!"
+            </p>
+            <span className="lp__author">— N.S.</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FINAL CTA ─── */}
+      <section className="lp__cta">
+        <h2>Take the First Step Toward Tax Relief</h2>
+        <p>
+          Our experts are ready to help you resolve your IRS tax liability
+          today.
+        </p>
+        <PhoneLink rawNumber="18005171807" className="lp__cta-phone" />
+      </section>
+
+      {/* ─── MINI FOOTER ─── */}
+      <footer className="lp__footer">
+        <p>
+          &copy; {new Date().getFullYear()} Tax Advocate Group &nbsp;|&nbsp;
+          <Link to="/privacy-policy">Privacy Policy</Link> &nbsp;|&nbsp;
+          <Link to="/terms-of-service">Terms of Service</Link>
+        </p>
+      </footer>
     </div>
   );
 };

@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -25,36 +30,56 @@ import BarnabyWidget from "./components/BarnabyWidget";
 import LeadState from "./context/LeadState";
 import "./App.css";
 
+/** Routes that render bare — no Navbar, Footer, or floating widgets */
+const BARE_ROUTES = ["/qualify-now", "/thank-you"];
+
+const AppShell = () => {
+  const { pathname } = useLocation();
+  const isBare = BARE_ROUTES.includes(pathname);
+
+  return (
+    <>
+      {!isBare && <Navbar />}
+      <div className={isBare ? "" : "page-wrapper"}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/qualify-now" element={<LandingPage1 />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/tax-faqs" element={<TaxFaqs />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/our-tax-services" element={<OurTaxServices />} />
+          <Route path="/tax-relief" element={<TaxRelief />} />
+          <Route path="/tax-resolution" element={<TaxResolution />} />
+          <Route path="/tax-negotiation" element={<TaxNegotiation />} />
+          <Route
+            path="/tax-protection-plans"
+            element={<TaxProtectionPlans />}
+          />
+          <Route path="/state-tax-guide" element={<StateTaxHub />} />
+          <Route
+            path="/state-tax-guide/:stateSlug"
+            element={<StateTaxPage />}
+          />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/tax-news" element={<TaxNews />} />
+          <Route path="/tax-news/:id" element={<TaxNewsArticle />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/:category/:slug" element={<SubPageWrapper />} />
+        </Routes>
+      </div>
+      {!isBare && <Footer />}
+      {!isBare && <BarnabyWidget />}
+    </>
+  );
+};
+
 const App = () => {
   return (
     <LeadState>
       <Router>
         <ScrollToTop />
-        <Navbar />
-        <div className="page-wrapper">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/qualify-now" element={<LandingPage1 />} />
-            <Route path="/thank-you" element={<ThankYou />} />
-            <Route path="/tax-faqs" element={<TaxFaqs />} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/our-tax-services" element={<OurTaxServices />} />
-            <Route path="/tax-relief" element={<TaxRelief />} />
-            <Route path="/tax-resolution" element={<TaxResolution />} />
-            <Route path="/tax-negotiation" element={<TaxNegotiation />} />
-            <Route path="/tax-protection-plans" element={<TaxProtectionPlans />} />
-            <Route path="/state-tax-guide" element={<StateTaxHub />} />
-            <Route path="/state-tax-guide/:stateSlug" element={<StateTaxPage />} />
-            <Route path="/contact-us" element={<ContactUs />} />
-            <Route path="/tax-news" element={<TaxNews />} />
-            <Route path="/tax-news/:id" element={<TaxNewsArticle />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/:category/:slug" element={<SubPageWrapper />} />
-          </Routes>
-        </div>
-        <Footer />
-        <BarnabyWidget />
+        <AppShell />
       </Router>
     </LeadState>
   );

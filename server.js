@@ -32,7 +32,7 @@ app.use(
   cors({
     origin: ["http://localhost:3000", "https://www.taxadvocategroup.com"],
     credentials: true,
-  })
+  }),
 );
 
 /* -------------------------------------------------------------------------- */
@@ -62,7 +62,9 @@ const TB_HISTORY_MAX_ITEMS = 4;
 const TB_HISTORY_MAX_FIELD = 1200;
 
 function clampText(s = "", limit = TB_HISTORY_MAX_FIELD) {
-  const t = String(s).replace(/\u0000/g, "").trim();
+  const t = String(s)
+    .replace(/\u0000/g, "")
+    .trim();
   return t.length > limit ? t.slice(0, limit) + " ..." : t;
 }
 
@@ -200,43 +202,185 @@ function isTaxRelated(text = "") {
     .trim();
 
   const keywords = [
-    "tax", "taxes", "taxation", "taxpayer", "tax return", "tax refund",
-    "tax bill", "tax debt", "back taxes", "owe taxes", "owe the irs",
-    "late taxes", "delinquent taxes", "unpaid taxes", "past due taxes",
-    "tax relief", "tax resolution", "tax problem", "tax issue", "tax help",
-    "tax notice", "tax letter", "irs letter", "irs notice", "notice of intent",
-    "cp501", "cp503", "cp504", "cp90", "cp91", "lt11", "1058", "668a", "cp508c",
-    "irs", "internal revenue", "internal revenue service", "treasury",
-    "federal tax", "state tax", "franchise tax board", "ftb",
-    "department of revenue", "revenue department", "taxing authority",
-    "1040", "1040x", "1041", "1065", "1120", "1120s", "941", "940",
-    "1099", "1099-misc", "1099k", "w2", "w-2", "k1", "k-1",
-    "schedule c", "schedule e", "schedule f", "schedule a", "schedule b",
-    "form 433a", "form 433b", "form 433f", "form 9465", "form 2848",
-    "form 656", "form 8857", "form 8821", "form 4506", "form 4506-t",
-    "ein", "itin", "ssn", "tax id", "filing", "file my taxes",
-    "filed my taxes", "unfiled", "compliance", "non filer", "non-filer",
-    "late filing", "amendment", "amend return", "audit", "examination",
-    "amended return", "substitute for return", "income", "earned income",
-    "gross income", "adjusted gross", "agi", "deduct", "deduction",
-    "deductions", "itemized", "standard deduction", "credit", "tax credit",
-    "child tax credit", "earned income credit", "dependency", "dependent",
-    "exemption", "write off", "write-off", "capital gain", "capital gains",
-    "basis", "depreciation", "withholding", "fica", "social security tax",
-    "medicare tax", "payroll tax", "employment tax", "self employment tax",
-    "estimated tax", "quarterly payment", "quarterly taxes",
-    "levy", "lien", "garnishment", "garnish wages", "bank levy", "seizure",
-    "payment plan", "installment agreement", "currently not collectible", "cnc",
-    "offer in compromise", "oic", "fresh start", "settlement",
-    "penalty abatement", "first time abatement", "hardship", "appeal",
-    "cdp hearing", "collection due process", "innocent spouse",
-    "llc", "s corp", "s-corp", "c corp", "c-corp", "partnership",
-    "sole proprietor", "self employed", "business taxes",
-    "penalty", "interest", "failure to file", "failure to pay",
-    "extension", "deadline", "april 15", "due date",
-    "ira", "roth ira", "401k", "hsa", "rmd", "estate tax", "gift tax",
-    "i owe", "owe the irs", "owe money to the irs", "owe taxes",
-    "received a letter", "got a letter", "irs sent me", "balance due",
+    "tax",
+    "taxes",
+    "taxation",
+    "taxpayer",
+    "tax return",
+    "tax refund",
+    "tax bill",
+    "tax debt",
+    "back taxes",
+    "owe taxes",
+    "owe the irs",
+    "late taxes",
+    "delinquent taxes",
+    "unpaid taxes",
+    "past due taxes",
+    "tax relief",
+    "tax resolution",
+    "tax problem",
+    "tax issue",
+    "tax help",
+    "tax notice",
+    "tax letter",
+    "irs letter",
+    "irs notice",
+    "notice of intent",
+    "cp501",
+    "cp503",
+    "cp504",
+    "cp90",
+    "cp91",
+    "lt11",
+    "1058",
+    "668a",
+    "cp508c",
+    "irs",
+    "internal revenue",
+    "internal revenue service",
+    "treasury",
+    "federal tax",
+    "state tax",
+    "franchise tax board",
+    "ftb",
+    "department of revenue",
+    "revenue department",
+    "taxing authority",
+    "1040",
+    "1040x",
+    "1041",
+    "1065",
+    "1120",
+    "1120s",
+    "941",
+    "940",
+    "1099",
+    "1099-misc",
+    "1099k",
+    "w2",
+    "w-2",
+    "k1",
+    "k-1",
+    "schedule c",
+    "schedule e",
+    "schedule f",
+    "schedule a",
+    "schedule b",
+    "form 433a",
+    "form 433b",
+    "form 433f",
+    "form 9465",
+    "form 2848",
+    "form 656",
+    "form 8857",
+    "form 8821",
+    "form 4506",
+    "form 4506-t",
+    "ein",
+    "itin",
+    "ssn",
+    "tax id",
+    "filing",
+    "file my taxes",
+    "filed my taxes",
+    "unfiled",
+    "compliance",
+    "non filer",
+    "non-filer",
+    "late filing",
+    "amendment",
+    "amend return",
+    "audit",
+    "examination",
+    "amended return",
+    "substitute for return",
+    "income",
+    "earned income",
+    "gross income",
+    "adjusted gross",
+    "agi",
+    "deduct",
+    "deduction",
+    "deductions",
+    "itemized",
+    "standard deduction",
+    "credit",
+    "tax credit",
+    "child tax credit",
+    "earned income credit",
+    "dependency",
+    "dependent",
+    "exemption",
+    "write off",
+    "write-off",
+    "capital gain",
+    "capital gains",
+    "basis",
+    "depreciation",
+    "withholding",
+    "fica",
+    "social security tax",
+    "medicare tax",
+    "payroll tax",
+    "employment tax",
+    "self employment tax",
+    "estimated tax",
+    "quarterly payment",
+    "quarterly taxes",
+    "levy",
+    "lien",
+    "garnishment",
+    "garnish wages",
+    "bank levy",
+    "seizure",
+    "payment plan",
+    "installment agreement",
+    "currently not collectible",
+    "cnc",
+    "offer in compromise",
+    "oic",
+    "fresh start",
+    "settlement",
+    "penalty abatement",
+    "first time abatement",
+    "hardship",
+    "appeal",
+    "cdp hearing",
+    "collection due process",
+    "innocent spouse",
+    "llc",
+    "s corp",
+    "s-corp",
+    "c corp",
+    "c-corp",
+    "partnership",
+    "sole proprietor",
+    "self employed",
+    "business taxes",
+    "penalty",
+    "interest",
+    "failure to file",
+    "failure to pay",
+    "extension",
+    "deadline",
+    "april 15",
+    "due date",
+    "ira",
+    "roth ira",
+    "401k",
+    "hsa",
+    "rmd",
+    "estate tax",
+    "gift tax",
+    "i owe",
+    "owe the irs",
+    "owe money to the irs",
+    "owe taxes",
+    "received a letter",
+    "got a letter",
+    "irs sent me",
+    "balance due",
   ];
 
   return keywords.some((k) => new RegExp(`\\b${k}\\b`, "i").test(s));
@@ -247,13 +391,19 @@ function isTaxRelated(text = "") {
 /* -------------------------------------------------------------------------- */
 
 async function postToWebhook(fields, source = "website") {
+  console.log(`[WEBHOOK] ========== START postToWebhook ==========`);
+  console.log(`[WEBHOOK] Source: ${source}`);
+  console.log(`[WEBHOOK] Fields:`, JSON.stringify(fields, null, 2));
+
   try {
     if (!process.env.WEBHOOK_URL || !process.env.LEAD_WEBHOOK_SECRET) {
-      console.warn("[WEBHOOK] Missing WEBHOOK_URL or LEAD_WEBHOOK_SECRET");
+      console.warn("[WEBHOOK] ✗ Missing WEBHOOK_URL or LEAD_WEBHOOK_SECRET");
       return { ok: false, error: "Webhook not configured" };
     }
 
     const url = `${process.env.WEBHOOK_URL}/lead-contact`;
+    console.log(`[WEBHOOK] Posting to URL: ${url}`);
+
     const response = await axios.post(
       url,
       { ...fields, source },
@@ -263,16 +413,119 @@ async function postToWebhook(fields, source = "website") {
           "x-webhook-key": process.env.LEAD_WEBHOOK_SECRET,
         },
         timeout: 15000,
-      }
+      },
     );
 
-    console.log(`[WEBHOOK] Response status: ${response.status}`);
+    console.log(`[WEBHOOK] ✓ Response status: ${response.status}`);
+    console.log(`[WEBHOOK] ========== END postToWebhook ==========`);
     return response.data;
   } catch (err) {
-    console.error(`[WEBHOOK] Error: ${err.message}`);
+    console.error(`[WEBHOOK] ✗ Error: ${err.message}`);
+    console.error(
+      `[WEBHOOK] ✗ Response status: ${err.response?.status || "N/A"}`,
+    );
+    console.log(`[WEBHOOK] ========== END postToWebhook (ERROR) ==========`);
     return { ok: false, error: err.message };
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/*                          FORM TRACKING                                     */
+/* -------------------------------------------------------------------------- */
+
+app.post("/api/track-form-input", async (req, res) => {
+  try {
+    const { formType, formData, abandoned, timestamp } = req.body;
+
+    if (!formType || !formData) {
+      return res
+        .status(400)
+        .json({ ok: false, error: "formType and formData required" });
+    }
+
+    const cookieName = `form_${formType}`;
+    const cookieData = {
+      formType,
+      formData,
+      abandoned: abandoned || false,
+      timestamp: timestamp || Date.now(),
+      lastUpdated: Date.now(),
+    };
+
+    res.cookie(cookieName, JSON.stringify(cookieData), {
+      httpOnly: true,
+      sameSite: "Lax",
+      secure: isProd,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      signed: true,
+      path: "/",
+    });
+
+    if (abandoned) {
+      const hasContact = formData.email || formData.phone;
+
+      if (hasContact) {
+        const displayName =
+          formData.name ||
+          [formData.firstName, formData.lastName].filter(Boolean).join(" ") ||
+          "Unknown";
+
+        const filledFields = Object.entries(formData)
+          .filter(([, v]) => v && String(v).trim())
+          .map(
+            ([k, v]) =>
+              `<tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#555;text-transform:capitalize;">${k.replace(/([A-Z])/g, " $1").trim()}</td><td style="padding:4px 0;color:#222;">${String(v).slice(0, 200)}</td></tr>`,
+          )
+          .join("");
+
+        const formLabel = formType
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase());
+
+        const emailHtml = `
+          <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;">
+            <h2 style="color:#c0392b;margin-bottom:4px;">⚠️ Form Abandonment Alert</h2>
+            <p style="color:#555;margin-top:0;">A visitor started the <strong>${formLabel}</strong> form but left without submitting.</p>
+            <table style="border-collapse:collapse;width:100%;margin:16px 0;">
+              <tbody>
+                <tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#555;">Form</td><td style="padding:4px 0;color:#222;">${formLabel}</td></tr>
+                <tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#555;">Time</td><td style="padding:4px 0;color:#222;">${new Date(timestamp || Date.now()).toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} PT</td></tr>
+                ${filledFields}
+              </tbody>
+            </table>
+            <p style="font-size:13px;color:#888;">Automated notification from the Tax Advocate Group website form tracking system.</p>
+          </div>
+        `;
+
+        transporter
+          .sendMail({
+            from: "Tax Advocate Group <ogleads@taxadvocategroup.com>",
+            to: "ogleads@taxadvocategroup.com",
+            subject: `⚠️ Abandoned ${formLabel} — ${displayName}`,
+            html: emailHtml,
+          })
+          .then(() =>
+            console.log(
+              `[TRACK-FORM] ✓ Abandonment email sent for ${formType} — ${displayName}`,
+            ),
+          )
+          .catch((emailErr) =>
+            console.error(
+              `[TRACK-FORM] ✗ Abandonment email failed:`,
+              emailErr.message,
+            ),
+          );
+      }
+    }
+
+    return res.json({ ok: true, message: "Form data tracked" });
+  } catch (error) {
+    console.error("[/track-form-input] error:", error);
+    return res
+      .status(500)
+      .json({ ok: false, error: "Failed to track form data" });
+  }
+});
 
 /* -------------------------------------------------------------------------- */
 /*                          CONTACT FORM ROUTE                                */
@@ -284,26 +537,194 @@ app.post("/send-email", async (req, res) => {
     return res.status(400).json({ error: "All fields are required!" });
   }
 
-  const mailOptions = {
-    from: "inquiry@taxadvocategroup.com",
-    to: "inquiry@taxadvocategroup.com",
-    subject: `New Inquiry from ${name}`,
-    text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage:\n${message}`,
-  };
-
   try {
-    await transporter.sendMail(mailOptions);
+    // Internal notification email
+    await transporter.sendMail({
+      from: "ogleads@taxadvocategroup.com",
+      to: "ogleads@taxadvocategroup.com",
+      subject: `New Inquiry from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage:\n${message}`,
+    });
 
-    // TODO: webhook integration — uncomment once webhook endpoint is configured
-    // await postToWebhook(
-    //   { name, email, phone, city: "", state: "", message },
-    //   "contact-form"
-    // );
+    // POST to webhook for CRM + outreach + dialing
+    const webhookResult = await postToWebhook(
+      { name, email, phone: phone || "", city: "", state: "", message },
+      "contact-form",
+    );
+
+    console.log(
+      "[CONTACT-FORM] ✓ Webhook:",
+      webhookResult.ok ? "Success" : webhookResult.error,
+    );
 
     res.status(200).json({ success: "Email sent successfully!" });
   } catch (error) {
     console.error("Error sending email:", error);
     res.status(500).json({ error: "Error sending email. Try again later." });
+  }
+});
+
+// Alias so both /send-email and /api/contact-form work
+app.post("/api/contact-form", async (req, res) => {
+  const { name, email, message, phone } = req.body;
+  if (!name || !email || !message) {
+    return res
+      .status(400)
+      .json({ error: "Name, email, and message are required!" });
+  }
+
+  try {
+    await transporter.sendMail({
+      from: "ogleads@taxadvocategroup.com",
+      to: "ogleads@taxadvocategroup.com",
+      subject: `New Inquiry from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "N/A"}\nMessage:\n${message}`,
+    });
+
+    const webhookResult = await postToWebhook(
+      { name, email, phone: phone || "", city: "", state: "", message },
+      "contact-form",
+    );
+
+    console.log(
+      "[CONTACT-FORM] ✓ Webhook:",
+      webhookResult.ok ? "Success" : webhookResult.error,
+    );
+    res.status(200).json({ success: "Form submitted successfully!" });
+  } catch (error) {
+    console.error("[CONTACT-FORM] Error:", error);
+    res.status(500).json({ error: "Error processing form. Try again later." });
+  }
+});
+
+/* -------------------------------------------------------------------------- */
+/*                          LEAD FORM (LANDING PAGE)                          */
+/* -------------------------------------------------------------------------- */
+
+app.post("/api/lead-form", async (req, res) => {
+  const {
+    taxType,
+    filingStatus,
+    debtType,
+    debtAmount,
+    name,
+    phone,
+    email,
+    bestTime,
+    source,
+  } = req.body;
+
+  console.log("[LEAD-FORM] Submission:", {
+    name,
+    email,
+    phone,
+    debtAmount,
+    taxType,
+  });
+
+  if (!name || !phone || !email) {
+    return res
+      .status(400)
+      .json({ error: "Name, phone, and email are required!" });
+  }
+
+  try {
+    const message = [
+      taxType ? `Tax Type: ${taxType}` : "",
+      filingStatus ? `Filing Status: ${filingStatus}` : "",
+      debtType ? `Debt Type: ${debtType}` : "",
+      debtAmount ? `Estimated Amount: ${debtAmount}` : "",
+      bestTime ? `Best Time: ${bestTime}` : "",
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
+    // POST to webhook for CRM + outreach + dialing
+    const webhookResult = await postToWebhook(
+      { name, email, phone, city: "", state: "", message },
+      source || "landing-qualify",
+    );
+
+    console.log(
+      "[LEAD-FORM] ✓ Webhook:",
+      webhookResult.ok ? "Success" : webhookResult.error,
+      "CaseID:",
+      webhookResult.caseId || "N/A",
+    );
+
+    // Internal notification email
+    await transporter.sendMail({
+      from: "ogleads@taxadvocategroup.com",
+      to: "ogleads@taxadvocategroup.com",
+      subject: `🔥 New Qualify Lead: ${name}`,
+      text: `New lead from Qualify Now landing page:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}\n\nSource: ${source || "landing-qualify"}`,
+    });
+
+    console.log("[LEAD-FORM] ✓ Complete");
+    res.status(200).json({ success: "Lead form submitted successfully!" });
+  } catch (error) {
+    console.error("[LEAD-FORM] Error:", error?.message || error);
+    res
+      .status(500)
+      .json({ error: "Error processing lead form. Try again later." });
+  }
+});
+
+/* -------------------------------------------------------------------------- */
+/*                          STATE TAX FORM                                    */
+/* -------------------------------------------------------------------------- */
+
+app.post("/api/state-tax-form", async (req, res) => {
+  const {
+    name,
+    email,
+    phone,
+    state,
+    problemTypes,
+    owedAmount,
+    description,
+    source,
+  } = req.body;
+
+  console.log("[STATE-TAX-FORM] Submission:", { name, email, phone, state });
+
+  if (!name || !email || !phone || !state) {
+    return res
+      .status(400)
+      .json({ error: "Name, email, phone, and state are required." });
+  }
+
+  try {
+    const issues =
+      typeof problemTypes === "string"
+        ? problemTypes
+        : Array.isArray(problemTypes)
+          ? problemTypes.join(", ")
+          : "";
+
+    const message = [
+      `State: ${state}`,
+      issues ? `Issues: ${issues}` : "",
+      owedAmount ? `Amount Owed: ${owedAmount}` : "",
+      description ? `Details: ${description}` : "",
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
+    const webhookResult = await postToWebhook(
+      { name, email, phone, city: "", state, message },
+      source || "state-tax-guide",
+    );
+
+    console.log(
+      "[STATE-TAX-FORM] ✓ Webhook:",
+      webhookResult.ok ? "Success" : webhookResult.error,
+    );
+
+    res.status(200).json({ success: "State tax form submitted successfully!" });
+  } catch (error) {
+    console.error("[STATE-TAX-FORM] Error:", error?.message || error);
+    res.status(500).json({ error: "Error processing form. Try again later." });
   }
 });
 
@@ -343,7 +764,9 @@ app.post("/api/answer", questionCounter, async (req, res) => {
     }
 
     if (!openai) {
-      return res.status(503).json({ ok: false, error: "AI service not configured" });
+      return res
+        .status(503)
+        .json({ ok: false, error: "AI service not configured" });
     }
 
     const resp = await openai.responses.create({
@@ -368,9 +791,7 @@ app.post("/api/answer", questionCounter, async (req, res) => {
     });
   } catch (err) {
     console.error("[/api/answer] error:", err);
-    return res
-      .status(500)
-      .json({ ok: false, error: "AI request failed" });
+    return res.status(500).json({ ok: false, error: "AI request failed" });
   }
 });
 
@@ -405,7 +826,12 @@ function checkResendLimit(identifier) {
   }
 
   if (data.count >= 3) {
-    return { allowed: false, remaining: 0, resetAt: data.resetAt, waitMinutes: Math.ceil((data.resetAt - now) / 60000) };
+    return {
+      allowed: false,
+      remaining: 0,
+      resetAt: data.resetAt,
+      waitMinutes: Math.ceil((data.resetAt - now) / 60000),
+    };
   }
 
   data.count++;
@@ -413,12 +839,15 @@ function checkResendLimit(identifier) {
   return { allowed: true, remaining: 3 - data.count, resetAt: data.resetAt };
 }
 
-setInterval(() => {
-  const now = Date.now();
-  for (const [key, data] of resendLimiter.entries()) {
-    if (now > data.resetAt) resendLimiter.delete(key);
-  }
-}, 30 * 60 * 1000);
+setInterval(
+  () => {
+    const now = Date.now();
+    for (const [key, data] of resendLimiter.entries()) {
+      if (now > data.resetAt) resendLimiter.delete(key);
+    }
+  },
+  30 * 60 * 1000,
+);
 
 app.post("/api/resend-verification-code", async (req, res) => {
   try {
@@ -427,7 +856,9 @@ app.post("/api/resend-verification-code", async (req, res) => {
     const targetPhone = type === "phone" || !type ? phone : null;
 
     if (!targetEmail && !targetPhone) {
-      return res.status(400).json({ ok: false, error: "Email or phone required" });
+      return res
+        .status(400)
+        .json({ ok: false, error: "Email or phone required" });
     }
 
     const results = { email: { sent: false }, phone: { sent: false } };
@@ -435,35 +866,56 @@ app.post("/api/resend-verification-code", async (req, res) => {
     if (targetEmail && (contactPref === "email" || contactPref === "both")) {
       const limit = checkResendLimit(targetEmail);
       if (!limit.allowed) {
-        return res.json({ ok: false, error: `Too many requests. Wait ${limit.waitMinutes} minutes.`, rateLimited: true });
+        return res.json({
+          ok: false,
+          error: `Too many requests. Wait ${limit.waitMinutes} minutes.`,
+          rateLimited: true,
+        });
       }
       const emailCode = generateCode();
       storeVerificationCode(targetEmail, emailCode, "email");
       await transporter.sendMail({
-        from: "Tax Advocate Group <inquiry@taxadvocategroup.com>",
+        from: "Tax Advocate Group <ogleads@taxadvocategroup.com>",
         to: targetEmail,
         subject: "Your New Verification Code - Tax Advocate Group",
         text: `Hi ${name || "there"},\n\nYour new verification code is: ${emailCode}\n\nThis code expires in 10 minutes.\n\nTax Advocate Group`,
       });
-      results.email = { sent: true, remaining: limit.remaining, resetAt: limit.resetAt };
+      results.email = {
+        sent: true,
+        remaining: limit.remaining,
+        resetAt: limit.resetAt,
+      };
     }
 
     if (targetPhone && (contactPref === "phone" || contactPref === "both")) {
       const limit = checkResendLimit(targetPhone);
       if (!limit.allowed) {
-        return res.json({ ok: false, error: `Too many requests. Wait ${limit.waitMinutes} minutes.`, rateLimited: true });
+        return res.json({
+          ok: false,
+          error: `Too many requests. Wait ${limit.waitMinutes} minutes.`,
+          rateLimited: true,
+        });
       }
       const phoneCode = generateCode();
       storeVerificationCode(targetPhone, phoneCode, "phone");
-      // SMS sending placeholder — integrate with your SMS provider
       console.log(`[VERIFY] Phone code for ${targetPhone}: ${phoneCode}`);
-      results.phone = { sent: true, remaining: limit.remaining, resetAt: limit.resetAt };
+      results.phone = {
+        sent: true,
+        remaining: limit.remaining,
+        resetAt: limit.resetAt,
+      };
     }
 
-    return res.json({ ok: true, codesSent: results, message: "New verification code sent" });
+    return res.json({
+      ok: true,
+      codesSent: results,
+      message: "New verification code sent",
+    });
   } catch (error) {
     console.error("[/resend-verification-code] error:", error);
-    return res.status(500).json({ ok: false, error: "Failed to resend verification code" });
+    return res
+      .status(500)
+      .json({ ok: false, error: "Failed to resend verification code" });
   }
 });
 
@@ -471,7 +923,9 @@ app.post("/api/send-verification-codes", async (req, res) => {
   try {
     const { email, phone, contactPref, name } = req.body;
     if (!email && !phone) {
-      return res.status(400).json({ ok: false, error: "Email or phone required" });
+      return res
+        .status(400)
+        .json({ ok: false, error: "Email or phone required" });
     }
 
     const codes = {};
@@ -480,7 +934,7 @@ app.post("/api/send-verification-codes", async (req, res) => {
       const emailCode = generateCode();
       storeVerificationCode(email, emailCode, "email");
       await transporter.sendMail({
-        from: "Tax Advocate Group <inquiry@taxadvocategroup.com>",
+        from: "Tax Advocate Group <ogleads@taxadvocategroup.com>",
         to: email,
         subject: "Verify Your Email - Tax Advocate Group",
         text: `Hi ${name || "there"},\n\nYour verification code is: ${emailCode}\n\nThis code expires in 10 minutes.\n\nTax Advocate Group`,
@@ -491,7 +945,6 @@ app.post("/api/send-verification-codes", async (req, res) => {
     if (phone && (contactPref === "phone" || contactPref === "both")) {
       const phoneCode = generateCode();
       storeVerificationCode(phone, phoneCode, "phone");
-      // SMS sending placeholder — integrate with your SMS provider
       console.log(`[VERIFY] Phone code for ${phone}: ${phoneCode}`);
       codes.phone = "sent";
     }
@@ -499,7 +952,9 @@ app.post("/api/send-verification-codes", async (req, res) => {
     return res.json({ ok: true, codesSent: codes });
   } catch (error) {
     console.error("[/send-verification-codes] error:", error);
-    return res.status(500).json({ ok: false, error: "Failed to send verification codes" });
+    return res
+      .status(500)
+      .json({ ok: false, error: "Failed to send verification codes" });
   }
 });
 
@@ -508,24 +963,38 @@ app.post("/api/verify-codes", async (req, res) => {
     const { email, phone, emailCode, phoneCode, contactPref } = req.body;
     const results = { emailVerified: false, phoneVerified: false };
 
-    if (email && emailCode && (contactPref === "email" || contactPref === "both")) {
+    if (
+      email &&
+      emailCode &&
+      (contactPref === "email" || contactPref === "both")
+    ) {
       const emailResult = verifyCode(email, emailCode);
       if (!emailResult.ok) {
         return res.json({
           ok: false,
-          error: emailResult.reason === "expired" ? "Email code expired." : "Invalid email code.",
+          error:
+            emailResult.reason === "expired"
+              ? "Email code expired."
+              : "Invalid email code.",
           field: "email",
         });
       }
       results.emailVerified = true;
     }
 
-    if (phone && phoneCode && (contactPref === "phone" || contactPref === "both")) {
+    if (
+      phone &&
+      phoneCode &&
+      (contactPref === "phone" || contactPref === "both")
+    ) {
       const phoneResult = verifyCode(phone, phoneCode);
       if (!phoneResult.ok) {
         return res.json({
           ok: false,
-          error: phoneResult.reason === "expired" ? "Phone code expired." : "Invalid phone code.",
+          error:
+            phoneResult.reason === "expired"
+              ? "Phone code expired."
+              : "Invalid phone code.",
           field: "phone",
         });
       }
@@ -546,8 +1015,19 @@ app.post("/api/verify-codes", async (req, res) => {
 app.post("/api/finalize-submission", async (req, res) => {
   try {
     const {
-      name, email, phone, contactPref, question, answer,
-      issues, balanceBand, noticeType, taxScope, state, filerType, intakeSummary,
+      name,
+      email,
+      phone,
+      contactPref,
+      question,
+      answer,
+      issues,
+      balanceBand,
+      noticeType,
+      taxScope,
+      state,
+      filerType,
+      intakeSummary,
     } = req.body;
 
     if (email && !isVerified(email)) {
@@ -561,41 +1041,89 @@ app.post("/api/finalize-submission", async (req, res) => {
     const questionCounterData = req.signedCookies?.tb_qc
       ? JSON.parse(req.signedCookies.tb_qc)
       : { count: 0 };
-    const ipAddress = req.ip || req.headers["x-forwarded-for"] || req.connection?.remoteAddress;
+    const ipAddress =
+      req.ip || req.headers["x-forwarded-for"] || req.connection?.remoteAddress;
     const userAgent = req.headers["user-agent"];
 
-    const userData = { name, email, phone, issues, balanceBand, noticeType, taxScope, state, filerType };
+    const userData = {
+      name,
+      email,
+      phone,
+      issues,
+      balanceBand,
+      noticeType,
+      taxScope,
+      state,
+      filerType,
+    };
     const aiSummary = openai
       ? await generateAISummary(openai, userData)
       : intakeSummary || "AI summary unavailable";
 
     const BarnabySubmission = require("./models/BarnabySubmission");
     const submission = new BarnabySubmission({
-      name, email, phone, contactPref,
-      emailVerified: !!email, phoneVerified: !!phone,
-      issues, balanceBand, noticeType, taxScope, state, filerType, intakeSummary,
-      question, answer,
+      name,
+      email,
+      phone,
+      contactPref,
+      emailVerified: !!email,
+      phoneVerified: !!phone,
+      issues,
+      balanceBand,
+      noticeType,
+      taxScope,
+      state,
+      filerType,
+      intakeSummary,
+      question,
+      answer,
       conversationHistory: conversationHistory.map((item, idx) => ({
-        q: item.q, a: item.a,
-        timestamp: new Date(Date.now() - (conversationHistory.length - idx) * 60000),
+        q: item.q,
+        a: item.a,
+        timestamp: new Date(
+          Date.now() - (conversationHistory.length - idx) * 60000,
+        ),
       })),
-      aiSummary, ipAddress, userAgent,
+      aiSummary,
+      ipAddress,
+      userAgent,
       questionsAsked: questionCounterData.count || 0,
     });
 
     await submission.save();
     console.log("[/finalize-submission] Saved to MongoDB:", submission._id);
 
-    // TODO: webhook integration — uncomment once webhook endpoint is configured
-    // const webhookResult = await postToWebhook(
-    //   { name, email, phone, city: "", state: state || "", message: aiSummary },
-    //   "caitlyn-verified"
-    // );
+    // POST to webhook for CRM + outreach + dialing
+    const webhookResult = await postToWebhook(
+      { name, email, phone, city: "", state: state || "", message: aiSummary },
+      "caitlyn-verified",
+    );
+
+    console.log(
+      "[FINALIZE] ✓ Webhook:",
+      webhookResult.ok ? "Success" : webhookResult.error,
+      "CaseID:",
+      webhookResult.caseId || "N/A",
+    );
+
+    if (webhookResult.caseId) {
+      await BarnabySubmission.updateOne(
+        { _id: submission._id },
+        {
+          $set: {
+            logicsCaseId: String(webhookResult.caseId),
+            leadSource: "VF Digital",
+          },
+        },
+      ).catch((e) =>
+        console.error("[FINALIZE] CaseID save failed:", e.message),
+      );
+    }
 
     // Send follow-up email
     if (email && (contactPref === "email" || contactPref === "both")) {
       await transporter.sendMail({
-        from: "Tax Advocate Group <inquiry@taxadvocategroup.com>",
+        from: "Tax Advocate Group <ogleads@taxadvocategroup.com>",
         to: email,
         subject: `Welcome to Tax Advocate Group, ${name}`,
         text: `Hi ${name},\n\nThank you for reaching out to Tax Advocate Group.\n\nHere's what we understand about your situation:\n${aiSummary}\n\nOur team will reach out within 24 hours to discuss your options.\n\nTax Advocate Group\noffice@taxadvocategroup.com`,
@@ -605,19 +1133,25 @@ app.post("/api/finalize-submission", async (req, res) => {
 
     // Notify internal team
     await transporter.sendMail({
-      from: "inquiry@taxadvocategroup.com",
-      to: "inquiry@taxadvocategroup.com",
+      from: "ogleads@taxadvocategroup.com",
+      to: "ogleads@taxadvocategroup.com",
       subject: `New Caitlyn Lead: ${name}`,
-      text: `New verified lead from Caitlyn chatbot:\n\nName: ${name}\nEmail: ${email || "N/A"}\nPhone: ${phone || "N/A"}\nContact Pref: ${contactPref}\n\nSituation:\n${intakeSummary}\n\nQuestion: ${question}\n\nAI Summary:\n${aiSummary}\n\nSubmission ID: ${submission._id}`,
+      text: `New verified lead from Caitlyn chatbot:\n\nName: ${name}\nEmail: ${email || "N/A"}\nPhone: ${phone || "N/A"}\nContact Pref: ${contactPref}\n\nSituation:\n${intakeSummary}\n\nQuestion: ${question}\n\nAI Summary:\n${aiSummary}\n\nCRM Case ID: ${webhookResult.caseId || "N/A"}\nSubmission ID: ${submission._id}`,
     });
 
     res.clearCookie("tb_qc", { path: "/" });
     res.clearCookie(TB_HISTORY_COOKIE, { path: "/" });
 
-    return res.json({ ok: true, message: "Submission finalized", submissionId: submission._id });
+    return res.json({
+      ok: true,
+      message: "Submission finalized",
+      submissionId: submission._id,
+    });
   } catch (error) {
     console.error("[/finalize-submission] error:", error);
-    return res.status(500).json({ ok: false, error: "Failed to finalize submission" });
+    return res
+      .status(500)
+      .json({ ok: false, error: "Failed to finalize submission" });
   }
 });
 
@@ -636,7 +1170,9 @@ app.post("/api/save-progress", (req, res) => {
     return res.json({ ok: true, message: "Progress saved" });
   } catch (error) {
     console.error("[/save-progress] error:", error);
-    return res.status(500).json({ ok: false, error: "Failed to save progress" });
+    return res
+      .status(500)
+      .json({ ok: false, error: "Failed to save progress" });
   }
 });
 
@@ -644,10 +1180,16 @@ app.get("/api/restore-progress", (req, res) => {
   try {
     const { readPartialProgress } = require("./utils/partialSubmissions");
     const partial = readPartialProgress(req);
-    return res.json({ ok: true, hasProgress: !!partial, data: partial || null });
+    return res.json({
+      ok: true,
+      hasProgress: !!partial,
+      data: partial || null,
+    });
   } catch (error) {
     console.error("[/restore-progress] error:", error);
-    return res.status(500).json({ ok: false, error: "Failed to restore progress" });
+    return res
+      .status(500)
+      .json({ ok: false, error: "Failed to restore progress" });
   }
 });
 
@@ -659,18 +1201,24 @@ app.post("/api/track-abandon", async (req, res) => {
       return res.json({ ok: true, saved: false, message: "No data to save" });
     }
 
-    // If they got far enough that we have contact info, notify the team
-    if (partial.lastPhase === "verification" && (partial.email || partial.phone)) {
+    if (
+      partial.lastPhase === "verification" &&
+      (partial.email || partial.phone)
+    ) {
       await transporter.sendMail({
-        from: "inquiry@taxadvocategroup.com",
-        to: "inquiry@taxadvocategroup.com",
+        from: "ogleads@taxadvocategroup.com",
+        to: "ogleads@taxadvocategroup.com",
         subject: `Abandoned Chat Session - ${partial.name || "Unknown"}`,
         text: `A visitor abandoned the Caitlyn chatbot at the VERIFICATION step.\n\nName: ${partial.name || "Not provided"}\nEmail: ${partial.email || "Not provided"}\nPhone: ${partial.phone || "Not provided"}\nPhase: ${partial.lastPhase}\n\nThis is a high-priority lead — they were very close to completing.`,
       });
       console.log("[TRACK-ABANDON] High priority alert sent");
     }
 
-    return res.json({ ok: true, saved: true, highPriority: partial.lastPhase === "verification" });
+    return res.json({
+      ok: true,
+      saved: true,
+      highPriority: partial.lastPhase === "verification",
+    });
   } catch (error) {
     console.error("[/track-abandon] error:", error);
     return res.status(500).json({ ok: false, error: error.message });
@@ -684,10 +1232,10 @@ app.post("/api/track-abandon", async (req, res) => {
 app.post("/api/track-visitor", async (req, res) => {
   try {
     const { page, referrer, timestamp } = req.body;
-    const ipAddress = req.ip || req.headers["x-forwarded-for"] || req.connection?.remoteAddress;
+    const ipAddress =
+      req.ip || req.headers["x-forwarded-for"] || req.connection?.remoteAddress;
     const userAgent = req.headers["user-agent"];
 
-    // Store visitor cookie for session tracking
     let visitorId = req.signedCookies?.tb_visitor;
     if (!visitorId) {
       visitorId = Math.random().toString(36).slice(2) + Date.now().toString(36);
@@ -696,25 +1244,10 @@ app.post("/api/track-visitor", async (req, res) => {
         sameSite: "Lax",
         secure: isProd,
         signed: true,
-        maxAge: 30 * 24 * 3600 * 1000, // 30 days
+        maxAge: 30 * 24 * 3600 * 1000,
         path: "/",
       });
     }
-
-    // TODO: webhook integration — uncomment once webhook endpoint is configured
-    // if (process.env.WEBHOOK_URL && process.env.LEAD_WEBHOOK_SECRET) {
-    //   await axios.post(
-    //     `${process.env.WEBHOOK_URL}/visitor-event`,
-    //     { visitorId, page, referrer, timestamp, ipAddress, userAgent, source: "taxadvocategroup" },
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         "x-webhook-key": process.env.LEAD_WEBHOOK_SECRET,
-    //       },
-    //       timeout: 5000,
-    //     }
-    //   ).catch((err) => console.warn("[VISITOR] Webhook failed:", err.message));
-    // }
 
     return res.json({ ok: true, visitorId });
   } catch (error) {
@@ -746,37 +1279,65 @@ app.get("/sitemap.xml", async (req, res) => {
   ];
 
   const statesSlugs = [
-    "state-income-tax-help-alabama", "state-income-tax-help-alaska",
-    "state-income-tax-help-arizona", "state-income-tax-help-arkansas",
-    "state-income-tax-help-california", "state-income-tax-help-colorado",
-    "state-income-tax-help-connecticut", "state-income-tax-help-delaware",
-    "state-income-tax-help-florida", "state-income-tax-help-georgia",
-    "state-income-tax-help-hawaii", "state-income-tax-help-idaho",
-    "state-income-tax-help-illinois", "state-income-tax-help-indiana",
-    "state-income-tax-help-iowa", "state-income-tax-help-kansas",
-    "state-income-tax-help-kentucky", "state-income-tax-help-louisiana",
-    "state-income-tax-help-maine", "state-income-tax-help-maryland",
-    "state-income-tax-help-massachusetts", "state-income-tax-help-michigan",
-    "state-income-tax-help-minnesota", "state-income-tax-help-mississippi",
-    "state-income-tax-help-missouri", "state-income-tax-help-montana",
-    "state-income-tax-help-nebraska", "state-income-tax-help-nevada",
-    "state-income-tax-help-new-hampshire", "state-income-tax-help-new-jersey",
-    "state-income-tax-help-new-mexico", "state-income-tax-help-new-york",
-    "state-income-tax-help-north-carolina", "state-income-tax-help-north-dakota",
-    "state-income-tax-help-ohio", "state-income-tax-help-oklahoma",
-    "state-income-tax-help-oregon", "state-income-tax-help-pennsylvania",
-    "state-income-tax-help-rhode-island", "state-income-tax-help-south-carolina",
-    "state-income-tax-help-south-dakota", "state-income-tax-help-tennessee",
-    "state-income-tax-help-texas", "state-income-tax-help-utah",
-    "state-income-tax-help-vermont", "state-income-tax-help-virginia",
-    "state-income-tax-help-washington", "state-income-tax-help-west-virginia",
-    "state-income-tax-help-wisconsin", "state-income-tax-help-wyoming",
+    "state-income-tax-help-alabama",
+    "state-income-tax-help-alaska",
+    "state-income-tax-help-arizona",
+    "state-income-tax-help-arkansas",
+    "state-income-tax-help-california",
+    "state-income-tax-help-colorado",
+    "state-income-tax-help-connecticut",
+    "state-income-tax-help-delaware",
+    "state-income-tax-help-florida",
+    "state-income-tax-help-georgia",
+    "state-income-tax-help-hawaii",
+    "state-income-tax-help-idaho",
+    "state-income-tax-help-illinois",
+    "state-income-tax-help-indiana",
+    "state-income-tax-help-iowa",
+    "state-income-tax-help-kansas",
+    "state-income-tax-help-kentucky",
+    "state-income-tax-help-louisiana",
+    "state-income-tax-help-maine",
+    "state-income-tax-help-maryland",
+    "state-income-tax-help-massachusetts",
+    "state-income-tax-help-michigan",
+    "state-income-tax-help-minnesota",
+    "state-income-tax-help-mississippi",
+    "state-income-tax-help-missouri",
+    "state-income-tax-help-montana",
+    "state-income-tax-help-nebraska",
+    "state-income-tax-help-nevada",
+    "state-income-tax-help-new-hampshire",
+    "state-income-tax-help-new-jersey",
+    "state-income-tax-help-new-mexico",
+    "state-income-tax-help-new-york",
+    "state-income-tax-help-north-carolina",
+    "state-income-tax-help-north-dakota",
+    "state-income-tax-help-ohio",
+    "state-income-tax-help-oklahoma",
+    "state-income-tax-help-oregon",
+    "state-income-tax-help-pennsylvania",
+    "state-income-tax-help-rhode-island",
+    "state-income-tax-help-south-carolina",
+    "state-income-tax-help-south-dakota",
+    "state-income-tax-help-tennessee",
+    "state-income-tax-help-texas",
+    "state-income-tax-help-utah",
+    "state-income-tax-help-vermont",
+    "state-income-tax-help-virginia",
+    "state-income-tax-help-washington",
+    "state-income-tax-help-west-virginia",
+    "state-income-tax-help-wisconsin",
+    "state-income-tax-help-wyoming",
   ];
   statesSlugs.forEach((slug) => {
-    links.push({ url: `/state-tax-guide/${slug}`, changefreq: "monthly", priority: 0.6 });
+    links.push({
+      url: `/state-tax-guide/${slug}`,
+      changefreq: "monthly",
+      priority: 0.6,
+    });
   });
 
-  // Sub-pages (service detail pages)
   const subPages = [
     "tax-relief/tax-consultation",
     "tax-relief/tax-preparation",
@@ -802,10 +1363,16 @@ app.get("/sitemap.xml", async (req, res) => {
 
   const blogRoutes = ["understanding-tax-relief", "irs-negotiation-tips"];
   blogRoutes.forEach((slug) => {
-    links.push({ url: `/tax-news/${slug}`, changefreq: "monthly", priority: 0.6 });
+    links.push({
+      url: `/tax-news/${slug}`,
+      changefreq: "monthly",
+      priority: 0.6,
+    });
   });
 
-  const stream = new SitemapStream({ hostname: "https://www.taxadvocategroup.com" });
+  const stream = new SitemapStream({
+    hostname: "https://www.taxadvocategroup.com",
+  });
   const xml = await streamToPromise(Readable.from(links)).then((data) => {
     links.forEach((link) => stream.write(link));
     stream.end();
