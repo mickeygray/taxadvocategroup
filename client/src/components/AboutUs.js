@@ -42,9 +42,9 @@ const AboutUs = () => {
         <p>
           Tax Advocate Group was founded on a simple principle: every taxpayer
           deserves knowledgeable, accessible representation when dealing with
-          the IRS. Our team of enrolled agents, tax attorneys, and CPAs brings
-          decades of combined experience to the table—experience that translates
-          directly into results for our clients.
+          the IRS or state. Our team of enrolled agents, tax attorneys, and CPAs
+          brings decades of combined experience to the table—experience that
+          translates directly into results for our clients.
         </p>
         <p>
           We've built our practice around the cases other firms turn away.
@@ -132,8 +132,8 @@ const AboutUs = () => {
             before we start. No hidden fees, no surprise charges.
           </li>
           <li>
-            <strong>Ongoing Compliance Support</strong> – After resolution,
-            we offer tax preparation and monitoring to keep you in good standing.
+            <strong>Ongoing Compliance Support</strong> – After resolution, we
+            offer tax preparation and monitoring to keep you in good standing.
           </li>
           <li>
             <strong>Nationwide Coverage</strong> – Licensed to practice in all
@@ -148,8 +148,8 @@ const AboutUs = () => {
         <p>
           We stand behind our work with a straightforward guarantee: if we
           accept your case, we will deliver a resolution. Our consultation
-          process is honest and upfront—if we don't believe we can improve
-          your situation, we'll tell you so and won't charge you a dime.
+          process is honest and upfront—if we don't believe we can improve your
+          situation, we'll tell you so and won't charge you a dime.
         </p>
         <p>
           That's the Tax Advocate Group difference. We earn our reputation one
