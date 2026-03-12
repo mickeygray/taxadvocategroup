@@ -39,6 +39,7 @@ app.use(
 /*                           EMAIL & OPENAI SETUP                             */
 /* -------------------------------------------------------------------------- */
 
+// Transporter used ONLY for verification code emails
 const transporter = nodemailer.createTransport({
   host: "smtp.sendgrid.net",
   port: 587,
@@ -463,58 +464,30 @@ app.post("/api/track-form-input", async (req, res) => {
 
     if (abandoned) {
       const hasContact = formData.email || formData.phone;
-
       if (hasContact) {
         const displayName =
           formData.name ||
           [formData.firstName, formData.lastName].filter(Boolean).join(" ") ||
           "Unknown";
-
-        const filledFields = Object.entries(formData)
-          .filter(([, v]) => v && String(v).trim())
-          .map(
-            ([k, v]) =>
-              `<tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#555;text-transform:capitalize;">${k.replace(/([A-Z])/g, " $1").trim()}</td><td style="padding:4px 0;color:#222;">${String(v).slice(0, 200)}</td></tr>`,
-          )
-          .join("");
-
         const formLabel = formType
           .replace(/-/g, " ")
           .replace(/\b\w/g, (c) => c.toUpperCase());
 
-        const emailHtml = `
-          <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;">
-            <h2 style="color:#c0392b;margin-bottom:4px;">⚠️ Form Abandonment Alert</h2>
-            <p style="color:#555;margin-top:0;">A visitor started the <strong>${formLabel}</strong> form but left without submitting.</p>
-            <table style="border-collapse:collapse;width:100%;margin:16px 0;">
-              <tbody>
-                <tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#555;">Form</td><td style="padding:4px 0;color:#222;">${formLabel}</td></tr>
-                <tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#555;">Time</td><td style="padding:4px 0;color:#222;">${new Date(timestamp || Date.now()).toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} PT</td></tr>
-                ${filledFields}
-              </tbody>
-            </table>
-            <p style="font-size:13px;color:#888;">Automated notification from the Tax Advocate Group website form tracking system.</p>
-          </div>
-        `;
-
-        transporter
-          .sendMail({
-            from: "Tax Advocate Group <ogleads@taxadvocategroup.com>",
-            to: "ogleads@taxadvocategroup.com",
-            subject: `⚠️ Abandoned ${formLabel} — ${displayName}`,
-            html: emailHtml,
-          })
-          .then(() =>
-            console.log(
-              `[TRACK-FORM] ✓ Abandonment email sent for ${formType} — ${displayName}`,
-            ),
-          )
-          .catch((emailErr) =>
-            console.error(
-              `[TRACK-FORM] ✗ Abandonment email failed:`,
-              emailErr.message,
-            ),
-          );
+        // Fire to webhook so the pipeline handles notification
+        postToWebhook(
+          {
+            name: displayName,
+            email: formData.email || "",
+            phone: formData.phone || "",
+            company: "TAG",
+            city: "",
+            state: "",
+            message: `Abandoned ${formLabel} form`,
+          },
+          "form-abandonment",
+        ).catch((err) =>
+          console.error("[TRACK-FORM] Webhook failed:", err.message),
+        );
       }
     }
 
@@ -538,15 +511,6 @@ app.post("/send-email", async (req, res) => {
   }
 
   try {
-    // Internal notification email
-    await transporter.sendMail({
-      from: "ogleads@taxadvocategroup.com",
-      to: "ogleads@taxadvocategroup.com",
-      subject: `New Inquiry from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage:\n${message}`,
-    });
-
-    // POST to webhook for CRM + outreach + dialing
     const webhookResult = await postToWebhook(
       {
         name,
@@ -572,7 +536,6 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-// Alias so both /send-email and /api/contact-form work
 app.post("/api/contact-form", async (req, res) => {
   const { name, email, message, phone } = req.body;
   if (!name || !email || !message) {
@@ -582,13 +545,6 @@ app.post("/api/contact-form", async (req, res) => {
   }
 
   try {
-    await transporter.sendMail({
-      from: "ogleads@taxadvocategroup.com",
-      to: "ogleads@taxadvocategroup.com",
-      subject: `New Inquiry from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "N/A"}\nMessage:\n${message}`,
-    });
-
     const webhookResult = await postToWebhook(
       {
         name,
@@ -655,7 +611,6 @@ app.post("/api/lead-form", async (req, res) => {
       .filter(Boolean)
       .join(" | ");
 
-    // POST to webhook for CRM + outreach + dialing
     const webhookResult = await postToWebhook(
       { name, email, company: "TAG", phone, city: "", state: "", message },
       source || "landing-qualify",
@@ -667,14 +622,6 @@ app.post("/api/lead-form", async (req, res) => {
       "CaseID:",
       webhookResult.caseId || "N/A",
     );
-
-    // Internal notification email
-    await transporter.sendMail({
-      from: "ogleads@taxadvocategroup.com",
-      to: "ogleads@taxadvocategroup.com",
-      subject: `🔥 New Qualify Lead: ${name}`,
-      text: `New lead from Qualify Now landing page:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}\n\nSource: ${source || "landing-qualify"}`,
-    });
 
     console.log("[LEAD-FORM] ✓ Complete");
     res.status(200).json({ success: "Lead form submitted successfully!" });
@@ -1109,7 +1056,7 @@ app.post("/api/finalize-submission", async (req, res) => {
     await submission.save();
     console.log("[/finalize-submission] Saved to MongoDB:", submission._id);
 
-    // POST to webhook for CRM + outreach + dialing
+    // POST to webhook — pipeline handles notification, welcome email, CRM, outreach
     const webhookResult = await postToWebhook(
       {
         name,
@@ -1143,25 +1090,6 @@ app.post("/api/finalize-submission", async (req, res) => {
         console.error("[FINALIZE] CaseID save failed:", e.message),
       );
     }
-
-    // Send follow-up email
-    if (email && (contactPref === "email" || contactPref === "both")) {
-      await transporter.sendMail({
-        from: "Tax Advocate Group <ogleads@taxadvocategroup.com>",
-        to: email,
-        subject: `Welcome to Tax Advocate Group, ${name}`,
-        text: `Hi ${name},\n\nThank you for reaching out to Tax Advocate Group.\n\nHere's what we understand about your situation:\n${aiSummary}\n\nOur team will reach out within 24 hours to discuss your options.\n\nTax Advocate Group\noffice@taxadvocategroup.com`,
-      });
-      console.log("[/finalize-submission] Welcome email sent to:", email);
-    }
-
-    // Notify internal team
-    await transporter.sendMail({
-      from: "ogleads@taxadvocategroup.com",
-      to: "ogleads@taxadvocategroup.com",
-      subject: `New Caitlyn Lead: ${name}`,
-      text: `New verified lead from Caitlyn chatbot:\n\nName: ${name}\nEmail: ${email || "N/A"}\nPhone: ${phone || "N/A"}\nContact Pref: ${contactPref}\n\nSituation:\n${intakeSummary}\n\nQuestion: ${question}\n\nAI Summary:\n${aiSummary}\n\nCRM Case ID: ${webhookResult.caseId || "N/A"}\nSubmission ID: ${submission._id}`,
-    });
 
     res.clearCookie("tb_qc", { path: "/" });
     res.clearCookie(TB_HISTORY_COOKIE, { path: "/" });
@@ -1229,13 +1157,23 @@ app.post("/api/track-abandon", async (req, res) => {
       partial.lastPhase === "verification" &&
       (partial.email || partial.phone)
     ) {
-      await transporter.sendMail({
-        from: "ogleads@taxadvocategroup.com",
-        to: "ogleads@taxadvocategroup.com",
-        subject: `Abandoned Chat Session - ${partial.name || "Unknown"}`,
-        text: `A visitor abandoned the Caitlyn chatbot at the VERIFICATION step.\n\nName: ${partial.name || "Not provided"}\nEmail: ${partial.email || "Not provided"}\nPhone: ${partial.phone || "Not provided"}\nPhase: ${partial.lastPhase}\n\nThis is a high-priority lead — they were very close to completing.`,
-      });
-      console.log("[TRACK-ABANDON] High priority alert sent");
+      // Fire to webhook so the pipeline handles it
+      postToWebhook(
+        {
+          name: partial.name || "Unknown",
+          email: partial.email || "",
+          phone: partial.phone || "",
+          company: "TAG",
+          city: "",
+          state: "",
+          message:
+            "Abandoned Caitlyn chatbot at VERIFICATION step — high priority",
+        },
+        "chatbot-abandonment",
+      ).catch((err) =>
+        console.error("[TRACK-ABANDON] Webhook failed:", err.message),
+      );
+      console.log("[TRACK-ABANDON] High priority — sent to webhook");
     }
 
     return res.json({
