@@ -838,7 +838,7 @@ app.post("/api/resend-verification-code", async (req, res) => {
       const emailCode = generateCode();
       storeVerificationCode(targetEmail, emailCode, "email");
       await transporter.sendMail({
-        from: "Tax Advocate Group <ogleads@taxadvocategroup.com>",
+        from: "Tax Advocate Group <inquiry@taxadvocategroup.com>",
         to: targetEmail,
         subject: "Your New Verification Code - Tax Advocate Group",
         text: `Hi ${name || "there"},\n\nYour new verification code is: ${emailCode}\n\nThis code expires in 10 minutes.\n\nTax Advocate Group`,
@@ -897,7 +897,7 @@ app.post("/api/send-verification-codes", async (req, res) => {
       const emailCode = generateCode();
       storeVerificationCode(email, emailCode, "email");
       await transporter.sendMail({
-        from: "Tax Advocate Group <ogleads@taxadvocategroup.com>",
+        from: "Tax Advocate Group <inquiry@taxadvocategroup.com>",
         to: email,
         subject: "Verify Your Email - Tax Advocate Group",
         text: `Hi ${name || "there"},\n\nYour verification code is: ${emailCode}\n\nThis code expires in 10 minutes.\n\nTax Advocate Group`,
