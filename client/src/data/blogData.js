@@ -1,5 +1,141 @@
 const blogData = [
   {
+    id: "lt11-letter-1058-final-notice-of-intent-to-levy",
+    title:
+      "LT11 / Letter 1058 Explained: What This Final IRS Notice Means and Why You Shouldn’t Wait",
+    image: "/images/lt11-letter-1058.png",
+    teaser:
+      "LT11 / Letter 1058 is one of the most serious IRS collection notices you can receive. It means the IRS intends to levy your property or rights to property if you don’t act. Here’s what the letter means, what your deadline may be, and the smartest next steps if you owe.",
+    contentTitle:
+      "LT11 / Letter 1058 Explained: What This Final IRS Notice Means and Why You Shouldn’t Wait",
+    contentBody: [
+      "<p><em>Quick note:</em> This article is general information, not tax or legal advice. If you received LT11 or Letter 1058, treat it as time-sensitive.</p>",
+
+      "<h2>What LT11 / Letter 1058 actually means</h2>",
+      "<p>LT11 / Letter 1058 is a <strong>final notice of intent to levy</strong>. In plain English, the IRS is telling you that it intends to <strong>seize your property or rights to property</strong> if you do not respond.</p>",
+      "<p>This is not just another balance-due reminder. It is one of the most serious collection letters the IRS sends before levy action can move forward.</p>",
+
+      "<h2>What “levy” means in real life</h2>",
+      "<p>A levy is when the IRS takes money or property to satisfy a tax debt. Depending on the situation, that can mean:</p>",
+      "<ul>",
+      "<li>Taking money from a bank account</li>",
+      "<li>Levying wages or other income</li>",
+      "<li>Seizing certain property rights</li>",
+      "</ul>",
+      "<p>That’s why LT11 / Letter 1058 gets so much attention: it’s the point where the problem stops being “mail from the IRS” and starts becoming a real collection threat.</p>",
+
+      "<h2>What the IRS says you should do immediately</h2>",
+      "<p>The IRS’s own notice guidance says to <strong>contact them immediately</strong>. If you can pay the balance in full, doing so stops additional interest and applicable penalties from continuing to build. If you can’t pay in full, the IRS says you should still pay what you can and, if you’re current on required filings, you may be able to request an installment agreement.</p>",
+      "<p>If you already paid or believe the IRS hasn’t credited a payment, the IRS instructs taxpayers to send proof of payment to the address shown on the notice.</p>",
+
+      "<h2>Your hearing rights: why the 30-day window matters</h2>",
+      "<p>One of the biggest reasons LT11 / Letter 1058 matters is that it includes your right to request a <strong>Collection Due Process (CDP) hearing</strong>. The IRS Appeals guidance explains that you generally have <strong>30 days from receipt</strong> of LT11 / Letter 1058 to request that hearing using <strong>Form 12153</strong>.</p>",
+      "<p>If you make a <strong>timely</strong> CDP request, the IRS says levy action is generally prohibited in most cases while the hearing process is pending.</p>",
+
+      "<h2>Important warning: a hearing request does not stop everything</h2>",
+      "<p>A lot of taxpayers assume that once they ask for a hearing, the entire collection process freezes. That is not always true.</p>",
+      "<p>The IRS states that a timely CDP request on a levy notice generally prohibits levy action in most cases — but it <strong>does not prohibit the IRS from filing a Notice of Federal Tax Lien</strong>.</p>",
+      "<p>In other words: asking for a hearing can protect you from immediate levy in many situations, but it does not mean the account is harmless or that all collection pressure disappears.</p>",
+
+      "<h2>What you can raise at a CDP hearing</h2>",
+      "<p>If you request a hearing, Appeals may consider issues such as:</p>",
+      "<ul>",
+      "<li>Whether the levy action is appropriate</li>",
+      "<li>Collection alternatives, like an installment agreement</li>",
+      "<li>Whether the underlying tax is correct — but only in limited circumstances</li>",
+      "</ul>",
+      "<p>That last point matters: not every taxpayer can use the hearing to fully re-argue the tax bill itself. In many cases, Appeals limits when the underlying amount can be challenged.</p>",
+
+      "<h2>What if you miss the 30-day deadline?</h2>",
+      "<p>If you miss the deadline for a timely CDP hearing request, the situation gets weaker from your side. The IRS still allows many taxpayers to request what’s called an <strong>equivalent hearing</strong> within a longer period, but an equivalent hearing does <strong>not</strong> generally stop levy action and does not carry the same court rights.</p>",
+      "<p>That’s why waiting is such a costly mistake: your best appeal protections usually exist at the front end of the notice period, not after the deadline has passed.</p>",
+
+      "<h2>Best practices if you receive LT11 / Letter 1058</h2>",
+      "<ol>",
+      "<li><strong>Open the letter immediately.</strong> Do not assume it is just another payment reminder.</li>",
+      "<li><strong>Confirm the tax year and amount.</strong> Make sure you understand what debt the IRS is collecting.</li>",
+      "<li><strong>Do not ignore it because you can’t pay.</strong> The IRS itself tells taxpayers to contact them if they cannot pay the balance due.</li>",
+      "<li><strong>Preserve your rights quickly.</strong> If you believe a hearing is needed, move fast enough to protect the 30-day window.</li>",
+      "<li><strong>Get organized before you call.</strong> Have the notice, prior-year filing information, and any proof of payment or hardship ready.</li>",
+      "</ol>",
+
+      "<h2>How Tax Advocate Group can help</h2>",
+      "<p>If you received LT11 / Letter 1058, the goal is to move quickly, protect your rights, and avoid making the situation worse by guessing.</p>",
+      "<p>Tax Advocate Group can help you understand what the notice means, what deadlines matter, and whether a payment arrangement, hearing request, or another strategy makes the most sense. If you authorize us and we’re engaged, we can communicate with the IRS on your behalf and help you work toward a realistic solution.</p>",
+      "<p><strong>Bottom line:</strong> LT11 / Letter 1058 is not the time to wait and hope. It’s the time to act.</p>",
+    ],
+  },
+  {
+    id: "iowa-income-tax-guide-rates-deductions-tax-debt-help",
+    title:
+      "Iowa Income Tax Guide: 2025 Rate, Key Credits, and What to Do If You Owe Iowa Department of Revenue",
+    image: "/images/tag-iowa-state-tax-guide.png",
+    teaser:
+      "Iowa shifted to a flat individual income tax rate for 2025, but many taxpayers still miss credits, underestimate quarterly payments, or fall behind after a balance due. Here is a practical guide to Iowa's 2025 rate, common adjustments and credits, and what to do if you owe Iowa Department of Revenue.",
+    contentTitle:
+      "Iowa Income Tax Guide: 2025 Rate, Key Credits, and What to Do If You Owe Iowa Department of Revenue",
+    contentBody: [
+      "<p><em>Quick note:</em> This is general information and educational content, not tax or legal advice. Iowa tax results depend on your filing status, residency, income mix, estimated payments, filing history, and the notices you have received.</p>",
+
+      "<h2>Iowa income tax in plain English</h2>",
+      "<p>For tax year 2025, Iowa uses a <strong>flat individual income tax rate of 3.8%</strong>. That sounds simple, but people still end up with balances due when withholding was too low, estimated payments were missed, or credits and adjustments were handled incorrectly.</p>",
+      "<p>That is especially common for 1099 workers, business owners, investors, and retirees with uneven income.</p>",
+
+      "<h2>What is Iowa's 2025 income tax rate?</h2>",
+      "<p>Iowa's individual income tax rate for 2025 is a flat <strong>3.8%</strong> of Iowa taxable income. That means bracket planning matters less than it used to, but accurate taxable-income calculation matters more.</p>",
+
+      "<h2>How deductions work in Iowa</h2>",
+      "<p>Iowa generally starts from your federal return, so the way your federal taxable income is built still matters. If you claim the federal standard deduction or itemize federally, that can affect how Iowa taxable income flows through the return before Iowa-specific adjustments and credits are applied.</p>",
+      "<p>For many taxpayers, the bigger mistakes are not the federal deductions themselves — they are Iowa-specific credits, estimate issues, and missed paperwork.</p>",
+
+      "<h2>Common Iowa credits and deductions people miss</h2>",
+      "<ul>",
+      "<li><strong>Iowa Earned Income Tax Credit:</strong> Iowa's EITC is tied to the federal EITC and can be meaningful for eligible working households.</li>",
+      "<li><strong>College savings deduction:</strong> Iowa updates the deductible contribution amount for qualifying 529-plan contributions each year.</li>",
+      "<li><strong>Retirement-related rules:</strong> recent Iowa changes have made retirement-income treatment more favorable for many taxpayers, so older filers should check the current rules carefully.</li>",
+      "</ul>",
+
+      "<h2>Recent Iowa tax changes worth knowing</h2>",
+      "<p>The big headline is the move to a flat <strong>3.8%</strong> individual income tax for 2025. That lowers the top rate from Iowa's older system, but it does <strong>not</strong> eliminate the need for proper withholding or quarterly estimates.</p>",
+      '<p>In other words, Iowa may be simpler than it used to be, but it is not "automatic."</p>',
+
+      "<h2>If you owe Iowa income tax: your realistic options</h2>",
+      "<p>If you file and owe Iowa tax, the best first step is to <strong>file on time</strong> and confirm the assessment. Then the main paths are:</p>",
+      "<ul>",
+      "<li><strong>Pay in full:</strong> the cheapest option if available.</li>",
+      "<li><strong>Payment arrangement:</strong> Iowa does allow taxpayers to resolve balances over time in many cases.</li>",
+      "<li><strong>Offer in Compromise:</strong> Iowa has a formal OIC path in qualifying hardship or collectability cases.</li>",
+      "</ul>",
+
+      "<h2>Iowa collections: what happens if you ignore notices</h2>",
+      "<p>Iowa warns taxpayers to act quickly when they receive collection notices. If you do not, the state can move into enforced collection, including taking money from accounts or otherwise seizing funds.</p>",
+      "<p>Waiting usually makes the case more expensive, not easier.</p>",
+
+      "<h2>Iowa payment plans: what to expect</h2>",
+      "<p>Iowa installment arrangements are usually most realistic after returns are filed and the balance is known. Interest continues while the debt is being paid, so a plan helps with cash flow but does not freeze the bill in place.</p>",
+
+      "<h2>Iowa Offer in Compromise: when it may work</h2>",
+      "<p>Iowa's Offer in Compromise program can apply to <strong>assessed</strong> tax debt in cases involving doubtful collectability or severe economic hardship. That means it is not a shortcut for anyone who simply prefers not to pay.</p>",
+      "<p>A strong Iowa OIC usually depends on accurate financial disclosure and a realistic explanation for why full collection is unlikely.</p>",
+
+      "<h2>Why hiring a professional can help once collections start</h2>",
+      "<p>Many taxpayers can file and pay on their own — until the situation turns into notices, liens, levies, garnishments, warrants, or years of unfiled returns. At that point, the biggest risks are usually:</p>",
+      "<ul>",
+      "<li>Missing deadlines and letting the state escalate collections</li>",
+      "<li>Entering a payment plan that is not realistic, causing default later</li>",
+      "<li>Asking for relief that was never viable and losing time while enforcement pressure grows</li>",
+      "<li>Misunderstanding what records the state actually wants before it will approve a resolution</li>",
+      "</ul>",
+
+      "<h2>How Tax Advocate Group helps Iowa taxpayers</h2>",
+      "<p>Tax Advocate Group helps clients resolve Iowa Department of Revenue tax problems by building a clear plan — whether that means catching up on filings, requesting a payment plan, responding to notices, or evaluating whether a compromise or other relief path is realistic.</p>",
+      "<p>If we're engaged and you authorize representation, we can communicate with Iowa Department of Revenue on your behalf and help you move toward a stable resolution instead of guessing your way through state notices, levy threats, and resolution requests.</p>",
+
+      "<h2>Need help with Iowa taxes or Iowa tax debt?</h2>",
+      "<p>If you owe Iowa tax, received a notice, or feel like you're falling behind, reach out to Tax Advocate Group. A clear plan now is usually cheaper than waiting until collections get more aggressive.</p>",
+    ],
+  },
+  {
     id: "texas-no-state-income-tax-guide-franchise-tax-and-tax-debt-help",
     title:
       "Texas Tax Guide: No State Income Tax, Franchise Tax Basics, and What to Do If You Owe the Texas Comptroller",

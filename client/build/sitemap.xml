@@ -156,6 +156,16 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/lt11-letter-1058-final-notice-of-intent-to-levy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/iowa-income-tax-guide-rates-deductions-tax-debt-help</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.taxadvocategroup.com/tax-news/texas-no-state-income-tax-guide-franchise-tax-and-tax-debt-help</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
