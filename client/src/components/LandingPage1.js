@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import leadContext from "../context/leadContext";
 import PhoneLink from "./PhoneLink";
@@ -23,8 +23,57 @@ const LeadForm = () => {
     name: "",
     phone: "",
     email: "",
+    source: "",
   });
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
 
+    const prefill = {};
+    let hasAny = false;
+
+    const paramMap = {
+      name: "name",
+      email: "email",
+      phone: "phone",
+      taxType: "taxType",
+      tax_type: "taxType",
+      filingStatus: "filingStatus",
+      filing_status: "filingStatus",
+      debtType: "debtType",
+      debt_type: "debtType",
+      debtAmount: "debtAmount",
+      debt_amount: "debtAmount",
+      debt: "debtAmount",
+      state: "state",
+      nid: "source",
+      source: "source",
+    };
+
+    for (const [paramKey, formKey] of Object.entries(paramMap)) {
+      const value = params.get(paramKey);
+      if (value && String(value).trim()) {
+        prefill[formKey] = String(value).trim();
+        hasAny = true;
+      }
+    }
+
+    if (hasAny) {
+      console.log("[PREFILL] Pre-filling form from URL params:", prefill);
+      setFormData((prev) => ({ ...prev, ...prefill }));
+
+      // Auto-advance based on what's filled
+      if (
+        prefill.taxType &&
+        prefill.filingStatus &&
+        prefill.debtType &&
+        prefill.debtAmount
+      ) {
+        setStep(3); // All qualifying fields present — go straight to contact info
+      } else if (prefill.taxType && prefill.filingStatus) {
+        setStep(2); // Step 1 complete
+      }
+    }
+  }, []);
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -38,7 +87,7 @@ const LeadForm = () => {
     sendLeadForm({
       ...formData,
       consentGiven: true,
-      source: "landing-qualify",
+      source: formData.source || "landing-qualify",
     });
     trackCustomEvent("LandingFormSubmitted", {
       source: "QualifyNow",
@@ -285,6 +334,8 @@ const LeadForm = () => {
  *  LANDING PAGE
  * ═══════════════════════════════════════════ */
 const LandingPage1 = () => {
+  // ── Pre-fill form from URL params (Messenger / affiliate) ───
+
   return (
     <div className="lp">
       <SEO
