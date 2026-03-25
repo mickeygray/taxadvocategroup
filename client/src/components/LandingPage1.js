@@ -5,13 +5,14 @@ import PhoneLink from "./PhoneLink";
 import SEO from "./SEO";
 import { orgSchema } from "../utils/structuredData";
 import { trackCustomEvent, trackStandardEvent } from "../utils/fbq";
-
+import { useTrustedForm } from "../hooks/useTrustedForm";
 /* ═══════════════════════════════════════════
  *  INLINE MULTI-STEP FORM
  * ═══════════════════════════════════════════ */
 const LeadForm = () => {
   const navigate = useNavigate();
   const { sendLeadForm } = useContext(leadContext);
+  const { certUrl, inputProps: tfInputProps } = useTrustedForm();
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [consentChecked, setConsentChecked] = useState(false);
@@ -87,6 +88,7 @@ const LeadForm = () => {
     sendLeadForm({
       ...formData,
       consentGiven: true,
+      trustedFormCertUrl: certUrl, // ← add
       source: formData.source || "landing-qualify",
     });
     trackCustomEvent("LandingFormSubmitted", {
@@ -307,6 +309,7 @@ const LeadForm = () => {
             >
               &larr; Back
             </button>
+            <input {...tfInputProps} />
             <button
               type="submit"
               className="lp-form__btn lp-form__btn--submit"

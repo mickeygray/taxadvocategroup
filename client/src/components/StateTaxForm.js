@@ -2,12 +2,12 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import leadContext from "../context/leadContext";
 import PhoneLink from "./PhoneLink";
-
+import { useTrustedForm } from "../hooks/useTrustedForm";
 const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
   const { sendLeadForm } = useContext(leadContext);
   const [step, setStep] = useState(1);
   const totalSteps = 4;
-
+  const { certUrl, inputProps: tfInputProps } = useTrustedForm();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -94,6 +94,7 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
         problemTypes: form.problemTypes.join(", "),
         owedAmount: form.owedAmount,
         description: form.description,
+        trustedFormCertUrl: certUrl, // ← add
       });
       setSubmitted(true);
     } catch {
@@ -125,9 +126,7 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
   return (
     <form className="stf" onSubmit={handleSubmit}>
       <div className="stf__header">
-        <h3>
-          Get Help With {stateAbbr ? stateName : "State"} Tax Problems
-        </h3>
+        <h3>Get Help With {stateAbbr ? stateName : "State"} Tax Problems</h3>
         <p>
           Tell us what's going on and we'll map out your options
           {taxAuthority ? ` with the ${taxAuthority}` : ""}.
@@ -297,6 +296,7 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
                 onChange={(e) => setConsentChecked(e.target.checked)}
                 required
               />
+              <input {...tfInputProps} />
               <span className="stf__consent-text">
                 I agree to be contacted by Tax Advocate Group via phone, email,
                 or text (including autodialed or prerecorded calls).
@@ -336,7 +336,8 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
               "Sending..."
             ) : (
               <>
-                <i className="fas fa-paper-plane" aria-hidden="true"></i> Get My Free Consultation
+                <i className="fas fa-paper-plane" aria-hidden="true"></i> Get My
+                Free Consultation
               </>
             )}
           </button>

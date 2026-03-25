@@ -3,10 +3,10 @@ import leadContext from "../context/leadContext";
 import PhoneLink from "./PhoneLink";
 import SEO from "./SEO";
 import { orgSchema } from "../utils/structuredData";
-
+import { useTrustedForm } from "../hooks/useTrustedForm";
 const ContactUs = () => {
   const { sendEmail } = useContext(leadContext);
-
+  const { certUrl, inputProps: tfInputProps } = useTrustedForm();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,6 +27,7 @@ const ContactUs = () => {
       email: formData.email,
       phone: formData.phone,
       message: formData.message,
+      trustedFormCertUrl: certUrl, // ← add
     };
 
     setFormData({
@@ -100,6 +101,7 @@ const ContactUs = () => {
           <h3>Send Us a Message</h3>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
+              <input {...tfInputProps} />
               <input
                 type="text"
                 name="firstName"

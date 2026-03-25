@@ -505,7 +505,7 @@ app.post("/api/track-form-input", async (req, res) => {
 /* -------------------------------------------------------------------------- */
 
 app.post("/send-email", async (req, res) => {
-  const { name, email, message, phone } = req.body;
+  const { name, email, message, phone, trustedFormCertUrl } = req.body;
   if (!name || !email || !message) {
     return res.status(400).json({ error: "All fields are required!" });
   }
@@ -520,6 +520,7 @@ app.post("/send-email", async (req, res) => {
         city: "",
         state: "",
         message,
+        trustedFormCertUrl: trustedFormCertUrl || "",
       },
       "contact-form",
     );
@@ -537,7 +538,7 @@ app.post("/send-email", async (req, res) => {
 });
 
 app.post("/api/contact-form", async (req, res) => {
-  const { name, email, message, phone } = req.body;
+  const { name, email, message, phone, trustedFormCertUrl } = req.body;
   if (!name || !email || !message) {
     return res
       .status(400)
@@ -554,6 +555,7 @@ app.post("/api/contact-form", async (req, res) => {
         city: "",
         state: "",
         message,
+        trustedFormCertUrl: trustedFormCertUrl,
       },
       "contact-form",
     );
@@ -584,6 +586,7 @@ app.post("/api/lead-form", async (req, res) => {
     email,
     bestTime,
     source,
+    trustedFormCertUrl,
   } = req.body;
 
   console.log("[LEAD-FORM] Submission:", {
@@ -612,7 +615,16 @@ app.post("/api/lead-form", async (req, res) => {
       .join(" | ");
 
     const webhookResult = await postToWebhook(
-      { name, email, company: "TAG", phone, city: "", state: "", message },
+      {
+        name,
+        email,
+        company: "TAG",
+        phone,
+        city: "",
+        state: "",
+        message,
+        trustedFormCertUrl,
+      },
       source || "landing-qualify",
     );
 
@@ -647,6 +659,7 @@ app.post("/api/state-tax-form", async (req, res) => {
     owedAmount,
     description,
     source,
+    trustedFormCertUrl,
   } = req.body;
 
   console.log("[STATE-TAX-FORM] Submission:", { name, email, phone, state });
@@ -675,7 +688,16 @@ app.post("/api/state-tax-form", async (req, res) => {
       .join(" | ");
 
     const webhookResult = await postToWebhook(
-      { name, email, company: "TAG", phone, city: "", state, message },
+      {
+        name,
+        email,
+        company: "TAG",
+        phone,
+        city: "",
+        state,
+        message,
+        trustedFormCertUrl,
+      },
       source || "state-tax-guide",
     );
 
@@ -991,6 +1013,7 @@ app.post("/api/finalize-submission", async (req, res) => {
       state,
       filerType,
       intakeSummary,
+      trustedFormCertUrl,
     } = req.body;
 
     if (email && !isVerified(email)) {
@@ -1066,6 +1089,7 @@ app.post("/api/finalize-submission", async (req, res) => {
         city: "",
         state: state || "",
         message: aiSummary,
+        trustedFormCertUrl,
       },
       "caitlyn-verified",
     );
