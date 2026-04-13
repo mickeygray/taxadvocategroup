@@ -1,14 +1,13 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 export default function ConsentNotice() {
   return (
     <p className="consent-notice">
-      By clicking "Get Free Consultation", you authorize Tax Advocate Group and
-      its subsidiaries to contact you at the email and phone number provided,
-      including by text/SMS and autodialed or prerecorded calls (message/data
-      rates may apply). Your consent is not a condition of purchase. You may opt
-      out of texts at any time by replying STOP. See our{" "}
+      By clicking "Get Free Consultation", you authorize Tax Advocate Group to
+      contact you at the email and phone number provided, including by text/SMS
+      and autodialed or prerecorded calls. Message and data rates may apply.
+      Message frequency varies. You may opt out of texts at any time by replying
+      STOP. Your consent is not a condition of purchase. See our{" "}
       <Link to="/privacy-policy" className="consent-notice__link">
         Privacy Policy
       </Link>

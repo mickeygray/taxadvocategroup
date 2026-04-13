@@ -32,7 +32,8 @@ const PrivacyPolicy = () => {
         <h2>Introduction</h2>
         <p>
           This Privacy Policy describes how your personal information is
-          collected, used, and shared when you visit <strong>taxadvocategroup.com</strong> (the &quot;Site&quot;).
+          collected, used, and shared when you visit{" "}
+          <strong>taxadvocategroup.com</strong> (the &quot;Site&quot;).
         </p>
 
         <h2>Information We Collect</h2>
@@ -64,6 +65,43 @@ const PrivacyPolicy = () => {
           <li>Improve and optimize our Site</li>
         </ul>
 
+        <h2>SMS / Text Message Communications</h2>
+        <p>
+          When you provide your phone number and consent to receive text
+          messages from Tax Advocate Group, we may send you SMS messages related
+          to your inquiry, case status, appointment reminders, and other service
+          communications.
+        </p>
+        <ul>
+          <li>
+            <strong>Message frequency varies</strong> based on your interactions
+            with us.
+          </li>
+          <li>
+            <strong>Message and data rates may apply</strong> depending on your
+            mobile carrier and plan.
+          </li>
+          <li>
+            You may opt out of SMS communications at any time by replying{" "}
+            <strong>STOP</strong> to any message. Reply <strong>HELP</strong>{" "}
+            for assistance.
+          </li>
+          <li>
+            <strong>
+              Your mobile phone number and SMS opt-in consent will not be shared
+              with third parties or affiliates for their own marketing purposes
+              under any circumstances.
+            </strong>
+          </li>
+        </ul>
+        <p>
+          For additional support, contact us at{" "}
+          <a href="mailto:inquiry@taxadvocategroup.com">
+            inquiry@taxadvocategroup.com
+          </a>
+          .
+        </p>
+
         <h2>Sharing Your Information</h2>
         <p>We share your Personal Information with third parties, including:</p>
         <ul>
@@ -89,6 +127,10 @@ const PrivacyPolicy = () => {
             here
           </a>
           .
+        </p>
+        <p>
+          We do not sell, rent, or share your mobile phone number or SMS opt-in
+          data with third parties for marketing purposes.
         </p>
 
         <h2>Behavioral Advertising</h2>
