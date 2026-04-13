@@ -1160,6 +1160,32 @@ export default function TaxBarnaby() {
                   support.
                 </div>
               )}
+              {phase === PHASE.VERIFICATION && (
+                <div
+                  style={{
+                    fontSize: 11,
+                    color: "#64748b",
+                    lineHeight: 1.6,
+                    padding: "8px 4px",
+                    marginTop: 4,
+                  }}
+                >
+                  By verifying, you expressly consent to receive automated and
+                  manually dialed telephone calls, prerecorded voice messages,
+                  and SMS/MMS text messages from Tax Advocate Group, LLC. During
+                  your initial inquiry period, you may receive up to five (5)
+                  text messages related to your tax matter. Following enrollment
+                  as an active client, no more than one (1) text message per
+                  calendar month for document and payment reminders. Message and
+                  data rates may apply. Message frequency varies. Reply STOP to
+                  opt out, HELP for assistance. Consent is not a condition of
+                  purchase.{" "}
+                  <a href="/privacy-policy" style={{ color: "#0d9488" }}>
+                    Privacy Policy
+                  </a>
+                  .
+                </div>
+              )}
             </div>
           )}
 

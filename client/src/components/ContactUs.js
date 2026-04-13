@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import leadContext from "../context/leadContext";
 import PhoneLink from "./PhoneLink";
 import SEO from "./SEO";
+import { Link } from "react-router-dom";
 import { orgSchema } from "../utils/structuredData";
 import { useTrustedForm } from "../hooks/useTrustedForm";
 const ContactUs = () => {
@@ -14,7 +15,7 @@ const ContactUs = () => {
     phone: "",
     message: "",
   });
-
+  const [consentChecked, setConsentChecked] = useState(false);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -144,7 +145,38 @@ const ContactUs = () => {
               value={formData.message}
               onChange={handleChange}
             ></textarea>
-            <button type="submit">Submit</button>
+            <div className="form-group form-consent">
+              <label className="consent-checkbox">
+                <input
+                  type="checkbox"
+                  required
+                  onChange={(e) => setConsentChecked(e.target.checked)}
+                  checked={consentChecked}
+                />
+                <span className="consent-text">
+                  By submitting this form, you expressly consent to receive
+                  automated and manually dialed telephone calls, prerecorded
+                  voice messages, and SMS/MMS text messages from Tax Advocate
+                  Group, LLC and its representatives at the telephone number you
+                  have provided. During your initial inquiry period, you may
+                  receive up to five (5) text messages related to your tax
+                  matter, consultation scheduling, and case evaluation
+                  follow-up. Following enrollment as an active client, you may
+                  receive no more than one (1) text message per calendar month
+                  for purposes including but not limited to document request
+                  notifications, scheduled payment reminders, and case status
+                  updates. Message and data rates may apply depending on your
+                  mobile carrier and service plan. Message frequency varies. You
+                  may opt out of text communications at any time by replying
+                  STOP to any message; reply HELP for assistance. Consent is not
+                  a condition of purchase. View our{" "}
+                  <Link to="/privacy-policy">Privacy Policy</Link>.
+                </span>
+              </label>
+            </div>
+            <button type="submit" disabled={!consentChecked}>
+              Submit
+            </button>
           </form>
         </div>
       </div>

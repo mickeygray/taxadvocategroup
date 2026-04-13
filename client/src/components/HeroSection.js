@@ -48,7 +48,10 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
   const isStep1Valid = formData.taxType && formData.filingStatus;
   const isStep2Valid = formData.debtType && formData.debtAmount;
   const isStep3Valid =
-    formData.name.trim() && formData.phone.trim() && formData.email.trim() && consentChecked;
+    formData.name.trim() &&
+    formData.phone.trim() &&
+    formData.email.trim() &&
+    consentChecked;
 
   if (submitted) {
     return (
@@ -117,7 +120,9 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
               <option value="">Select status</option>
               <option value="single">Single</option>
               <option value="married-joint">Married Filing Jointly</option>
-              <option value="married-separate">Married Filing Separately</option>
+              <option value="married-separate">
+                Married Filing Separately
+              </option>
               <option value="head-of-household">Head of Household</option>
               <option value="business-entity">Business Entity</option>
             </select>
@@ -129,7 +134,10 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
             onClick={() => setStep(2)}
             disabled={!isStep1Valid}
           >
-            Continue <span className="btn-arrow" aria-hidden="true">&#8594;</span>
+            Continue{" "}
+            <span className="btn-arrow" aria-hidden="true">
+              &#8594;
+            </span>
           </button>
         </div>
       )}
@@ -179,7 +187,11 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
           </div>
 
           <div className="form-btn-row">
-            <button type="button" className="form-btn-back" onClick={() => setStep(1)}>
+            <button
+              type="button"
+              className="form-btn-back"
+              onClick={() => setStep(1)}
+            >
               &#8592; Back
             </button>
             <button
@@ -188,7 +200,10 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
               onClick={() => setStep(3)}
               disabled={!isStep2Valid}
             >
-              Continue <span className="btn-arrow" aria-hidden="true">&#8594;</span>
+              Continue{" "}
+              <span className="btn-arrow" aria-hidden="true">
+                &#8594;
+              </span>
             </button>
           </div>
         </div>
@@ -239,9 +254,21 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
                 required
               />
               <span className="consent-text">
-                I agree to be contacted by Tax Advocate Group via phone, email,
-                or text (including autodialed or prerecorded calls).
-                Message/data rates may apply. Consent is not required to
+                By submitting this form, you expressly consent to receive
+                automated and manually dialed telephone calls, prerecorded voice
+                messages, and SMS/MMS text messages from Tax Advocate Group, LLC
+                and its representatives at the telephone number you have
+                provided. During your initial inquiry period, you may receive up
+                to five (5) text messages related to your tax matter,
+                consultation scheduling, and case evaluation follow-up.
+                Following enrollment as an active client, you may receive no
+                more than one (1) text message per calendar month for purposes
+                including but not limited to document request notifications,
+                scheduled payment reminders, and case status updates. Message
+                and data rates may apply depending on your mobile carrier and
+                service plan. Message frequency varies. You may opt out of text
+                communications at any time by replying STOP to any message;
+                reply HELP for assistance. Consent is not a condition of
                 purchase. View our{" "}
                 <Link to="/privacy-policy">Privacy Policy</Link>.
               </span>
@@ -249,7 +276,11 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
           </div>
 
           <div className="form-btn-row">
-            <button type="button" className="form-btn-back" onClick={() => setStep(2)}>
+            <button
+              type="button"
+              className="form-btn-back"
+              onClick={() => setStep(2)}
+            >
               &#8592; Back
             </button>
             <button
@@ -264,8 +295,13 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
       )}
 
       <div className="form-trust">
-        <span><i className="fas fa-lock" aria-hidden="true"></i> Secure &amp; Confidential</span>
-        <span><i className="fas fa-check" aria-hidden="true"></i> No Obligation</span>
+        <span>
+          <i className="fas fa-lock" aria-hidden="true"></i> Secure &amp;
+          Confidential
+        </span>
+        <span>
+          <i className="fas fa-check" aria-hidden="true"></i> No Obligation
+        </span>
       </div>
     </div>
   );
@@ -287,138 +323,149 @@ const HeroSection = () => {
     <>
       {/* ========== MOBILE VERSION ========== */}
       {isMobile && (
-      <section className="hero hero-mobile-version" aria-label="Tax Advocate Group introduction">
-        <div className="hero__media">
-          <img
-            src="/images/Cover-Video-by-Shutterstock-1111048265-compressed_9.jpeg"
-            alt=""
-            className="hero__image"
-            aria-hidden="true"
-            loading="eager"
-          />
-          <div className="hero__overlay"></div>
-        </div>
-
-        <div className="hero__content hero__content--mobile">
-          <div className="hero__text">
-            <span className="hero__badge">Trusted Tax Professionals</span>
-            <h1 className="hero__title">
-              <span className="hero__title-line">Tax Advocate</span>
-              <span className="hero__title-line hero__title-accent">Group</span>
-            </h1>
-            <p className="hero__subtitle">
-              Individual and Business Tax Consulting
-            </p>
+        <section
+          className="hero hero-mobile-version"
+          aria-label="Tax Advocate Group introduction"
+        >
+          <div className="hero__media">
+            <img
+              src="/images/Cover-Video-by-Shutterstock-1111048265-compressed_9.jpeg"
+              alt=""
+              className="hero__image"
+              aria-hidden="true"
+              loading="eager"
+            />
+            <div className="hero__overlay"></div>
           </div>
 
-          <EmbeddedLeadForm variant="mobile-hero" />
+          <div className="hero__content hero__content--mobile">
+            <div className="hero__text">
+              <span className="hero__badge">Trusted Tax Professionals</span>
+              <h1 className="hero__title">
+                <span className="hero__title-line">Tax Advocate</span>
+                <span className="hero__title-line hero__title-accent">
+                  Group
+                </span>
+              </h1>
+              <p className="hero__subtitle">
+                Individual and Business Tax Consulting
+              </p>
+            </div>
 
-          <Link to="/our-tax-services" className="hero__link">
-            <span>View Our Services</span>
-            <i className="fas fa-arrow-right" aria-hidden="true"></i>
-          </Link>
-        </div>
-      </section>
+            <EmbeddedLeadForm variant="mobile-hero" />
+
+            <Link to="/our-tax-services" className="hero__link">
+              <span>View Our Services</span>
+              <i className="fas fa-arrow-right" aria-hidden="true"></i>
+            </Link>
+          </div>
+        </section>
       )}
 
       {/* ========== DESKTOP VERSION ========== */}
       {!isMobile && (
-      <section className="hero hero-desktop-version" aria-label="Tax Advocate Group introduction">
-        <div className="hero__media">
-          <video
-            autoPlay muted loop playsInline
-            preload="none"
-            poster="/images/Cover-Video-by-Shutterstock-1111048265-compressed_9.jpeg"
-            className="hero__video"
-          >
-            <source
-              src="/images/Cover-Video-by-Shutterstock-1111048265-compressed.mp4"
-              type="video/mp4"
-            />
-          </video>
-          <div className="hero__overlay hero__overlay--center"></div>
-        </div>
-
-        <div className="hero__content hero__content--centered">
-          {/* Centered headline block */}
-          <div className="hero__headline-block">
-            <span className="hero__badge hero__badge--center">
-              <i className="fas fa-shield-alt" aria-hidden="true"></i>
-              Trusted Tax Professionals
-            </span>
-
-            <h1 className="hero__title hero__title--centered">
-              <span className="hero__title-sweep">Tax Advocate Group</span>
-            </h1>
-
-            <p className="hero__tagline">
-              Individual &amp; Business Tax Consulting
-            </p>
-
-            <p className="hero__blurb">
-              Comprehensive and tailored solutions for businesses and individuals
-              across all 50 states.
-            </p>
-          </div>
-
-          {/* Stats chips */}
-          <div className="hero__chips">
-            <div className="hero__chip">
-              <span className="hero__chip-value">$150M+</span>
-              <span className="hero__chip-label">Resolved</span>
-            </div>
-            <div className="hero__chip">
-              <span className="hero__chip-value">A+</span>
-              <span className="hero__chip-label">BBB Rating</span>
-            </div>
-            <div className="hero__chip">
-              <span className="hero__chip-value">50</span>
-              <span className="hero__chip-label">States</span>
-            </div>
-            <div className="hero__chip">
-              <span className="hero__chip-value">24hr</span>
-              <span className="hero__chip-label">Response</span>
-            </div>
-          </div>
-
-          {/* Form — centered card */}
-          <div className="hero__form-card">
-            <EmbeddedLeadForm variant="desktop-hero" />
-          </div>
-
-          {/* Trust row below form */}
-          <div className="hero__trust hero__trust--center">
-            <div className="hero__trust-badge">
-              <img
-                src="/images/bbb-accredited-business.png"
-                alt="BBB Accredited Business"
-                width="40"
-                height="40"
-                loading="lazy"
+        <section
+          className="hero hero-desktop-version"
+          aria-label="Tax Advocate Group introduction"
+        >
+          <div className="hero__media">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              poster="/images/Cover-Video-by-Shutterstock-1111048265-compressed_9.jpeg"
+              className="hero__video"
+            >
+              <source
+                src="/images/Cover-Video-by-Shutterstock-1111048265-compressed.mp4"
+                type="video/mp4"
               />
-              <span>BBB A+ Rated</span>
+            </video>
+            <div className="hero__overlay hero__overlay--center"></div>
+          </div>
+
+          <div className="hero__content hero__content--centered">
+            {/* Centered headline block */}
+            <div className="hero__headline-block">
+              <span className="hero__badge hero__badge--center">
+                <i className="fas fa-shield-alt" aria-hidden="true"></i>
+                Trusted Tax Professionals
+              </span>
+
+              <h1 className="hero__title hero__title--centered">
+                <span className="hero__title-sweep">Tax Advocate Group</span>
+              </h1>
+
+              <p className="hero__tagline">
+                Individual &amp; Business Tax Consulting
+              </p>
+
+              <p className="hero__blurb">
+                Comprehensive and tailored solutions for businesses and
+                individuals across all 50 states.
+              </p>
             </div>
-            <div className="hero__trust-badge">
-              <img
-                src="/images/trust-builder-IRS-Provider.png"
-                alt="IRS Authorized Provider"
-                width="40"
-                height="40"
-                loading="lazy"
-              />
-              <span>IRS Licensed</span>
+
+            {/* Stats chips */}
+            <div className="hero__chips">
+              <div className="hero__chip">
+                <span className="hero__chip-value">$150M+</span>
+                <span className="hero__chip-label">Resolved</span>
+              </div>
+              <div className="hero__chip">
+                <span className="hero__chip-value">A+</span>
+                <span className="hero__chip-label">BBB Rating</span>
+              </div>
+              <div className="hero__chip">
+                <span className="hero__chip-value">50</span>
+                <span className="hero__chip-label">States</span>
+              </div>
+              <div className="hero__chip">
+                <span className="hero__chip-value">24hr</span>
+                <span className="hero__chip-label">Response</span>
+              </div>
             </div>
-            <div className="hero__trust-badge">
-              <i className="fas fa-check-circle" aria-hidden="true"></i>
-              <span>All 50 States</span>
+
+            {/* Form — centered card */}
+            <div className="hero__form-card">
+              <EmbeddedLeadForm variant="desktop-hero" />
             </div>
-            <div className="hero__trust-badge">
-              <i className="fas fa-lock" aria-hidden="true"></i>
-              <span>Secure &amp; Confidential</span>
+
+            {/* Trust row below form */}
+            <div className="hero__trust hero__trust--center">
+              <div className="hero__trust-badge">
+                <img
+                  src="/images/bbb-accredited-business.png"
+                  alt="BBB Accredited Business"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+                <span>BBB A+ Rated</span>
+              </div>
+              <div className="hero__trust-badge">
+                <img
+                  src="/images/trust-builder-IRS-Provider.png"
+                  alt="IRS Authorized Provider"
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                />
+                <span>IRS Licensed</span>
+              </div>
+              <div className="hero__trust-badge">
+                <i className="fas fa-check-circle" aria-hidden="true"></i>
+                <span>All 50 States</span>
+              </div>
+              <div className="hero__trust-badge">
+                <i className="fas fa-lock" aria-hidden="true"></i>
+                <span>Secure &amp; Confidential</span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       )}
     </>
   );

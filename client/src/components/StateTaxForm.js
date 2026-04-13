@@ -298,9 +298,21 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
               />
               <input {...tfInputProps} />
               <span className="stf__consent-text">
-                I agree to be contacted by Tax Advocate Group via phone, email,
-                or text (including autodialed or prerecorded calls).
-                Message/data rates may apply. Consent is not required to
+                By submitting this form, you expressly consent to receive
+                automated and manually dialed telephone calls, prerecorded voice
+                messages, and SMS/MMS text messages from Tax Advocate Group, LLC
+                and its representatives at the telephone number you have
+                provided. During your initial inquiry period, you may receive up
+                to five (5) text messages related to your tax matter,
+                consultation scheduling, and case evaluation follow-up.
+                Following enrollment as an active client, you may receive no
+                more than one (1) text message per calendar month for purposes
+                including but not limited to document request notifications,
+                scheduled payment reminders, and case status updates. Message
+                and data rates may apply depending on your mobile carrier and
+                service plan. Message frequency varies. You may opt out of text
+                communications at any time by replying STOP to any message;
+                reply HELP for assistance. Consent is not a condition of
                 purchase. View our{" "}
                 <Link to="/privacy-policy">Privacy Policy</Link>.
               </span>
