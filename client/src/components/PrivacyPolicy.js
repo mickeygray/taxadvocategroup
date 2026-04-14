@@ -14,9 +14,7 @@ const PrivacyPolicy = () => {
       {/* Hero Section */}
       <section
         className="privacy-hero"
-        style={{
-          backgroundImage: `url("/images/privacy-hero.png")`,
-        }}
+        style={{ backgroundImage: `url("/images/privacy-hero.png")` }}
       >
         <div className="privacy-hero-overlay"></div>
         <div className="privacy-hero-content">
@@ -49,51 +47,63 @@ const PrivacyPolicy = () => {
         </ul>
         <p>Additionally, we collect:</p>
         <ul>
-          <li>Web pages or products viewed</li>
-          <li>Referral sources (websites or search terms)</li>
+          <li>Web pages viewed and referral sources</li>
           <li>Interaction details on the Site</li>
+          <li>
+            Personal information you submit through our forms, including name,
+            phone number, email address, and details about your tax situation
+          </li>
         </ul>
 
         <h2>How We Use Your Personal Information</h2>
         <p>We use your information to:</p>
         <ul>
-          <li>
-            Fulfill orders (payment processing, shipping, order confirmations)
-          </li>
-          <li>Communicate with you</li>
-          <li>Screen for fraud and risk</li>
-          <li>Improve and optimize our Site</li>
+          <li>Respond to your inquiries and provide tax resolution services</li>
+          <li>Communicate with you about your case or consultation</li>
+          <li>Screen for potential fraud and risk</li>
+          <li>Improve and optimize our Site and services</li>
+          <li>Send you service-related communications if you have opted in</li>
         </ul>
 
         <h2>SMS / Text Message Communications</h2>
         <p>
-          When you provide your phone number and consent to receive text
-          messages from Tax Advocate Group, we may send you SMS messages related
-          to your inquiry, case status, appointment reminders, and other service
-          communications.
+          When you provide your phone number and separately check the SMS
+          consent checkbox on any of our forms, you agree to receive SMS
+          messages from Tax Advocate Group related to customer care and case
+          updates.
         </p>
         <ul>
           <li>
-            <strong>Message frequency varies</strong> based on your interactions
-            with us.
+            <strong>SMS opt-in is optional</strong> and is never a condition of
+            purchase or service.
+          </li>
+          <li>
+            <strong>Message frequency varies</strong> based on your case status
+            and interactions.
           </li>
           <li>
             <strong>Message and data rates may apply</strong> depending on your
             mobile carrier and plan.
           </li>
           <li>
-            You may opt out of SMS communications at any time by replying{" "}
-            <strong>STOP</strong> to any message. Reply <strong>HELP</strong>{" "}
-            for assistance.
+            You may opt out at any time by replying <strong>STOP</strong> to any
+            message. Reply <strong>HELP</strong> for assistance, or call us at{" "}
+            <a href="tel:18005171807">1-800-517-1807</a>.
           </li>
           <li>
             <strong>
               Your mobile phone number and SMS opt-in consent will not be shared
-              with third parties or affiliates for their own marketing purposes
-              under any circumstances.
+              with third parties for their own marketing purposes under any
+              circumstances.
             </strong>
           </li>
         </ul>
+        <p>
+          For full details on our SMS program including opt-in methods, message
+          types, and opt-out instructions, please review the{" "}
+          <Link to="/terms-of-service">SMS Communications section</Link> of our
+          Terms of Service.
+        </p>
         <p>
           For additional support, contact us at{" "}
           <a href="mailto:inquiry@taxadvocategroup.com">
@@ -103,10 +113,14 @@ const PrivacyPolicy = () => {
         </p>
 
         <h2>Sharing Your Information</h2>
-        <p>We share your Personal Information with third parties, including:</p>
+        <p>
+          We share your Personal Information with third parties only as
+          described below:
+        </p>
         <ul>
           <li>
-            <strong>Google Analytics</strong> for tracking (
+            <strong>Google Analytics</strong> — for website traffic and
+            performance tracking (
             <a
               href="https://www.google.com/intl/en/policies/privacy/"
               target="_blank"
@@ -114,27 +128,27 @@ const PrivacyPolicy = () => {
             >
               Privacy Policy
             </a>
-            )
+            ). You may opt out{" "}
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              here
+            </a>
+            .
           </li>
         </ul>
         <p>
-          You can opt out of Google Analytics{" "}
-          <a
-            href="https://tools.google.com/dlpage/gaoptout"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            here
-          </a>
-          .
-        </p>
-        <p>
           We do not sell, rent, or share your mobile phone number or SMS opt-in
-          data with third parties for marketing purposes.
+          data with any third parties for marketing purposes.
         </p>
 
         <h2>Behavioral Advertising</h2>
-        <p>We use targeted advertising. You can opt out via:</p>
+        <p>
+          We may use targeted advertising on platforms such as Facebook and
+          Google. You can opt out of personalized advertising via:
+        </p>
         <ul>
           <li>
             <a
@@ -142,7 +156,7 @@ const PrivacyPolicy = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Facebook Ads
+              Facebook Ad Preferences
             </a>
           </li>
           <li>
@@ -151,56 +165,50 @@ const PrivacyPolicy = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Google Ads
+              Google Ad Settings
             </a>
           </li>
           <li>
             <a
-              href="https://advertise.bingads.microsoft.com/en-us/resources/policies/personalized-ads"
+              href="http://optout.aboutads.info/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Bing Ads
+              Digital Advertising Alliance Opt-Out
             </a>
           </li>
         </ul>
-        <p>
-          Additional opt-out options can be found{" "}
-          <a
-            href="http://optout.aboutads.info/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            here
-          </a>
-          .
-        </p>
 
         <h2>Do Not Track</h2>
         <p>
-          We do not alter our data collection practices when we see a Do Not
-          Track signal.
+          We do not alter our data collection practices when we detect a Do Not
+          Track signal from your browser.
         </p>
 
         <h2>Your Rights</h2>
         <p>
-          If you are a European resident, you have the right to access, update,
-          or delete your personal data. Please contact us using the details
-          below.
+          Depending on your location, you may have the right to access, correct,
+          or request deletion of your personal data. To exercise these rights,
+          please contact us using the information below.
         </p>
 
         <h2>Data Retention</h2>
-        <p>We retain your order information unless you request its deletion.</p>
+        <p>
+          We retain your information for as long as necessary to fulfill the
+          purposes outlined in this policy, comply with legal obligations, and
+          resolve disputes. You may request deletion of your personal data by
+          contacting us directly.
+        </p>
 
         <h2>Changes</h2>
         <p>
           We may update this policy periodically to reflect operational, legal,
-          or regulatory changes.
+          or regulatory changes. We encourage you to review this page regularly.
         </p>
 
         <h2>Contact Us</h2>
         <p>
-          For questions or complaints, contact us via email at{" "}
+          For questions, complaints, or data deletion requests, contact us at{" "}
           <a href="mailto:inquiry@taxadvocategroup.com">
             inquiry@taxadvocategroup.com
           </a>{" "}
@@ -211,10 +219,12 @@ const PrivacyPolicy = () => {
           <br />
           21625 Prairie Street, Suite #200
           <br />
-          Chatsworth, CA 91331, United States
+          Chatsworth, CA 91311, United States
         </p>
 
-        <p>© 2025 Tax Advocate Group. All Rights Reserved.</p>
+        <p>
+          © {new Date().getFullYear()} Tax Advocate Group. All Rights Reserved.
+        </p>
       </div>
     </div>
   );

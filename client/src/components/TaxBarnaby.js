@@ -297,7 +297,7 @@ export default function TaxBarnaby() {
   const [resendLoading, setResendLoading] = useState(false);
   const [resendMessage, setResendMessage] = useState(null);
   const [resendRemaining, setResendRemaining] = useState(3);
-
+  const [smsConsentChecked, setSmsConsentChecked] = useState(false);
   async function handleResendCode(type) {
     setResendLoading(true);
     setResendMessage(null);
@@ -1161,31 +1161,110 @@ export default function TaxBarnaby() {
                 </div>
               )}
               {phase === PHASE.VERIFICATION && (
-                <div
-                  style={{
-                    fontSize: 11,
-                    color: "#64748b",
-                    lineHeight: 1.6,
-                    padding: "8px 4px",
-                    marginTop: 4,
-                  }}
-                >
-                  By verifying, you expressly consent to receive automated and
-                  manually dialed telephone calls, prerecorded voice messages,
-                  and SMS/MMS text messages from Tax Advocate Group, LLC. During
-                  your initial inquiry period, you may receive up to five (5)
-                  text messages related to your tax matter. Following enrollment
-                  as an active client, no more than one (1) text message per
-                  calendar month for document and payment reminders. Message and
-                  data rates may apply. Message frequency varies. Reply STOP to
-                  opt out, HELP for assistance. Consent is not a condition of
-                  purchase.{" "}
-                  <a href="/privacy-policy" style={{ color: "#0d9488" }}>
-                    Privacy Policy
-                  </a>
-                  .
+                <div>
+                  <div
+                    style={{
+                      fontSize: 11,
+                      color: "#64748b",
+                      lineHeight: 1.6,
+                      padding: "8px 4px",
+                      marginTop: 4,
+                    }}
+                  >
+                    By verifying, you expressly consent to receive automated and
+                    manually dialed telephone calls and prerecorded voice
+                    messages from Tax Advocate Group, LLC. Message and data
+                    rates may apply. Message frequency varies. Reply STOP to opt
+                    out, HELP for assistance. Consent is not a condition of
+                    purchase.{" "}
+                    <a href="/privacy-policy" style={{ color: "#0d9488" }}>
+                      Privacy Policy
+                    </a>
+                    .
+                  </div>
+
+                  {/* ── SMS opt-in (optional, separate per TCR) ── */}
+                  <div style={{ marginTop: 8 }}>
+                    <label
+                      style={{
+                        display: "flex",
+                        gap: 8,
+                        alignItems: "flex-start",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={smsConsentChecked}
+                        onChange={(e) => setSmsConsentChecked(e.target.checked)}
+                        style={{ marginTop: 2, flexShrink: 0 }}
+                      />
+                      <span
+                        style={{
+                          fontSize: 11,
+                          color: "#64748b",
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        By checking this box, I agree to receive SMS messages
+                        about customer care and case updates from Tax Advocate
+                        Group at the phone number provided. Message frequency
+                        may vary. Message and data rates may apply. Text HELP to
+                        1-800-517-1807 for assistance. Reply STOP to opt out.
+                        View our{" "}
+                        <a href="/privacy-policy" style={{ color: "#0d9488" }}>
+                          Privacy Policy
+                        </a>{" "}
+                        and{" "}
+                        <a
+                          href="/terms-of-service"
+                          style={{ color: "#0d9488" }}
+                        >
+                          Terms of Service
+                        </a>
+                        .
+                      </span>
+                    </label>
+                  </div>
                 </div>
               )}
+
+              {/* ── SMS opt-in (optional, separate per TCR) ── */}
+              <div style={{ marginTop: 8 }}>
+                <label
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    alignItems: "flex-start",
+                    cursor: "pointer",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={smsConsentChecked}
+                    onChange={(e) => setSmsConsentChecked(e.target.checked)}
+                    style={{ marginTop: 2, flexShrink: 0 }}
+                  />
+                  <span
+                    style={{ fontSize: 11, color: "#64748b", lineHeight: 1.6 }}
+                  >
+                    By checking this box, I agree to receive SMS messages about
+                    customer care and case updates from Tax Advocate Group at
+                    the phone number provided. Message frequency may vary.
+                    Message and data rates may apply. Text HELP to
+                    1-800-517-1807 for assistance. Reply STOP to opt out. View
+                    our{" "}
+                    <a href="/privacy-policy" style={{ color: "#0d9488" }}>
+                      Privacy Policy
+                    </a>{" "}
+                    and{" "}
+                    <a href="/terms-of-service" style={{ color: "#0d9488" }}>
+                      Terms of Service
+                    </a>
+                    .
+                  </span>
+                </label>
+              </div>
             </div>
           )}
 

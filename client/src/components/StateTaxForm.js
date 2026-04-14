@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import leadContext from "../context/leadContext";
 import PhoneLink from "./PhoneLink";
 import { useTrustedForm } from "../hooks/useTrustedForm";
+import SmsOptInCheckbox from "./SmsOptInCheckbox";
+
 const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
   const { sendLeadForm } = useContext(leadContext);
   const [step, setStep] = useState(1);
@@ -18,6 +20,7 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
     description: "",
   });
   const [consentChecked, setConsentChecked] = useState(false);
+  const [smsConsentChecked, setSmsConsentChecked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -44,9 +47,8 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
     "Not sure",
   ];
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
   const handleCheckbox = (id) => {
     setForm((prev) => ({
@@ -75,7 +77,6 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
   const next = () => {
     if (canAdvance() && step < totalSteps) setStep(step + 1);
   };
-
   const back = () => {
     if (step > 1) setStep(step - 1);
   };
@@ -84,7 +85,6 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
     e.preventDefault();
     if (!consentChecked) return;
     setSubmitting(true);
-
     try {
       await sendLeadForm({
         name: form.name,
@@ -94,7 +94,8 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
         problemTypes: form.problemTypes.join(", "),
         owedAmount: form.owedAmount,
         description: form.description,
-        trustedFormCertUrl: certUrl, // ← add
+        trustedFormCertUrl: certUrl,
+        smsConsent: smsConsentChecked,
       });
       setSubmitted(true);
     } catch {
@@ -287,7 +288,7 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
             )}
           </div>
 
-          {/* Consent */}
+          {/* ── General contact consent (required) ── */}
           <div className="stf__consent">
             <label className="stf__consent-label">
               <input
@@ -299,29 +300,26 @@ const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
               <input {...tfInputProps} />
               <span className="stf__consent-text">
                 By submitting this form, you expressly consent to receive
-                automated and manually dialed telephone calls, prerecorded voice
-                messages, and SMS/MMS text messages from Tax Advocate Group, LLC
-                and its representatives at the telephone number you have
-                provided. During your initial inquiry period, you may receive up
-                to five (5) text messages related to your tax matter,
-                consultation scheduling, and case evaluation follow-up.
-                Following enrollment as an active client, you may receive no
-                more than one (1) text message per calendar month for purposes
-                including but not limited to document request notifications,
-                scheduled payment reminders, and case status updates. Message
-                and data rates may apply depending on your mobile carrier and
-                service plan. Message frequency varies. You may opt out of text
-                communications at any time by replying STOP to any message;
-                reply HELP for assistance. Consent is not a condition of
-                purchase. View our{" "}
-                <Link to="/privacy-policy">Privacy Policy</Link>.
+                automated and manually dialed telephone calls and prerecorded
+                voice messages from Tax Advocate Group, LLC at the telephone
+                number provided. Message and data rates may apply. Consent is
+                not a condition of purchase. View our{" "}
+                <Link to="/privacy-policy">Privacy Policy</Link> and{" "}
+                <Link to="/terms-of-service">Terms of Service</Link>.
               </span>
             </label>
           </div>
+
+          {/* ── SMS opt-in (optional, separate per TCR) ── */}
+          <SmsOptInCheckbox
+            checked={smsConsentChecked}
+            onChange={(e) => setSmsConsentChecked(e.target.checked)}
+            className="stf__sms-consent"
+          />
         </div>
       )}
 
-      {/* Navigation Buttons */}
+      {/* Navigation */}
       <div className="stf__nav">
         {step > 1 && (
           <button type="button" className="stf__back" onClick={back}>

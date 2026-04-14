@@ -5,6 +5,8 @@ import SEO from "./SEO";
 import { Link } from "react-router-dom";
 import { orgSchema } from "../utils/structuredData";
 import { useTrustedForm } from "../hooks/useTrustedForm";
+import SmsOptInCheckbox from "./SmsOptInCheckBox";
+
 const ContactUs = () => {
   const { sendEmail } = useContext(leadContext);
   const { certUrl, inputProps: tfInputProps } = useTrustedForm();
@@ -16,6 +18,8 @@ const ContactUs = () => {
     message: "",
   });
   const [consentChecked, setConsentChecked] = useState(false);
+  const [smsConsentChecked, setSmsConsentChecked] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -28,7 +32,8 @@ const ContactUs = () => {
       email: formData.email,
       phone: formData.phone,
       message: formData.message,
-      trustedFormCertUrl: certUrl, // ← add
+      trustedFormCertUrl: certUrl,
+      smsConsent: smsConsentChecked,
     };
 
     setFormData({
@@ -40,6 +45,7 @@ const ContactUs = () => {
     });
     sendEmail(emailPayload);
   };
+
   return (
     <div>
       <SEO
@@ -51,9 +57,7 @@ const ContactUs = () => {
       {/* Hero Section */}
       <section
         className="contact-hero"
-        style={{
-          backgroundImage: `url("/images/contact-hero.png")`,
-        }}
+        style={{ backgroundImage: `url("/images/contact-hero.png")` }}
       >
         <div className="contact-hero-overlay"></div>
         <div className="contact-hero-content">
@@ -82,7 +86,7 @@ const ContactUs = () => {
           <i className="fas fa-home"></i>
           <h3>Address</h3>
           <p>21625 Prairie Street, Suite #200</p>
-          <p>Chatsworth, CA 91331</p>
+          <p>Chatsworth, CA 91311</p>
         </div>
         <div className="contact-info-box">
           <i className="fas fa-business-time"></i>
@@ -91,7 +95,7 @@ const ContactUs = () => {
             <strong>Mon to Fri:</strong> 7:00 AM – 5:00 PM
           </p>
           <p>
-            <strong>Sat & Sun:</strong> Closed
+            <strong>Sat &amp; Sun:</strong> Closed
           </p>
         </div>
       </div>
@@ -145,6 +149,8 @@ const ContactUs = () => {
               value={formData.message}
               onChange={handleChange}
             ></textarea>
+
+            {/* ── General contact consent (required) ── */}
             <div className="form-group form-consent">
               <label className="consent-checkbox">
                 <input
@@ -155,25 +161,22 @@ const ContactUs = () => {
                 />
                 <span className="consent-text">
                   By submitting this form, you expressly consent to receive
-                  automated and manually dialed telephone calls, prerecorded
-                  voice messages, and SMS/MMS text messages from Tax Advocate
-                  Group, LLC and its representatives at the telephone number you
-                  have provided. During your initial inquiry period, you may
-                  receive up to five (5) text messages related to your tax
-                  matter, consultation scheduling, and case evaluation
-                  follow-up. Following enrollment as an active client, you may
-                  receive no more than one (1) text message per calendar month
-                  for purposes including but not limited to document request
-                  notifications, scheduled payment reminders, and case status
-                  updates. Message and data rates may apply depending on your
-                  mobile carrier and service plan. Message frequency varies. You
-                  may opt out of text communications at any time by replying
-                  STOP to any message; reply HELP for assistance. Consent is not
-                  a condition of purchase. View our{" "}
-                  <Link to="/privacy-policy">Privacy Policy</Link>.
+                  automated and manually dialed telephone calls and prerecorded
+                  voice messages from Tax Advocate Group, LLC at the telephone
+                  number provided. Message and data rates may apply. Consent is
+                  not a condition of purchase. View our{" "}
+                  <Link to="/privacy-policy">Privacy Policy</Link> and{" "}
+                  <Link to="/terms-of-service">Terms of Service</Link>.
                 </span>
               </label>
             </div>
+
+            {/* ── SMS opt-in (optional, separate per TCR) ── */}
+            <SmsOptInCheckbox
+              checked={smsConsentChecked}
+              onChange={(e) => setSmsConsentChecked(e.target.checked)}
+            />
+
             <button type="submit" disabled={!consentChecked}>
               Submit
             </button>

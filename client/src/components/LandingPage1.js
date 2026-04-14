@@ -6,6 +6,8 @@ import SEO from "./SEO";
 import { orgSchema } from "../utils/structuredData";
 import { trackCustomEvent, trackStandardEvent } from "../utils/fbq";
 import { useTrustedForm } from "../hooks/useTrustedForm";
+import SmsOptInCheckbox from "./SmsOptInCheckbox";
+
 /* ═══════════════════════════════════════════
  *  INLINE MULTI-STEP FORM
  * ═══════════════════════════════════════════ */
@@ -16,6 +18,7 @@ const LeadForm = () => {
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [consentChecked, setConsentChecked] = useState(false);
+  const [smsConsentChecked, setSmsConsentChecked] = useState(false);
   const [formData, setFormData] = useState({
     taxType: "",
     filingStatus: "",
@@ -26,12 +29,11 @@ const LeadForm = () => {
     email: "",
     source: "",
   });
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-
     const prefill = {};
     let hasAny = false;
-
     const paramMap = {
       name: "name",
       email: "email",
@@ -49,7 +51,6 @@ const LeadForm = () => {
       nid: "source",
       source: "source",
     };
-
     for (const [paramKey, formKey] of Object.entries(paramMap)) {
       const value = params.get(paramKey);
       if (value && String(value).trim()) {
@@ -57,27 +58,23 @@ const LeadForm = () => {
         hasAny = true;
       }
     }
-
     if (hasAny) {
-      console.log("[PREFILL] Pre-filling form from URL params:", prefill);
       setFormData((prev) => ({ ...prev, ...prefill }));
-
-      // Auto-advance based on what's filled
       if (
         prefill.taxType &&
         prefill.filingStatus &&
         prefill.debtType &&
         prefill.debtAmount
       ) {
-        setStep(3); // All qualifying fields present — go straight to contact info
+        setStep(3);
       } else if (prefill.taxType && prefill.filingStatus) {
-        setStep(2); // Step 1 complete
+        setStep(2);
       }
     }
   }, []);
+
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
   const selectOption = (name, value) =>
     setFormData({ ...formData, [name]: value });
 
@@ -88,7 +85,8 @@ const LeadForm = () => {
     sendLeadForm({
       ...formData,
       consentGiven: true,
-      trustedFormCertUrl: certUrl, // ← add
+      smsConsent: smsConsentChecked,
+      trustedFormCertUrl: certUrl,
       source: formData.source || "landing-qualify",
     });
     trackCustomEvent("LandingFormSubmitted", {
@@ -286,6 +284,8 @@ const LeadForm = () => {
               aria-label="Email address"
             />
           </div>
+
+          {/* ── General contact consent (required) ── */}
           <div className="lp-form__group lp-form__consent">
             <label>
               <input
@@ -296,24 +296,23 @@ const LeadForm = () => {
               />
               <span>
                 By submitting this form, you expressly consent to receive
-                automated and manually dialed telephone calls, prerecorded voice
-                messages, and SMS/MMS text messages from Tax Advocate Group, LLC
-                and its representatives at the telephone number you have
-                provided. During your initial inquiry period, you may receive up
-                to five (5) text messages related to your tax matter,
-                consultation scheduling, and case evaluation follow-up.
-                Following enrollment as an active client, you may receive no
-                more than one (1) text message per calendar month for purposes
-                including but not limited to document request notifications,
-                scheduled payment reminders, and case status updates. Message
-                and data rates may apply depending on your mobile carrier and
-                service plan. Message frequency varies. You may opt out of text
-                communications at any time by replying STOP to any message;
-                reply HELP for assistance. Consent is not a condition of
-                purchase. <Link to="/privacy-policy">Privacy Policy</Link>.
+                automated and manually dialed telephone calls and prerecorded
+                voice messages from Tax Advocate Group, LLC at the telephone
+                number provided. Message and data rates may apply. Consent is
+                not a condition of purchase.{" "}
+                <Link to="/privacy-policy">Privacy Policy</Link> |{" "}
+                <Link to="/terms-of-service">Terms of Service</Link>.
               </span>
             </label>
           </div>
+
+          {/* ── SMS opt-in (optional, separate per TCR) ── */}
+          <SmsOptInCheckbox
+            checked={smsConsentChecked}
+            onChange={(e) => setSmsConsentChecked(e.target.checked)}
+            className="lp-form__sms-consent"
+          />
+
           <div className="lp-form__btn-row">
             <button
               type="button"
@@ -350,8 +349,6 @@ const LeadForm = () => {
  *  LANDING PAGE
  * ═══════════════════════════════════════════ */
 const LandingPage1 = () => {
-  // ── Pre-fill form from URL params (Messenger / affiliate) ───
-
   return (
     <div className="lp">
       <SEO
@@ -361,8 +358,6 @@ const LandingPage1 = () => {
         structuredData={[orgSchema]}
         noindex={true}
       />
-
-      {/* ─── SLIM TOP BAR ─── */}
       <header className="lp__topbar">
         <img
           src="/images/tax-advocate-group-logo-small.png"
@@ -371,8 +366,6 @@ const LandingPage1 = () => {
         />
         <PhoneLink rawNumber="18005171807" className="lp__phone" />
       </header>
-
-      {/* ─── HERO: TEXT + FORM SIDE BY SIDE ─── */}
       <section className="lp__hero">
         <div className="lp__hero-bg">
           <img src="/images/tag-landing-hero.png" alt="" aria-hidden="true" />
@@ -411,8 +404,6 @@ const LandingPage1 = () => {
           </div>
         </div>
       </section>
-
-      {/* ─── TRUST BAR ─── */}
       <section className="lp__trust-bar">
         <div className="lp__trust-inner">
           <div className="lp__trust-item">
@@ -445,8 +436,6 @@ const LandingPage1 = () => {
           </div>
         </div>
       </section>
-
-      {/* ─── HOW IT WORKS ─── */}
       <section className="lp__steps">
         <h2>How It Works</h2>
         <div className="lp__steps-grid">
@@ -476,8 +465,6 @@ const LandingPage1 = () => {
           </div>
         </div>
       </section>
-
-      {/* ─── TESTIMONIALS ─── */}
       <section className="lp__testimonials">
         <h2>What Our Clients Say</h2>
         <div className="lp__testimonials-grid">
@@ -507,8 +494,6 @@ const LandingPage1 = () => {
           </div>
         </div>
       </section>
-
-      {/* ─── FINAL CTA ─── */}
       <section className="lp__cta">
         <h2>Take the First Step Toward Tax Relief</h2>
         <p>
@@ -517,8 +502,6 @@ const LandingPage1 = () => {
         </p>
         <PhoneLink rawNumber="18005171807" className="lp__cta-phone" />
       </section>
-
-      {/* ─── MINI FOOTER ─── */}
       <footer className="lp__footer">
         <p>
           &copy; {new Date().getFullYear()} Tax Advocate Group &nbsp;|&nbsp;

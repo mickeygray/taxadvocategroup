@@ -45,7 +45,7 @@ const TermsOfService = () => {
         <h2>Use of License</h2>
         <p>
           Permission is granted to temporarily download one copy of the
-          materials (information or software) on Tax Advocate Group’s website
+          materials (information or software) on Tax Advocate Group's website
           for personal, non-commercial transitory viewing only.
         </p>
         <p>This license does not permit you to:</p>
@@ -65,10 +65,10 @@ const TermsOfService = () => {
 
         <h2>Disclaimer</h2>
         <p>
-          The materials on this website are provided “as is.” Tax Advocate
-          Group makes no warranties, expressed or implied, and disclaims
-          all other warranties, including but not limited to merchantability,
-          fitness for a particular purpose, or non-infringement.
+          The materials on this website are provided "as is." Tax Advocate Group
+          makes no warranties, expressed or implied, and disclaims all other
+          warranties, including but not limited to merchantability, fitness for
+          a particular purpose, or non-infringement.
         </p>
 
         <h2>Limitations</h2>
@@ -89,8 +89,8 @@ const TermsOfService = () => {
           <li>Using this website for advertising or marketing</li>
         </ul>
         <p>
-          Certain areas of this website are restricted, and Tax Advocate
-          Group may further restrict access at its discretion.
+          Certain areas of this website are restricted, and Tax Advocate Group
+          may further restrict access at its discretion.
         </p>
 
         <h2>Accuracy of Materials</h2>
@@ -139,7 +139,7 @@ const TermsOfService = () => {
 
         <h2>No Warranties</h2>
         <p>
-          This website is provided “as is,” and Tax Advocate Group makes no
+          This website is provided "as is," and Tax Advocate Group makes no
           representations or warranties of any kind related to this website.
         </p>
 
@@ -173,13 +173,126 @@ const TermsOfService = () => {
           Advocate Group.
         </p>
 
+        {/* ═══════════════════════════════════════════════════════════════
+         *  SMS COMMUNICATIONS — Required by TCR Registration
+         * ═══════════════════════════════════════════════════════════════ */}
+        <h2>SMS Communications</h2>
+
+        <h3>1. SMS Consent Communication</h3>
+        <p>
+          The information (including phone numbers) obtained as part of the SMS
+          consent process will not be shared with third parties for their own
+          marketing purposes under any circumstances.
+        </p>
+
+        <h3>2. Types of SMS Communications</h3>
+        <p>
+          If you have consented to receive text messages from Tax Advocate
+          Group, you may receive messages related to the following:
+        </p>
+        <ul>
+          <li>
+            <strong>Customer Care</strong> — Examples include case status
+            updates, document requests, appointment reminders, and scheduled
+            payment notifications.
+          </li>
+        </ul>
+        <p>
+          Example message: "Hello, this is Tax Advocate Group. Your case has an
+          update. Please call us at 1-800-517-1807. Reply STOP to opt out of SMS
+          messaging."
+        </p>
+
+        <h3>3. Message Frequency</h3>
+        <p>
+          Message frequency may vary depending on the type of communication.
+          During your initial inquiry period, you may receive up to five (5) SMS
+          messages related to your tax matter, consultation scheduling, and case
+          evaluation. Following enrollment as an active client, you may receive
+          no more than one (1) SMS message per calendar month for purposes
+          including document request notifications, scheduled payment reminders,
+          and case status updates.
+        </p>
+
+        <h3>4. Potential Fees for SMS Messaging</h3>
+        <p>
+          Standard message and data rates may apply depending on your carrier's
+          pricing plan. These fees may vary if the message is sent domestically
+          or internationally. Tax Advocate Group is not responsible for any
+          charges imposed by your mobile carrier.
+        </p>
+
+        <h3>5. Opt-In Method</h3>
+        <p>
+          You may opt in to receive SMS messages from Tax Advocate Group in the
+          following way:
+        </p>
+        <ul>
+          <li>
+            By checking the SMS consent checkbox on any of our online forms.
+          </li>
+        </ul>
+        <p>
+          The SMS consent checkbox is separate from other consent types and is
+          entirely optional. Opting in to receive SMS messages is not a
+          condition of purchase or service.
+        </p>
+
+        <h3>6. Opt-Out Method</h3>
+        <p>
+          You can opt out of receiving SMS messages at any time by replying{" "}
+          <strong>STOP</strong> to any SMS message you receive from Tax Advocate
+          Group. Alternatively, you can contact us directly at{" "}
+          <a href="mailto:inquiry@taxadvocategroup.com">
+            inquiry@taxadvocategroup.com
+          </a>{" "}
+          to request removal from our messaging list. After opting out, you will
+          receive a one-time confirmation message.
+        </p>
+
+        <h3>7. Help</h3>
+        <p>
+          If you are experiencing any issues with SMS communications, reply with
+          the keyword <strong>HELP</strong> to any message, or contact us
+          directly:
+        </p>
+        <ul>
+          <li>
+            Phone: <a href="tel:18005171807">1-800-517-1807</a>
+          </li>
+          <li>
+            Email:{" "}
+            <a href="mailto:inquiry@taxadvocategroup.com">
+              inquiry@taxadvocategroup.com
+            </a>
+          </li>
+        </ul>
+        <p>
+          If you do not wish to receive SMS messages, simply do not check the
+          SMS consent box on our forms.
+        </p>
+
+        <h3>8. Standard Messaging Disclosures</h3>
+        <ul>
+          <li>Message and data rates may apply.</li>
+          <li>
+            You can opt out at any time by texting <strong>STOP</strong>.
+          </li>
+          <li>
+            For assistance, text <strong>HELP</strong> or visit our{" "}
+            <Link to="/privacy-policy">Privacy Policy</Link> and{" "}
+            <Link to="/terms-of-service">Terms of Service</Link> pages.
+          </li>
+          <li>Message frequency may vary.</li>
+        </ul>
+
         <h2>Contact Information</h2>
         <p>
           <strong>Tax Advocate Group</strong>
           <br />
           21625 Prairie Street, Suite #200
           <br />
-          Chatsworth, CA 91331, United States
+          Chatsworth, CA 91311, United States
         </p>
         <p>© Tax Advocate Group. All Rights Reserved.</p>
       </div>

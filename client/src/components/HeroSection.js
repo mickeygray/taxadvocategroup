@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import leadContext from "../context/leadContext";
 
-/**
- * EmbeddedLeadForm — 3-step inline lead form for TAG
- * Step 1: tax situation type (filing status, business vs individual, state vs federal)
- * Step 2: debt range + urgency
- * Step 3: contact info + consent
- */
+import SmsOptInCheckbox from "./SmsOptInCheckbox";
+
+/* ═══════════════════════════════════════════
+ *  EMBEDDED MULTI-STEP FORM
+ * ═══════════════════════════════════════════ */
 export const EmbeddedLeadForm = ({ variant = "default" }) => {
   const navigate = useNavigate();
   const { sendEmail } = useContext(leadContext);
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [consentChecked, setConsentChecked] = useState(false);
+  const [smsConsentChecked, setSmsConsentChecked] = useState(false);
   const [formData, setFormData] = useState({
     taxType: "",
     filingStatus: "",
@@ -41,6 +41,7 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
       email: formData.email,
       phone: formData.phone,
       message: `Assessment — Type: ${formData.taxType}, Filing: ${formData.filingStatus}, Debt: ${formData.debtType} / ${formData.debtAmount}, Urgency: ${formData.urgency}`,
+      smsConsent: smsConsentChecked,
     });
     setTimeout(() => navigate("/thank-you"), 1200);
   };
@@ -109,7 +110,6 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
               ))}
             </div>
           </div>
-
           <div className="form-group">
             <label>What is your filing status?</label>
             <select
@@ -127,7 +127,6 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
               <option value="business-entity">Business Entity</option>
             </select>
           </div>
-
           <button
             type="button"
             className="form-btn"
@@ -164,7 +163,6 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
               ))}
             </div>
           </div>
-
           <div className="form-group">
             <label>Estimated amount owed</label>
             <div className="amount-pills">
@@ -185,7 +183,6 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
               ))}
             </div>
           </div>
-
           <div className="form-btn-row">
             <button
               type="button"
@@ -245,6 +242,7 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
             />
           </div>
 
+          {/* ── General contact consent (required) ── */}
           <div className="form-group form-consent">
             <label className="consent-checkbox">
               <input
@@ -255,25 +253,21 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
               />
               <span className="consent-text">
                 By submitting this form, you expressly consent to receive
-                automated and manually dialed telephone calls, prerecorded voice
-                messages, and SMS/MMS text messages from Tax Advocate Group, LLC
-                and its representatives at the telephone number you have
-                provided. During your initial inquiry period, you may receive up
-                to five (5) text messages related to your tax matter,
-                consultation scheduling, and case evaluation follow-up.
-                Following enrollment as an active client, you may receive no
-                more than one (1) text message per calendar month for purposes
-                including but not limited to document request notifications,
-                scheduled payment reminders, and case status updates. Message
-                and data rates may apply depending on your mobile carrier and
-                service plan. Message frequency varies. You may opt out of text
-                communications at any time by replying STOP to any message;
-                reply HELP for assistance. Consent is not a condition of
-                purchase. View our{" "}
-                <Link to="/privacy-policy">Privacy Policy</Link>.
+                automated and manually dialed telephone calls and prerecorded
+                voice messages from Tax Advocate Group, LLC at the telephone
+                number provided. Message and data rates may apply. Consent is
+                not a condition of purchase. View our{" "}
+                <Link to="/privacy-policy">Privacy Policy</Link> and{" "}
+                <Link to="/terms-of-service">Terms of Service</Link>.
               </span>
             </label>
           </div>
+
+          {/* ── SMS opt-in (optional, separate per TCR) ── */}
+          <SmsOptInCheckbox
+            checked={smsConsentChecked}
+            onChange={(e) => setSmsConsentChecked(e.target.checked)}
+          />
 
           <div className="form-btn-row">
             <button
@@ -307,9 +301,9 @@ export const EmbeddedLeadForm = ({ variant = "default" }) => {
   );
 };
 
-/**
- * HeroSection — Home page hero for Tax Advocate Group
- */
+/* ═══════════════════════════════════════════
+ *  HERO SECTION
+ * ═══════════════════════════════════════════ */
 const HeroSection = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -337,7 +331,6 @@ const HeroSection = () => {
             />
             <div className="hero__overlay"></div>
           </div>
-
           <div className="hero__content hero__content--mobile">
             <div className="hero__text">
               <span className="hero__badge">Trusted Tax Professionals</span>
@@ -351,9 +344,7 @@ const HeroSection = () => {
                 Individual and Business Tax Consulting
               </p>
             </div>
-
             <EmbeddedLeadForm variant="mobile-hero" />
-
             <Link to="/our-tax-services" className="hero__link">
               <span>View Our Services</span>
               <i className="fas fa-arrow-right" aria-hidden="true"></i>
@@ -385,30 +376,23 @@ const HeroSection = () => {
             </video>
             <div className="hero__overlay hero__overlay--center"></div>
           </div>
-
           <div className="hero__content hero__content--centered">
-            {/* Centered headline block */}
             <div className="hero__headline-block">
               <span className="hero__badge hero__badge--center">
                 <i className="fas fa-shield-alt" aria-hidden="true"></i>
                 Trusted Tax Professionals
               </span>
-
               <h1 className="hero__title hero__title--centered">
                 <span className="hero__title-sweep">Tax Advocate Group</span>
               </h1>
-
               <p className="hero__tagline">
                 Individual &amp; Business Tax Consulting
               </p>
-
               <p className="hero__blurb">
                 Comprehensive and tailored solutions for businesses and
                 individuals across all 50 states.
               </p>
             </div>
-
-            {/* Stats chips */}
             <div className="hero__chips">
               <div className="hero__chip">
                 <span className="hero__chip-value">$150M+</span>
@@ -427,13 +411,9 @@ const HeroSection = () => {
                 <span className="hero__chip-label">Response</span>
               </div>
             </div>
-
-            {/* Form — centered card */}
             <div className="hero__form-card">
               <EmbeddedLeadForm variant="desktop-hero" />
             </div>
-
-            {/* Trust row below form */}
             <div className="hero__trust hero__trust--center">
               <div className="hero__trust-badge">
                 <img
