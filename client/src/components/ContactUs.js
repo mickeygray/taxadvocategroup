@@ -175,9 +175,13 @@ const ContactUs = () => {
             <SmsOptInCheckbox
               checked={smsConsentChecked}
               onChange={(e) => setSmsConsentChecked(e.target.checked)}
+              required
             />
 
-            <button type="submit" disabled={!consentChecked}>
+            <button
+              type="submit"
+              disabled={!consentChecked || !smsConsentChecked}
+            >
               Submit
             </button>
           </form>
