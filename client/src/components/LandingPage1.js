@@ -6,7 +6,7 @@ import SEO from "./SEO";
 import { orgSchema } from "../utils/structuredData";
 import { trackCustomEvent, trackStandardEvent } from "../utils/fbq";
 import { useTrustedForm } from "../hooks/useTrustedForm";
-import SmsOptInCheckbox from "./SmsOptInCheckbox";
+import SmsOptInCheckbox from "./SmsOptInCheckBox";
 
 /* ═══════════════════════════════════════════
  *  INLINE MULTI-STEP FORM

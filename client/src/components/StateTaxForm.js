@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import leadContext from "../context/leadContext";
 import PhoneLink from "./PhoneLink";
 import { useTrustedForm } from "../hooks/useTrustedForm";
-import SmsOptInCheckbox from "./SmsOptInCheckbox";
+import SmsOptInCheckbox from "./SmsOptInCheckBox";
 
 const StateTaxForm = ({ stateName, stateAbbr, taxAuthority }) => {
   const { sendLeadForm } = useContext(leadContext);

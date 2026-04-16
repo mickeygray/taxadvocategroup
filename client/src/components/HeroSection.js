@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import leadContext from "../context/leadContext";
 
-import SmsOptInCheckbox from "./SmsOptInCheckbox";
+import SmsOptInCheckbox from "./SmsOptInCheckBox";
 
 /* ═══════════════════════════════════════════
  *  EMBEDDED MULTI-STEP FORM

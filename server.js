@@ -433,7 +433,74 @@ async function postToWebhook(fields, source = "website") {
 /* -------------------------------------------------------------------------- */
 /*                          FORM TRACKING                                     */
 /* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                     WORKSHOP / HIRING FAIR APPLICATION                     */
+/*   Add this block to server.js, e.g. just before the sitemap route.         */
+/*   Sends directly to apply@taxadvocategroup.com via the existing transporter*/
+/*   — does NOT touch the webhook pipeline or CRM.                            */
+/* -------------------------------------------------------------------------- */
 
+app.post("/api/workshop-apply", async (req, res) => {
+  const { name, phone, email, why } = req.body;
+
+  if (!name || !email) {
+    return res
+      .status(400)
+      .json({ ok: false, error: "Name and email are required." });
+  }
+
+  try {
+    await transporter.sendMail({
+      from: "Tax Advocate Group <inquiry@taxadvocategroup.com>",
+      to: "apply@taxadvocategroup.com",
+      replyTo: email,
+      subject: `New Hiring Fair Application — ${name}`,
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:2px solid #c9a227;border-radius:10px;overflow:hidden;">
+          <div style="background:#1a365d;padding:24px 28px;">
+            <h2 style="color:#c9a227;margin:0;font-size:1.4rem;">New Workshop Application</h2>
+            <p style="color:rgba(255,255,255,0.7);margin:6px 0 0;font-size:0.9rem;">Received from the Hiring Fair landing page</p>
+          </div>
+          <div style="padding:28px;background:#ffffff;">
+            <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-weight:700;color:#1a365d;width:130px;">Name</td>
+                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#333;">${name}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-weight:700;color:#1a365d;">Phone</td>
+                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#333;">${phone || "Not provided"}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-weight:700;color:#1a365d;">Email</td>
+                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;">
+                  <a href="mailto:${email}" style="color:#c9a227;">${email}</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:10px 0;font-weight:700;color:#1a365d;vertical-align:top;">Why They Want It</td>
+                <td style="padding:10px 0;color:#333;line-height:1.6;">${(why || "Not provided").replace(/\n/g, "<br>")}</td>
+              </tr>
+            </table>
+          </div>
+          <div style="background:#f8f8f8;padding:16px 28px;font-size:0.8rem;color:#999;text-align:center;">
+            Tax Advocate Group Hiring Fair · /workshop · ${new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} PT
+          </div>
+        </div>
+      `,
+    });
+
+    console.log(
+      `[WORKSHOP-APPLY] ✓ Application from ${name} (${email}) sent to apply@taxadvocategroup.com`,
+    );
+    return res.json({ ok: true });
+  } catch (err) {
+    console.error("[WORKSHOP-APPLY] ✗ SendGrid error:", err.message);
+    return res
+      .status(500)
+      .json({ ok: false, error: "Failed to send application." });
+  }
+});
 app.post("/api/track-form-input", async (req, res) => {
   try {
     const { formType, formData, abandoned, timestamp } = req.body;
