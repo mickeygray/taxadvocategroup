@@ -151,25 +151,6 @@ const ContactUs = () => {
             ></textarea>
 
             {/* ── General contact consent (required) ── */}
-            <div className="form-group form-consent">
-              <label className="consent-checkbox">
-                <input
-                  type="checkbox"
-                  required
-                  onChange={(e) => setConsentChecked(e.target.checked)}
-                  checked={consentChecked}
-                />
-                <span className="consent-text">
-                  By submitting this form, you expressly consent to receive
-                  automated and manually dialed telephone calls and prerecorded
-                  voice messages from Tax Advocate Group, LLC at the telephone
-                  number provided. Message and data rates may apply. Consent is
-                  not a condition of purchase. View our{" "}
-                  <Link to="/privacy-policy">Privacy Policy</Link> and{" "}
-                  <Link to="/terms-of-service">Terms of Service</Link>.
-                </span>
-              </label>
-            </div>
 
             {/* ── SMS opt-in (optional, separate per TCR) ── */}
             <SmsOptInCheckbox
@@ -178,10 +159,7 @@ const ContactUs = () => {
               required
             />
 
-            <button
-              type="submit"
-              disabled={!consentChecked || !smsConsentChecked}
-            >
+            <button type="submit" disabled={!smsConsentChecked}>
               Submit
             </button>
           </form>
