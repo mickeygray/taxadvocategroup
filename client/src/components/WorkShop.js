@@ -242,9 +242,7 @@ const WorkShop = () => {
           "Server error (404) — call us directly at (818) 230-2223.",
         );
       } else {
-        setFormError(
-          "Something went wrong. Call (818) 230-2223 or email inquiry@taxadvocategroup.com.",
-        );
+        setFormError("Something went wrong. Call (818) 230-2223.");
       }
     } finally {
       setSubmitting(false);
@@ -387,9 +385,13 @@ const WorkShop = () => {
             className="ws__hero-logo"
           />
 
-          <div className="ws__hero-eyebrow">
-            <span className="ws__eyebrow-dot" />
-            NEXT SEMINAR: MAY 9TH · 10:00 AM · CHATSWORTH, CA
+          <div className="ws__hero-datebanner">
+            <span className="ws__datebanner-kicker">
+              <span className="ws__eyebrow-dot" />
+              Next Hiring Seminar
+            </span>
+            <span className="ws__datebanner-date">May 9th · 10:00 AM</span>
+            <span className="ws__datebanner-loc">Chatsworth, CA</span>
           </div>
 
           <h1 className="ws__hero-h1">
@@ -783,13 +785,6 @@ const WorkShop = () => {
                 are right now.
               </p>
             </div>
-            <div className="ws__pkg-card">
-              <div className="ws__pkg-icon">🕗</div>
-              <h3 className="ws__pkg-title">Consistent Schedule</h3>
-              <p className="ws__pkg-body">
-                Monday–Friday · 7:30 AM – 4:30 PM · Weekends are yours.
-              </p>
-            </div>
             <div className="ws__pkg-card ws__pkg-card--wide">
               <div className="ws__pkg-icon">🚀</div>
               <h3 className="ws__pkg-title">
@@ -1030,7 +1025,7 @@ const WorkShop = () => {
                       "Location",
                       "21625 Prairie St, Suite #200\nChatsworth, CA 91311",
                     ],
-                    ["🕗", "Office Hours", "Monday–Friday\n7:30 AM – 4:30 PM"],
+
                     ["💼", "Position", "Full-Time · In-Office"],
                     ["💰", "Pay", "Performance-Based · No Cap"],
                     ["🏥", "Benefits", "Medical, Vision & Dental"],
@@ -1349,6 +1344,46 @@ const WorkShop = () => {
           flex-shrink: 0;
         }
         @keyframes ws-blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(1.6)} }
+
+        /* ─── Prominent Date Banner ─── */
+        .ws__hero-datebanner {
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.35rem;
+          padding: 1.1rem 2.25rem;
+          margin-bottom: 1.75rem;
+          background: linear-gradient(135deg, rgba(201,162,39,0.18) 0%, rgba(201,162,39,0.08) 100%);
+          border: 1.5px solid rgba(201,162,39,0.55);
+          border-radius: 14px;
+          box-shadow: 0 0 32px rgba(201,162,39,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+          backdrop-filter: blur(8px);
+        }
+        .ws__datebanner-kicker {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.62rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.22em;
+          color: rgba(240,192,96,0.85);
+        }
+        .ws__datebanner-date {
+          font-size: clamp(1.35rem, 3.2vw, 1.95rem);
+          font-weight: 900;
+          letter-spacing: -0.01em;
+          line-height: 1.1;
+          color: #fff;
+          text-shadow: 0 0 24px rgba(201,162,39,0.4);
+        }
+        .ws__datebanner-loc {
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.55);
+        }
 
         .ws__hero-h1 {
           display: flex; flex-direction: column;
@@ -1933,6 +1968,8 @@ const WorkShop = () => {
           .ws__hero-actions { flex-direction: column; align-items: center; }
           .ws__btn-primary, .ws__btn-ghost { width: 100%; max-width: 340px; justify-content: center; }
           .ws__hero-proof { gap: 0.5rem; }
+          .ws__hero-datebanner { padding: 0.9rem 1.5rem; }
+          .ws__datebanner-date { font-size: 1.35rem; }
         }
         @media (max-width: 540px) {
           .ws__board-grid { grid-template-columns: 1fr; }
