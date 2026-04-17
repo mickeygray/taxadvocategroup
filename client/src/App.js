@@ -32,7 +32,7 @@ import WorkShop from "./components/WorkShop";
 import "./App.css";
 
 /** Routes that render bare — no Navbar, Footer, or floating widgets */
-const BARE_ROUTES = ["/qualify-now", "/thank-you", "/workshop"];
+const BARE_ROUTES = ["/qualify-now", "/thank-you", "/seminar"];
 
 const AppShell = () => {
   const { pathname } = useLocation();
@@ -48,7 +48,7 @@ const AppShell = () => {
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/tax-faqs" element={<TaxFaqs />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/workshop" element={<WorkShop />} />
+          <Route path="/seminar" element={<WorkShop />} />
           <Route path="/our-tax-services" element={<OurTaxServices />} />
           <Route path="/tax-relief" element={<TaxRelief />} />
           <Route path="/tax-resolution" element={<TaxResolution />} />
