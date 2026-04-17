@@ -7,16 +7,16 @@ import SEO from "./SEO";
    MUSIC — swap the ID. Plays on load. FAB defaults to STOP.
    youtube.com/watch?v= ← that part
 ───────────────────────────────────────────────────────────────────────────── */
-const HYPE_TRACK_YT_ID = "1QOJU2NeMaQ";
+const HYPE_TRACK_YT_ID = "tDsZoQX1gis";
 // Starts MUTED — browsers block audio autoplay without a prior user gesture (mobile is strictest).
 // We unmute via postMessage on first user interaction. enablejsapi=1 enables postMessage control.
 const YT_SRC = `https://www.youtube.com/embed/${HYPE_TRACK_YT_ID}?autoplay=1&loop=1&playlist=${HYPE_TRACK_YT_ID}&controls=0&mute=1&enablejsapi=1`;
 
 /* Ticker lines — two tracks, opposite directions for kinetic energy */
 const TICKER_GOLD = [
-  "$12M GENERATED",
+  "$65M+ IN REVENUE",
   "TOP REP $50K/MO",
-  "$36M SAVED FOR CLIENTS",
+  "$200M+ SAVED FOR CLIENTS",
   "A+ BBB RATED",
   "5,000+ LIVES CHANGED",
   "FORTUNE-LEVEL EARNINGS",
@@ -79,7 +79,7 @@ const jobSchema = {
   "@type": "JobPosting",
   title: "Sales Representative – Tax Resolution",
   description:
-    "Tax Advocate Group hiring seminar. No experience required. Top reps earn $40,000–$50,000/month. Full benefits, 401(k), promote-from-within culture. Chatsworth, CA.",
+    "Tax Advocate Group hiring seminar. No experience required. Top reps earn $40,000–$50,000/month. $200M+ saved for clients lifetime. Full benefits, 401(k), promote-from-within culture. Chatsworth, CA.",
   hiringOrganization: {
     "@type": "Organization",
     name: "Tax Advocate Group",
@@ -129,6 +129,7 @@ const WorkShop = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const statsRef = useRef(null);
   const sectionRefs = useRef({});
@@ -161,9 +162,9 @@ const WorkShop = () => {
     };
   }, [soundUnlocked]);
 
-  const grossRev = useCounter(12, 1600, countersOn);
-  const clientSav = useCounter(36, 1900, countersOn);
-  const topEarner = useCounter(25000, 2200, countersOn);
+  const grossRev = useCounter(65, 1600, countersOn);
+  const clientSav = useCounter(200, 1900, countersOn);
+  const topEarner = useCounter(50000, 2200, countersOn);
   const clients = useCounter(5000, 2000, countersOn);
 
   useEffect(() => {
@@ -229,12 +230,22 @@ const WorkShop = () => {
     setSubmitting(true);
     setFormError("");
     try {
-      await axios.post("/api/workshop-apply", formData);
-      setSubmitted(true);
+      const res = await axios.post("/api/workshop-apply", formData);
+      if (res.status === 200) {
+        setShowModal(true);
+        setSubmitted(true);
+      }
     } catch (err) {
-      setFormError(
-        "Something went wrong. Email apply@taxadvocategroup.com directly.",
-      );
+      const status = err?.response?.status;
+      if (status === 404) {
+        setFormError(
+          "Server error (404) — call us directly at (818) 230-2223.",
+        );
+      } else {
+        setFormError(
+          "Something went wrong. Call (818) 230-2223 or email inquiry@taxadvocategroup.com.",
+        );
+      }
     } finally {
       setSubmitting(false);
     }
@@ -244,7 +255,7 @@ const WorkShop = () => {
     <div className="ws">
       <SEO
         title="Hiring Seminar | Tax Advocate Group — Real Money. Real Opportunity. Chatsworth, CA."
-        description="Tax Advocate Group hiring seminar. Top reps earn $40K–$50K/month. $36M saved for clients. No experience required. Full training, benefits, 401(k). Apply now."
+        description="Tax Advocate Group hiring seminar. Top reps earn $40K–$50K/month. $200M+ saved for clients lifetime. No experience required. Full training, benefits, 401(k). Apply now."
         canonical="/seminar"
         structuredData={[jobSchema]}
         noindex={false}
@@ -302,8 +313,8 @@ const WorkShop = () => {
         <div className="ws__urgency-bar-inner">
           <span className="ws__urgency-bar-dot" />
           <span className="ws__urgency-bar-text">
-            <strong>Spots are filling fast.</strong> We are actively
-            interviewing — apply before this seminar closes.
+            <strong>Next Seminar: May 9th at 10:00 AM.</strong> Spots are
+            filling fast — apply before this closes.
           </span>
           <a href="#apply" className="ws__urgency-bar-cta">
             Claim My Spot →
@@ -378,7 +389,7 @@ const WorkShop = () => {
 
           <div className="ws__hero-eyebrow">
             <span className="ws__eyebrow-dot" />
-            EXCLUSIVE HIRING SEMINAR · CHATSWORTH, CA · LIMITED SEATS
+            NEXT SEMINAR: MAY 9TH · 10:00 AM · CHATSWORTH, CA
           </div>
 
           <h1 className="ws__hero-h1">
@@ -390,8 +401,8 @@ const WorkShop = () => {
           </h1>
 
           <p className="ws__hero-deck">
-            We generated <strong>$12 million</strong> and saved our clients{" "}
-            <strong>$36 million</strong>
+            We have generated over <strong>$65 million</strong> in revenue and
+            saved our clients over <strong>$200 million</strong>
             in tax debt. Our top reps take home{" "}
             <strong>$40,000–$50,000 a month.</strong>
             <br />
@@ -404,7 +415,7 @@ const WorkShop = () => {
               <span className="ws__proof-tag">/mo top earner</span>
             </div>
             <div className="ws__proof-chip ws__proof-chip--red">
-              <span className="ws__proof-num">$36M</span>
+              <span className="ws__proof-num">$200M+</span>
               <span className="ws__proof-tag">saved for clients</span>
             </div>
             <div className="ws__proof-chip">
@@ -429,7 +440,7 @@ const WorkShop = () => {
 
           <div className="ws__hero-eyebrow ws__hero-eyebrow--bottom">
             <span className="ws__eyebrow-dot" />
-            EXCLUSIVE HIRING SEMINAR · CHATSWORTH, CA · LIMITED SEATS
+            LIMITED SEATS · MAY 9TH AT 10:00 AM · CHATSWORTH, CA
           </div>
         </div>
 
@@ -463,18 +474,24 @@ const WorkShop = () => {
         </div>
         <div className="ws__board-grid">
           <div className="ws__board-card">
-            <div className="ws__board-card-label">GROSS REVENUE GENERATED</div>
+            <div className="ws__board-card-label">
+              LIFETIME REVENUE GENERATED
+            </div>
             <div className="ws__board-card-num">
               <span className="ws__board-prefix">$</span>
-              {grossRev}M
+              {grossRev}M<span className="ws__board-plus">+</span>
             </div>
-            <div className="ws__board-card-sub">And climbing every quarter</div>
+            <div className="ws__board-card-sub">
+              Built over a decade. Still growing.
+            </div>
           </div>
           <div className="ws__board-card ws__board-card--gold">
-            <div className="ws__board-card-label">SAVED FOR CLIENTS</div>
+            <div className="ws__board-card-label">
+              LIFETIME SAVINGS FOR CLIENTS
+            </div>
             <div className="ws__board-card-num">
               <span className="ws__board-prefix">$</span>
-              {clientSav}M
+              {clientSav}M<span className="ws__board-plus">+</span>
             </div>
             <div className="ws__board-card-sub">
               Real debt. Real relief. Real results.
@@ -544,7 +561,7 @@ const WorkShop = () => {
               {[
                 ["BBB A+", "Nationally Rated"],
                 ["50 States", "We Operate Everywhere"],
-                ["$36M", "Client Debt Resolved"],
+                ["$200M+", "Client Debt Resolved"],
               ].map(([num, label]) => (
                 <div key={label} className="ws__pitch-proof-item">
                   <span className="ws__pitch-proof-num">{num}</span>
@@ -874,7 +891,7 @@ const WorkShop = () => {
         <div className="ws__apply-inner">
           <div className="ws__apply-header">
             <span className="ws__label ws__label--red">
-              LIMITED SEATS — APPLY NOW
+              MAY 9TH · 10:00 AM · LIMITED SEATS
             </span>
             <h2 className="ws__h2 ws__h2--center">
               The Seminar Is Free.
@@ -998,15 +1015,22 @@ const WorkShop = () => {
 
             <div className="ws__info-col">
               <div className="ws__info-card">
-                <div className="ws__info-card-head">📋 Seminar Details</div>
+                <div className="ws__info-card-head">
+                  📋 Seminar — May 9th at 10:00 AM
+                </div>
                 <div className="ws__info-card-body">
                   {[
+                    [
+                      "📅",
+                      "Date & Time",
+                      "Friday, May 9th, 2026\n10:00 AM Sharp",
+                    ],
                     [
                       "📍",
                       "Location",
                       "21625 Prairie St, Suite #200\nChatsworth, CA 91311",
                     ],
-                    ["🕗", "Schedule", "Monday–Friday\n7:30 AM – 4:30 PM"],
+                    ["🕗", "Office Hours", "Monday–Friday\n7:30 AM – 4:30 PM"],
                     ["💼", "Position", "Full-Time · In-Office"],
                     ["💰", "Pay", "Performance-Based · No Cap"],
                     ["🏥", "Benefits", "Medical, Vision & Dental"],
@@ -1057,8 +1081,11 @@ const WorkShop = () => {
           </a>
         </p>
         <p className="ws__footer-legal">
-          &copy; {new Date().getFullYear()} Tax Advocate Group, LLC. All Rights
-          Reserved.&nbsp;|&nbsp;
+          <span suppressHydrationWarning>
+            &copy; {new Date().getFullYear()} Tax Advocate Group, LLC. All
+            Rights Reserved.
+          </span>
+          &nbsp;|&nbsp;
           <Link to="/privacy-policy">Privacy Policy</Link>&nbsp;|&nbsp;
           <Link to="/terms-of-service">Terms of Service</Link>
         </p>
@@ -1315,6 +1342,7 @@ const WorkShop = () => {
           background: var(--red-lt);
           box-shadow: 0 0 8px var(--red-lt);
         }
+        .ws__eyebrow-dot {
           width: 7px; height: 7px;
           background: var(--gold); border-radius: 50%;
           animation: ws-blink 1.8s ease-in-out infinite;

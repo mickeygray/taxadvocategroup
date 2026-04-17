@@ -448,12 +448,11 @@ app.post("/api/workshop-apply", async (req, res) => {
       .status(400)
       .json({ ok: false, error: "Name and email are required." });
   }
-
+  console.log("on the route");
   try {
     await transporter.sendMail({
-      from: "manderson@taxadvocategroup.com",
+      from: "mgray@taxadvocategroup.com",
       to: ["manderson@taxadvocategroup.com", "abanks@taxadvocategroup.com"],
-      replyTo: email,
       subject: `New Hiring Fair Application — ${name}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:2px solid #c9a227;border-radius:10px;overflow:hidden;">
