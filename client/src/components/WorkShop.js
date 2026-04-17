@@ -7,7 +7,7 @@ import SEO from "./SEO";
    MUSIC — swap the ID. Plays on load. FAB defaults to STOP.
    youtube.com/watch?v= ← that part
 ───────────────────────────────────────────────────────────────────────────── */
-const HYPE_TRACK_YT_ID = "tDsZoQX1gis";
+const HYPE_TRACK_YT_ID = "1QOJU2NeMaQ";
 // Starts MUTED — browsers block audio autoplay without a prior user gesture (mobile is strictest).
 // We unmute via postMessage on first user interaction. enablejsapi=1 enables postMessage control.
 const YT_SRC = `https://www.youtube.com/embed/${HYPE_TRACK_YT_ID}?autoplay=1&loop=1&playlist=${HYPE_TRACK_YT_ID}&controls=0&mute=1&enablejsapi=1`;
@@ -15,7 +15,7 @@ const YT_SRC = `https://www.youtube.com/embed/${HYPE_TRACK_YT_ID}?autoplay=1&loo
 /* Ticker lines — two tracks, opposite directions for kinetic energy */
 const TICKER_GOLD = [
   "$12M GENERATED",
-  "TOP REP $25K/MO",
+  "TOP REP $50K/MO",
   "$36M SAVED FOR CLIENTS",
   "A+ BBB RATED",
   "5,000+ LIVES CHANGED",
@@ -79,7 +79,7 @@ const jobSchema = {
   "@type": "JobPosting",
   title: "Sales Representative – Tax Resolution",
   description:
-    "Tax Advocate Group hiring seminar. No experience required. Top reps earn $20,000–$25,000/month. Full benefits, 401(k), promote-from-within culture. Chatsworth, CA.",
+    "Tax Advocate Group hiring seminar. No experience required. Top reps earn $40,000–$50,000/month. Full benefits, 401(k), promote-from-within culture. Chatsworth, CA.",
   hiringOrganization: {
     "@type": "Organization",
     name: "Tax Advocate Group",
@@ -244,7 +244,7 @@ const WorkShop = () => {
     <div className="ws">
       <SEO
         title="Hiring Seminar | Tax Advocate Group — Real Money. Real Opportunity. Chatsworth, CA."
-        description="Tax Advocate Group hiring seminar. Top reps earn $20K–$25K/month. $36M saved for clients. No experience required. Full training, benefits, 401(k). Apply now."
+        description="Tax Advocate Group hiring seminar. Top reps earn $40K–$50K/month. $36M saved for clients. No experience required. Full training, benefits, 401(k). Apply now."
         canonical="/seminar"
         structuredData={[jobSchema]}
         noindex={false}
@@ -393,14 +393,14 @@ const WorkShop = () => {
             We generated <strong>$12 million</strong> and saved our clients{" "}
             <strong>$36 million</strong>
             in tax debt. Our top reps take home{" "}
-            <strong>$20,000–$25,000 a month.</strong>
+            <strong>$40,000–$50,000 a month.</strong>
             <br />
             This is not a side hustle. This is a career that changes your life.
           </p>
 
           <div className="ws__hero-proof">
             <div className="ws__proof-chip">
-              <span className="ws__proof-num">$25K</span>
+              <span className="ws__proof-num">$50K</span>
               <span className="ws__proof-tag">/mo top earner</span>
             </div>
             <div className="ws__proof-chip ws__proof-chip--red">
@@ -427,8 +427,9 @@ const WorkShop = () => {
             </a>
           </div>
 
-          <div className="ws__hero-disclaimer">
-            21625 Prairie St · Suite #200 · Chatsworth, CA 91311 · M–F 7:30–4:30
+          <div className="ws__hero-eyebrow ws__hero-eyebrow--bottom">
+            <span className="ws__eyebrow-dot" />
+            EXCLUSIVE HIRING SEMINAR · CHATSWORTH, CA · LIMITED SEATS
           </div>
         </div>
 
@@ -588,7 +589,7 @@ const WorkShop = () => {
                 {
                   phase: "MONTH 6+",
                   label: "You're a closer. This is yours.",
-                  range: "$20K – $25K+",
+                  range: "$40K – $50K+",
                   pct: 100,
                   color: "#c9a227",
                 },
@@ -737,7 +738,7 @@ const WorkShop = () => {
                 metaphor.
               </p>
               <div className="ws__pkg-highlight">
-                $25K/mo<span> potential</span>
+                $50K/mo<span> potential</span>
               </div>
             </div>
             <div className="ws__pkg-card">
@@ -1303,7 +1304,17 @@ const WorkShop = () => {
           text-transform: uppercase; letter-spacing: 0.18em;
           color: var(--gold); margin-bottom: 1.75rem;
         }
-        .ws__eyebrow-dot {
+        .ws__hero-eyebrow--bottom {
+          margin-top: 1.5rem;
+          margin-bottom: 0;
+          background: rgba(155,32,32,0.12);
+          border-color: rgba(192,57,43,0.4);
+          color: rgba(255,255,255,0.65);
+        }
+        .ws__hero-eyebrow--bottom .ws__eyebrow-dot {
+          background: var(--red-lt);
+          box-shadow: 0 0 8px var(--red-lt);
+        }
           width: 7px; height: 7px;
           background: var(--gold); border-radius: 50%;
           animation: ws-blink 1.8s ease-in-out infinite;

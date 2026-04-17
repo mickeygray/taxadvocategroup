@@ -451,8 +451,8 @@ app.post("/api/workshop-apply", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: "Tax Advocate Group <inquiry@taxadvocategroup.com>",
-      to: "apply@taxadvocategroup.com",
+      from: "manderson@taxadvocategroup.com",
+      to: ["manderson@taxadvocategroup.com", "abanks@taxadvocategroup.com"],
       replyTo: email,
       subject: `New Hiring Fair Application — ${name}`,
       html: `
