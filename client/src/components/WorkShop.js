@@ -7,7 +7,7 @@ import SEO from "./SEO";
    MUSIC — swap the ID. Plays on load. FAB defaults to STOP.
    youtube.com/watch?v= ← that part
 ───────────────────────────────────────────────────────────────────────────── */
-const HYPE_TRACK_YT_ID = "1QOJU2NeMaQ";
+const HYPE_TRACK_YT_ID = "tDsZoQX1gis";
 // Starts MUTED — browsers block audio autoplay without a prior user gesture (mobile is strictest).
 // We unmute via postMessage on first user interaction. enablejsapi=1 enables postMessage control.
 const YT_SRC = `https://www.youtube.com/embed/${HYPE_TRACK_YT_ID}?autoplay=1&loop=1&playlist=${HYPE_TRACK_YT_ID}&controls=0&mute=1&enablejsapi=1`;
