@@ -159,9 +159,7 @@ const ContactUs = () => {
               required
             />
 
-            <button type="submit" disabled={!smsConsentChecked}>
-              Submit
-            </button>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>
