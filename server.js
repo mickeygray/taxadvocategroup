@@ -9,6 +9,7 @@ const connectDB = require("./config/db");
 const OpenAI = require("openai");
 const cookieParser = require("cookie-parser");
 const questionCounter = require("./middleware/questionCounter");
+const { appendWorkshopApplication } = require("./utils/googleSheets");
 const {
   generateCode,
   storeVerificationCode,
@@ -440,64 +441,129 @@ async function postToWebhook(fields, source = "website") {
 /*   — does NOT touch the webhook pipeline or CRM.                            */
 /* -------------------------------------------------------------------------- */
 
-app.post("/api/workshop-apply", async (req, res) => {
-  const { name, phone, email, why } = req.body;
+// ─────────────────────────────────────────────────────────────────────────────
+//  /api/workshop-apply  — Drop-in replacement
+//  Sends notification email AND logs to Google Sheet.
+//  Sheet write is non-blocking: if Sheets fails, we still email + 200.
+// ─────────────────────────────────────────────────────────────────────────────
+//
+//  Prereqs:
+//    1) npm install googleapis
+//    2) .env:
+//         WORKSHOP_SHEET_ID=<sheet id from URL>
+//         GOOGLE_SERVICE_ACCOUNT_JSON=<entire service account JSON, one line>
+//    3) Share the sheet with the service account's email as Editor.
+//    4) Sheet tab named "Sheet1" with headers in row 1:
+//         Timestamp | Name | Phone | Email | Why
+//
+//  Requires in server.js (near your other requires, ONE time):
+//     const { google } = require("googleapis");
+//
+//  Assumes `transporter` (nodemailer) is already defined in scope.
+// ─────────────────────────────────────────────────────────────────────────────
 
-  if (!name || !email) {
-    return res
-      .status(400)
-      .json({ ok: false, error: "Name and email are required." });
-  }
-  console.log("on the route");
+const { google } = require("googleapis");
+
+// ─── Cached Sheets client (built once, reused) ───
+let _sheetsClient = null;
+function getSheetsClient() {
+  if (_sheetsClient) return _sheetsClient;
   try {
-    await transporter.sendMail({
-      from: "mgray@taxadvocategroup.com",
-      to: ["manderson@taxadvocategroup.com", "abanks@taxadvocategroup.com"],
-      subject: `New Hiring Fair Application — ${name}`,
-      html: `
-        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:2px solid #c9a227;border-radius:10px;overflow:hidden;">
-          <div style="background:#1a365d;padding:24px 28px;">
-            <h2 style="color:#c9a227;margin:0;font-size:1.4rem;">New Workshop Application</h2>
-            <p style="color:rgba(255,255,255,0.7);margin:6px 0 0;font-size:0.9rem;">Received from the Hiring Fair landing page</p>
-          </div>
-          <div style="padding:28px;background:#ffffff;">
-            <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
-              <tr>
-                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-weight:700;color:#1a365d;width:130px;">Name</td>
-                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#333;">${name}</td>
-              </tr>
-              <tr>
-                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-weight:700;color:#1a365d;">Phone</td>
-                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#333;">${phone || "Not provided"}</td>
-              </tr>
-              <tr>
-                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;font-weight:700;color:#1a365d;">Email</td>
-                <td style="padding:10px 0;border-bottom:1px solid #f0f0f0;">
-                  <a href="mailto:${email}" style="color:#c9a227;">${email}</a>
-                </td>
-              </tr>
-              <tr>
-                <td style="padding:10px 0;font-weight:700;color:#1a365d;vertical-align:top;">Why They Want It</td>
-                <td style="padding:10px 0;color:#333;line-height:1.6;">${(why || "Not provided").replace(/\n/g, "<br>")}</td>
-              </tr>
-            </table>
-          </div>
-          <div style="background:#f8f8f8;padding:16px 28px;font-size:0.8rem;color:#999;text-align:center;">
-            Tax Advocate Group Hiring Fair · /workshop · ${new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} PT
-          </div>
-        </div>
-      `,
+    const creds = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON || "{}");
+    const auth = new google.auth.GoogleAuth({
+      credentials: creds,
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
-
-    console.log(
-      `[WORKSHOP-APPLY] ✓ Application from ${name} (${email}) sent to apply@taxadvocategroup.com`,
-    );
-    return res.json({ ok: true });
+    _sheetsClient = google.sheets({ version: "v4", auth });
+    return _sheetsClient;
   } catch (err) {
-    console.error("[WORKSHOP-APPLY] ✗ SendGrid error:", err.message);
-    return res
-      .status(500)
-      .json({ ok: false, error: "Failed to send application." });
+    console.error("[workshop-apply] sheets client init failed:", err.message);
+    return null;
+  }
+}
+
+// ─── Non-blocking sheet append ───
+async function logWorkshopApplicationToSheet({ name, phone, email, why }) {
+  const sheets = getSheetsClient();
+  if (!sheets || !process.env.WORKSHOP_SHEET_ID) {
+    console.warn("[workshop-apply] sheets not configured — skipping");
+    return;
+  }
+  const timestamp = new Date().toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+  });
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: process.env.WORKSHOP_SHEET_ID,
+    range: "Sheet1!A:E",
+    valueInputOption: "USER_ENTERED",
+    insertDataOption: "INSERT_ROWS",
+    requestBody: {
+      values: [[timestamp, name || "", phone || "", email || "", why || ""]],
+    },
+  });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  ROUTE
+// ═════════════════════════════════════════════════════════════════════════════
+app.post("/api/workshop-apply", async (req, res) => {
+  console.log("on the route");
+  const { name, phone, email, why } = req.body || {};
+
+  // Basic validation
+  if (!name || !phone || !email || !why) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  // ─── Email (primary — must succeed) ───
+  const mailOptions = {
+    from: '"TAG Hiring Seminar" <noreply@taxadvocategroup.com>',
+    to: "manderson@taxadvocategroup.com, abanks@taxadvocategroup.com",
+    replyTo: email,
+    subject: `🐺 New Seminar Application — ${name}`,
+    html: `
+      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f9f9f9;padding:20px;">
+        <div style="background:linear-gradient(135deg,#0e1a3e 0%,#070b16 100%);color:#c9a227;padding:24px;border-radius:10px 10px 0 0;">
+          <h1 style="margin:0;font-size:22px;">New Hiring Seminar Application</h1>
+          <p style="margin:6px 0 0;color:#fff;font-size:13px;opacity:0.85;">May 9th Seminar · Tax Advocate Group</p>
+        </div>
+        <div style="background:#fff;padding:24px;border-radius:0 0 10px 10px;border:1px solid #e5e5e5;border-top:none;">
+          <table style="width:100%;border-collapse:collapse;">
+            <tr><td style="padding:8px 0;font-weight:700;color:#555;width:120px;">Name:</td><td style="padding:8px 0;color:#111;">${name}</td></tr>
+            <tr><td style="padding:8px 0;font-weight:700;color:#555;">Phone:</td><td style="padding:8px 0;"><a href="tel:${phone}" style="color:#c9a227;">${phone}</a></td></tr>
+            <tr><td style="padding:8px 0;font-weight:700;color:#555;">Email:</td><td style="padding:8px 0;"><a href="mailto:${email}" style="color:#c9a227;">${email}</a></td></tr>
+          </table>
+          <hr style="margin:16px 0;border:none;border-top:1px solid #eee;" />
+          <p style="font-weight:700;color:#555;margin:0 0 8px;">Why they want this:</p>
+          <p style="color:#111;line-height:1.6;white-space:pre-wrap;margin:0;background:#faf6e8;padding:14px;border-left:3px solid #c9a227;border-radius:4px;">${why}</p>
+          <p style="margin:20px 0 0;font-size:12px;color:#888;">Submitted ${new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} PT · Also logged to Google Sheet.</p>
+        </div>
+      </div>
+    `,
+    text: `New Hiring Seminar Application\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nWhy they want this:\n${why}\n\nSubmitted: ${new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} PT`,
+  };
+
+  const emailJob = transporter.sendMail(mailOptions);
+
+  // ─── Sheet (secondary — log errors, don't fail the request) ───
+  const sheetJob = logWorkshopApplicationToSheet({
+    name,
+    phone,
+    email,
+    why,
+  }).catch((err) => {
+    console.error(
+      "[workshop-apply] sheets append failed:",
+      err?.response?.data?.error?.message || err.message,
+    );
+  });
+
+  try {
+    await Promise.all([emailJob, sheetJob]);
+    return res.status(200).json({ success: true });
+  } catch (err) {
+    console.error("[workshop-apply] email send failed:", err.message);
+    return res.status(500).json({ error: "Failed to submit application" });
   }
 });
 app.post("/api/track-form-input", async (req, res) => {
