@@ -8,7 +8,9 @@ import SEO from "./SEO";
    youtube.com/watch?v= ← that part
 ───────────────────────────────────────────────────────────────────────────── */
 const HYPE_TRACK_YT_ID = "1QOJU2NeMaQ";
-const YT_SRC = `https://www.youtube.com/embed/${HYPE_TRACK_YT_ID}?autoplay=1&loop=1&playlist=${HYPE_TRACK_YT_ID}&controls=0&mute=0`;
+// Starts MUTED — browsers block audio autoplay without a prior user gesture (mobile is strictest).
+// We unmute via postMessage on first user interaction. enablejsapi=1 enables postMessage control.
+const YT_SRC = `https://www.youtube.com/embed/${HYPE_TRACK_YT_ID}?autoplay=1&loop=1&playlist=${HYPE_TRACK_YT_ID}&controls=0&mute=1&enablejsapi=1`;
 
 /* Ticker lines — two tracks, opposite directions for kinetic energy */
 const TICKER_GOLD = [
@@ -113,6 +115,7 @@ const jobSchema = {
 const WorkShop = () => {
   const [ytSrc, setYtSrc] = useState(YT_SRC);
   const [musicPlaying, setMusicPlaying] = useState(true);
+  const [soundUnlocked, setSoundUnlocked] = useState(false); // false = still muted, waiting for gesture
   const [countersOn, setCountersOn] = useState(false);
   const [heroReady, setHeroReady] = useState(false);
   const [visible, setVisible] = useState({});
@@ -129,6 +132,34 @@ const WorkShop = () => {
 
   const statsRef = useRef(null);
   const sectionRefs = useRef({});
+  const iframeRef = useRef(null);
+
+  // Send a command to the YouTube iframe via postMessage
+  const ytCmd = (func) => {
+    iframeRef.current?.contentWindow?.postMessage(
+      JSON.stringify({ event: "command", func, args: "" }),
+      "*",
+    );
+  };
+
+  // Unlock sound on first user interaction anywhere on the page.
+  // Browsers require a gesture before audio can play — this fires once then removes itself.
+  useEffect(() => {
+    if (soundUnlocked) return;
+    const unlock = () => {
+      ytCmd("unMute");
+      setSoundUnlocked(true);
+    };
+    window.addEventListener("click", unlock, { once: true });
+    window.addEventListener("touchstart", unlock, {
+      once: true,
+      passive: true,
+    });
+    return () => {
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("touchstart", unlock);
+    };
+  }, [soundUnlocked]);
 
   const grossRev = useCounter(12, 1600, countersOn);
   const clientSav = useCounter(36, 1900, countersOn);
@@ -176,10 +207,15 @@ const WorkShop = () => {
 
   const toggleMusic = () => {
     if (musicPlaying) {
-      setYtSrc("");
+      ytCmd("pauseVideo");
       setMusicPlaying(false);
     } else {
-      setYtSrc(YT_SRC);
+      ytCmd("playVideo");
+      // If they somehow toggle before unlock, unmute now too
+      if (!soundUnlocked) {
+        ytCmd("unMute");
+        setSoundUnlocked(true);
+      }
       setMusicPlaying(true);
     }
   };
@@ -214,30 +250,35 @@ const WorkShop = () => {
         noindex={false}
       />
 
-      {ytSrc && (
-        <iframe
-          src={ytSrc}
-          allow="autoplay"
-          title="hype"
-          style={{
-            position: "fixed",
-            width: 1,
-            height: 1,
-            opacity: 0,
-            pointerEvents: "none",
-            left: "-9999px",
-            top: "-9999px",
-          }}
-        />
-      )}
+      {/* Hidden YouTube player — always mounted so postMessage works */}
+      <iframe
+        ref={iframeRef}
+        src={ytSrc}
+        allow="autoplay; encrypted-media"
+        title="hype"
+        style={{
+          position: "fixed",
+          width: 1,
+          height: 1,
+          opacity: 0,
+          pointerEvents: "none",
+          left: "-9999px",
+          top: "-9999px",
+        }}
+      />
 
       {/* ── Music FAB ── */}
       <button
-        className="ws__fab"
+        className={`ws__fab ${!soundUnlocked ? "ws__fab--nudge" : ""}`}
         onClick={toggleMusic}
         aria-label={musicPlaying ? "Stop music" : "Play music"}
       >
-        {musicPlaying ? (
+        {!soundUnlocked ? (
+          <>
+            <span>🔊</span>
+            <span>TAP FOR SOUND</span>
+          </>
+        ) : musicPlaying ? (
           <>
             <span className="ws__eq">
               <span />
@@ -255,6 +296,20 @@ const WorkShop = () => {
           </>
         )}
       </button>
+
+      {/* ── Urgency Bar ── */}
+      <div className="ws__urgency-bar">
+        <div className="ws__urgency-bar-inner">
+          <span className="ws__urgency-bar-dot" />
+          <span className="ws__urgency-bar-text">
+            <strong>Spots are filling fast.</strong> We are actively
+            interviewing — apply before this seminar closes.
+          </span>
+          <a href="#apply" className="ws__urgency-bar-cta">
+            Claim My Spot →
+          </a>
+        </div>
+      </div>
 
       {/* ── Double ticker ── */}
       <div className="ws__tickers">
@@ -1088,6 +1143,15 @@ const WorkShop = () => {
           box-shadow: 0 4px 24px rgba(201,162,39,0.2);
         }
         .ws__fab:hover { background: rgba(201,162,39,0.15); transform: scale(1.06); box-shadow: 0 4px 36px rgba(201,162,39,0.38); }
+        .ws__fab--nudge {
+          animation: ws-nudge 2.2s ease-in-out infinite;
+          border-color: rgba(201,162,39,0.9);
+          box-shadow: 0 0 24px rgba(201,162,39,0.55);
+        }
+        @keyframes ws-nudge {
+          0%,100% { transform: scale(1);    box-shadow: 0 0 24px rgba(201,162,39,0.4); }
+          50%      { transform: scale(1.08); box-shadow: 0 0 44px rgba(201,162,39,0.75); }
+        }
         .ws__eq { display: flex; align-items: flex-end; gap: 2px; height: 14px; }
         .ws__eq span { display: block; width: 3px; background: var(--gold); border-radius: 2px; animation: ws-eq 0.55s ease-in-out infinite alternate; }
         .ws__eq span:nth-child(1){ height:5px;  animation-delay:0s; }
@@ -1096,6 +1160,66 @@ const WorkShop = () => {
         .ws__eq span:nth-child(4){ height:13px; animation-delay:0.05s; }
         .ws__eq span:nth-child(5){ height:4px;  animation-delay:0.15s; }
         @keyframes ws-eq { from{transform:scaleY(0.25)} to{transform:scaleY(1)} }
+
+        /* ─── Urgency Bar ─── */
+        .ws__urgency-bar {
+          background: linear-gradient(90deg, #0d0000 0%, #1a0505 40%, #1a0505 60%, #0d0000 100%);
+          border-bottom: 1px solid rgba(192,57,43,0.4);
+          padding: 0.65rem 1.5rem;
+          position: sticky;
+          top: 0;
+          z-index: 900;
+          backdrop-filter: blur(12px);
+        }
+        .ws__urgency-bar-inner {
+          max-width: 1150px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.85rem;
+          flex-wrap: wrap;
+        }
+        .ws__urgency-bar-dot {
+          width: 8px; height: 8px;
+          background: var(--red-lt);
+          border-radius: 50%;
+          flex-shrink: 0;
+          box-shadow: 0 0 10px var(--red-lt);
+          animation: ws-blink 1.4s ease-in-out infinite;
+        }
+        .ws__urgency-bar-text {
+          font-size: 0.8rem;
+          color: rgba(255,255,255,0.72);
+          letter-spacing: 0.02em;
+        }
+        .ws__urgency-bar-text strong {
+          color: #fff;
+          font-weight: 800;
+        }
+        .ws__urgency-bar-cta {
+          display: inline-block;
+          padding: 0.35rem 1rem;
+          background: var(--red);
+          border: 1px solid rgba(192,57,43,0.6);
+          border-radius: 50px;
+          font-size: 0.72rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: #fff;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: background 0.2s, box-shadow 0.2s;
+        }
+        .ws__urgency-bar-cta:hover {
+          background: var(--red-lt);
+          box-shadow: 0 0 18px rgba(192,57,43,0.5);
+        }
+        @media (max-width: 540px) {
+          .ws__urgency-bar { padding: 0.55rem 1rem; }
+          .ws__urgency-bar-text { font-size: 0.74rem; text-align: center; }
+        }
 
         /* ─── Tickers ─── */
         .ws__tickers { }
