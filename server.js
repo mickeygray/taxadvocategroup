@@ -1,15 +1,17 @@
 require("dotenv").config();
+const fs = require("fs");
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const axios = require("axios");
+const multer = require("multer");
 const { SitemapStream, streamToPromise } = require("sitemap");
 const { Readable } = require("stream");
 const connectDB = require("./config/db");
 const OpenAI = require("openai");
 const cookieParser = require("cookie-parser");
 const questionCounter = require("./middleware/questionCounter");
-const { appendWorkshopApplication } = require("./utils/googleSheets");
 const {
   generateCode,
   storeVerificationCode,
@@ -21,6 +23,7 @@ const {
 const app = express();
 const PORT = process.env.PORT || 5000;
 const isProd = process.env.NODE_ENV === "production";
+const envFilePath = path.join(__dirname, ".env");
 
 /* -------------------------------------------------------------------------- */
 /*                              MIDDLEWARE                                     */
@@ -42,12 +45,12 @@ app.use(
 
 // Transporter used ONLY for verification code emails
 const transporter = nodemailer.createTransport({
-  host: "smtp.sendgrid.net",
-  port: 587,
+  host: process.env.SENDGRID_GATEWAY || "smtp.sendgrid.net",
+  port: Number(process.env.SENDGRID_PORT || 587),
   secure: false,
   auth: {
-    user: "apikey",
-    pass: process.env.TAG_API_KEY,
+    user: process.env.SENDGRID_USER || "apikey",
+    pass: process.env.TAG_API_KEY || process.env.SENDGRID_API_KEY,
   },
 });
 
@@ -464,12 +467,236 @@ async function postToWebhook(fields, source = "website") {
 
 const { google } = require("googleapis");
 
+const WORKSHOP_EVENT = Object.freeze({
+  title: "Tax Advocate Group Hiring Seminar",
+  dateLabel: "Friday, May 9th, 2026",
+  timeLabel: "10:00 AM",
+  addressLine: "21625 Prairie St, Suite #200, Chatsworth, CA 91311",
+});
+
+const WORKSHOP_RESUME_LIMIT_BYTES = 7 * 1024 * 1024;
+const WORKSHOP_SUBMISSION_LIMIT = 3;
+const WORKSHOP_SUBMISSION_WINDOW_MS = 6 * 60 * 60 * 1000;
+
+const workshopSubmissionLimiter = new Map();
+
+const workshopUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: WORKSHOP_RESUME_LIMIT_BYTES },
+  fileFilter: (_req, file, cb) => {
+    const allowedTypes = new Set([
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ]);
+    const lowerName = String(file.originalname || "").toLowerCase();
+    const allowedExtension = [".pdf", ".doc", ".docx"].some((ext) =>
+      lowerName.endsWith(ext),
+    );
+    if (allowedTypes.has(file.mimetype) || allowedExtension) {
+      return cb(null, true);
+    }
+    return cb(new Error("Resume must be a PDF, DOC, or DOCX file."), false);
+  },
+});
+
+function workshopResumeUpload(req, res, next) {
+  workshopUpload.single("resume")(req, res, (err) => {
+    if (!err) return next();
+    if (err instanceof multer.MulterError && err.code === "LIMIT_FILE_SIZE") {
+      return res.status(400).json({ error: "Resume must be 7MB or smaller." });
+    }
+    return res.status(400).json({
+      error: err.message || "Unable to process the uploaded resume.",
+    });
+  });
+}
+
+function normalizePhone(phone) {
+  const digits = String(phone || "").replace(/\D/g, "");
+  if (!digits) return "";
+  if (digits.length === 11 && digits.startsWith("1")) return digits.slice(1);
+  return digits.slice(-10);
+}
+
+function toE164(phone) {
+  const normalized = normalizePhone(phone);
+  return normalized ? `+1${normalized}` : "";
+}
+
+function formatUsPhone(phone) {
+  const normalized = normalizePhone(phone);
+  if (normalized.length !== 10) return String(phone || "").trim();
+  return `(${normalized.slice(0, 3)}) ${normalized.slice(3, 6)}-${normalized.slice(6)}`;
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function cleanupWorkshopSubmissionLimiter() {
+  const now = Date.now();
+  for (const [key, data] of workshopSubmissionLimiter.entries()) {
+    if (now > data.resetAt) workshopSubmissionLimiter.delete(key);
+  }
+}
+
+function checkWorkshopSubmissionLimit({ phone, email, ip }) {
+  cleanupWorkshopSubmissionLimiter();
+  const now = Date.now();
+  const identifiers = [
+    normalizePhone(phone) ? `phone:${normalizePhone(phone)}` : null,
+    email ? `email:${String(email).trim().toLowerCase()}` : null,
+    ip ? `ip:${String(ip).trim()}` : null,
+  ].filter(Boolean);
+
+  const blocked = identifiers
+    .map((key) => ({ key, data: workshopSubmissionLimiter.get(key) }))
+    .find(
+      ({ data }) =>
+        data && now <= data.resetAt && data.count >= WORKSHOP_SUBMISSION_LIMIT,
+    );
+
+  if (blocked?.data) {
+    return {
+      allowed: false,
+      waitMinutes: Math.ceil((blocked.data.resetAt - now) / 60000),
+      resetAt: blocked.data.resetAt,
+    };
+  }
+
+  identifiers.forEach((key) => {
+    const current = workshopSubmissionLimiter.get(key);
+    if (!current || now > current.resetAt) {
+      workshopSubmissionLimiter.set(key, {
+        count: 1,
+        resetAt: now + WORKSHOP_SUBMISSION_WINDOW_MS,
+      });
+      return;
+    }
+    current.count += 1;
+    workshopSubmissionLimiter.set(key, current);
+  });
+
+  return { allowed: true };
+}
+
+async function sendWorkshopConfirmationSms({ phone, name }) {
+  const apiKey = process.env.CALL_RAIL_KEY;
+  const accountId = process.env.CALL_RAIL_ACCOUNT_ID;
+  const companyId = process.env.CALL_RAIL_COMPANY_ID;
+  const trackingNumber = process.env.CALL_RAIL_TRACKING_NUMBER;
+  const customerPhone = toE164(phone);
+
+  if (!apiKey || !accountId || !trackingNumber) {
+    console.warn("[workshop-apply] CallRail SMS not configured - skipping");
+    return { sent: false, skipped: true, reason: "not-configured" };
+  }
+
+  if (!customerPhone) {
+    console.warn("[workshop-apply] Missing valid customer phone for SMS");
+    return { sent: false, skipped: true, reason: "invalid-phone" };
+  }
+
+  const firstName =
+    String(name || "")
+      .trim()
+      .split(/\s+/)[0] || "there";
+  const message =
+    `Hi ${firstName}, you've confirmed your spot at the TAG seminar on ` +
+    `${WORKSHOP_EVENT.dateLabel} at ${WORKSHOP_EVENT.timeLabel}. ` +
+    `Address: ${WORKSHOP_EVENT.addressLine}. ` +
+    `Questions? Call or text ${formatUsPhone(trackingNumber)}.`;
+
+  await axios.post(
+    `https://api.callrail.com/v3/a/${accountId}/text-messages.json`,
+    {
+      customer_phone_number: customerPhone,
+      tracking_number: trackingNumber,
+      content: message,
+      company_id: companyId || undefined,
+    },
+    {
+      headers: {
+        Authorization: `Token token=${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      timeout: 15000,
+    },
+  );
+
+  return { sent: true };
+}
+
 // ─── Cached Sheets client (built once, reused) ───
+setInterval(cleanupWorkshopSubmissionLimiter, 60 * 60 * 1000);
+
 let _sheetsClient = null;
+let _serviceAccountCredentials = undefined;
+
+function getWorkshopSheetId() {
+  return process.env.WORKSHOP_SHEET_ID || process.env.WORKSHOP_SHEET || "";
+}
+
+function loadServiceAccountCredentials() {
+  if (_serviceAccountCredentials !== undefined) {
+    return _serviceAccountCredentials;
+  }
+
+  const direct = String(process.env.GOOGLE_SERVICE_ACCOUNT_JSON || "").trim();
+  if (direct) {
+    try {
+      _serviceAccountCredentials = JSON.parse(direct);
+      return _serviceAccountCredentials;
+    } catch (err) {
+      console.error(
+        "[workshop-apply] invalid GOOGLE_SERVICE_ACCOUNT_JSON:",
+        err.message,
+      );
+    }
+  }
+
+  try {
+    if (!fs.existsSync(envFilePath)) {
+      _serviceAccountCredentials = null;
+      return _serviceAccountCredentials;
+    }
+
+    const envRaw = fs.readFileSync(envFilePath, "utf8");
+    const inlineMatch = envRaw.match(/^\s*GOOGLE_SERVICE_ACCOUNT_JSON=(\{.*\})\s*$/m);
+    if (inlineMatch?.[1]) {
+      _serviceAccountCredentials = JSON.parse(inlineMatch[1]);
+      return _serviceAccountCredentials;
+    }
+
+    const multilineMatch = envRaw.match(
+      /^\s*GOOGLE_SERVICE_ACCOUNT_JSON=\s*$(?:\r?\n)(\{[\s\S]*?\})(?:\r?\n[A-Z0-9_]+=|\s*$)/m,
+    );
+    if (multilineMatch?.[1]) {
+      _serviceAccountCredentials = JSON.parse(multilineMatch[1].trim());
+      return _serviceAccountCredentials;
+    }
+  } catch (err) {
+    console.error(
+      "[workshop-apply] could not recover service account JSON from .env:",
+      err.message,
+    );
+  }
+
+  _serviceAccountCredentials = null;
+  return _serviceAccountCredentials;
+}
+
 function getSheetsClient() {
   if (_sheetsClient) return _sheetsClient;
   try {
-    const creds = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON || "{}");
+    const creds = loadServiceAccountCredentials();
+    if (!creds) return null;
     const auth = new google.auth.GoogleAuth({
       credentials: creds,
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
@@ -485,7 +712,8 @@ function getSheetsClient() {
 // ─── Non-blocking sheet append ───
 async function logWorkshopApplicationToSheet({ name, phone, email, why }) {
   const sheets = getSheetsClient();
-  if (!sheets || !process.env.WORKSHOP_SHEET_ID) {
+  const sheetId = getWorkshopSheetId();
+  if (!sheets || !sheetId) {
     console.warn("[workshop-apply] sheets not configured — skipping");
     return;
   }
@@ -493,7 +721,7 @@ async function logWorkshopApplicationToSheet({ name, phone, email, why }) {
     timeZone: "America/Los_Angeles",
   });
   await sheets.spreadsheets.values.append({
-    spreadsheetId: process.env.WORKSHOP_SHEET_ID,
+    spreadsheetId: sheetId,
     range: "Sheet1!A:E",
     valueInputOption: "USER_ENTERED",
     insertDataOption: "INSERT_ROWS",
@@ -506,9 +734,12 @@ async function logWorkshopApplicationToSheet({ name, phone, email, why }) {
 // ═════════════════════════════════════════════════════════════════════════════
 //  ROUTE
 // ═════════════════════════════════════════════════════════════════════════════
-app.post("/api/workshop-apply", async (req, res) => {
-  console.log("on the route");
+app.post("/api/workshop-apply", workshopResumeUpload, async (req, res) => {
   const { name, phone, email, why } = req.body || {};
+  const resumeFile = req.file || null;
+  const submittedAt = new Date().toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+  });
 
   // Basic validation
   if (!name || !phone || !email || !why) {
@@ -516,11 +747,34 @@ app.post("/api/workshop-apply", async (req, res) => {
   }
 
   // ─── Email (primary — must succeed) ───
+  const limit = checkWorkshopSubmissionLimit({
+    phone,
+    email,
+    ip: req.ip,
+  });
+  if (!limit.allowed) {
+    return res.status(429).json({
+      error: `Too many seminar submissions. Please wait ${limit.waitMinutes} minute(s) before trying again.`,
+    });
+  }
+
   const mailOptions = {
     from: '"TAG Hiring Seminar" <noreply@taxadvocategroup.com>',
-    to: "manderson@taxadvocategroup.com, abanks@taxadvocategroup.com",
+    to: [
+      "manderson@taxadvocategroup.com, abanks@taxadvocategroup.com",
+      "mgray@taxadvocategroup.com",
+    ],
     replyTo: email,
     subject: `🐺 New Seminar Application — ${name}`,
+    attachments: resumeFile
+      ? [
+          {
+            filename: resumeFile.originalname || "resume",
+            content: resumeFile.buffer,
+            contentType: resumeFile.mimetype || undefined,
+          },
+        ]
+      : [],
     html: `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f9f9f9;padding:20px;">
         <div style="background:linear-gradient(135deg,#0e1a3e 0%,#070b16 100%);color:#c9a227;padding:24px;border-radius:10px 10px 0 0;">
@@ -532,6 +786,9 @@ app.post("/api/workshop-apply", async (req, res) => {
             <tr><td style="padding:8px 0;font-weight:700;color:#555;width:120px;">Name:</td><td style="padding:8px 0;color:#111;">${name}</td></tr>
             <tr><td style="padding:8px 0;font-weight:700;color:#555;">Phone:</td><td style="padding:8px 0;"><a href="tel:${phone}" style="color:#c9a227;">${phone}</a></td></tr>
             <tr><td style="padding:8px 0;font-weight:700;color:#555;">Email:</td><td style="padding:8px 0;"><a href="mailto:${email}" style="color:#c9a227;">${email}</a></td></tr>
+            <tr><td style="padding:8px 0;font-weight:700;color:#555;">Seminar:</td><td style="padding:8px 0;color:#111;">${WORKSHOP_EVENT.dateLabel} at ${WORKSHOP_EVENT.timeLabel}</td></tr>
+            <tr><td style="padding:8px 0;font-weight:700;color:#555;">Location:</td><td style="padding:8px 0;color:#111;">${WORKSHOP_EVENT.addressLine}</td></tr>
+            <tr><td style="padding:8px 0;font-weight:700;color:#555;">Resume:</td><td style="padding:8px 0;color:#111;">${resumeFile ? `Attached (${resumeFile.originalname})` : "Not attached"}</td></tr>
           </table>
           <hr style="margin:16px 0;border:none;border-top:1px solid #eee;" />
           <p style="font-weight:700;color:#555;margin:0 0 8px;">Why they want this:</p>
@@ -540,10 +797,8 @@ app.post("/api/workshop-apply", async (req, res) => {
         </div>
       </div>
     `,
-    text: `New Hiring Seminar Application\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\nWhy they want this:\n${why}\n\nSubmitted: ${new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} PT`,
+    text: `New Hiring Seminar Application\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nSeminar: ${WORKSHOP_EVENT.dateLabel} at ${WORKSHOP_EVENT.timeLabel}\nLocation: ${WORKSHOP_EVENT.addressLine}\nResume: ${resumeFile ? `Attached (${resumeFile.originalname})` : "Not attached"}\n\nWhy they want this:\n${why}\n\nSubmitted: ${submittedAt} PT`,
   };
-
-  const emailJob = transporter.sendMail(mailOptions);
 
   // ─── Sheet (secondary — log errors, don't fail the request) ───
   const sheetJob = logWorkshopApplicationToSheet({
@@ -559,8 +814,24 @@ app.post("/api/workshop-apply", async (req, res) => {
   });
 
   try {
-    await Promise.all([emailJob, sheetJob]);
-    return res.status(200).json({ success: true });
+    await transporter.sendMail(mailOptions);
+
+    const smsJob = sendWorkshopConfirmationSms({
+      phone,
+      name,
+    }).catch((err) => {
+      console.error(
+        "[workshop-apply] sms send failed:",
+        err?.response?.data?.error?.message || err.message,
+      );
+      return { sent: false, error: err.message };
+    });
+
+    const [, smsResult] = await Promise.allSettled([sheetJob, smsJob]);
+    const smsSent =
+      smsResult?.status === "fulfilled" && smsResult.value?.sent === true;
+
+    return res.status(200).json({ success: true, smsSent });
   } catch (err) {
     console.error("[workshop-apply] email send failed:", err.message);
     return res.status(500).json({ error: "Failed to submit application" });

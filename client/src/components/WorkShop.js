@@ -125,6 +125,7 @@ const WorkShop = () => {
     email: "",
     why: "",
   });
+  const [resumeFile, setResumeFile] = useState(null);
   const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -224,25 +225,43 @@ const WorkShop = () => {
   const handleChange = (e) =>
     setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
 
+  const handleResumeChange = (e) => {
+    const [file] = e.target.files || [];
+    setResumeFile(file || null);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!consent) return;
     setSubmitting(true);
     setFormError("");
     try {
-      const res = await axios.post("/api/workshop-apply", formData);
+      const payload = new FormData();
+      payload.append("name", formData.name);
+      payload.append("phone", formData.phone);
+      payload.append("email", formData.email);
+      payload.append("why", formData.why);
+      if (resumeFile) payload.append("resume", resumeFile);
+
+      const res = await axios.post("/api/workshop-apply", payload);
       if (res.status === 200) {
         setShowModal(true);
         setSubmitted(true);
       }
     } catch (err) {
       const status = err?.response?.status;
+      const serverMessage = err?.response?.data?.error;
       if (status === 404) {
         setFormError(
           "Server error (404) — call us directly at (818) 230-2223.",
         );
+      } else if (status === 429) {
+        setFormError(
+          serverMessage ||
+            "You have reached the seminar submission limit for now. Please try again later or call (818) 230-2223.",
+        );
       } else {
-        setFormError("Something went wrong. Call (818) 230-2223.");
+        setFormError(serverMessage || "Something went wrong. Call (818) 230-2223.");
       }
     } finally {
       setSubmitting(false);
@@ -443,6 +462,19 @@ const WorkShop = () => {
           <div className="ws__hero-eyebrow ws__hero-eyebrow--bottom">
             <span className="ws__eyebrow-dot" />
             LIMITED SEATS · MAY 9TH AT 10:00 AM · CHATSWORTH, CA
+          </div>
+          <div className="ws__hero-sponsor ws__hero-sponsor--footer">
+            <img
+              src="/images/tengoose_logo.jpg"
+              alt="Tengoose Coffee"
+              className="ws__tengoose-logo ws__tengoose-logo--hero"
+            />
+            <div className="ws__hero-sponsor-copy">
+              <span className="ws__hero-sponsor-kicker">Hospitality Partner</span>
+              <span className="ws__hero-sponsor-text">
+                Coffee and pastries provided by Tengoose Coffee
+              </span>
+            </div>
           </div>
         </div>
 
@@ -785,7 +817,7 @@ const WorkShop = () => {
                 are right now.
               </p>
             </div>
-            <div className="ws__pkg-card ws__pkg-card--wide">
+            <div className="ws__pkg-card">
               <div className="ws__pkg-icon">🚀</div>
               <h3 className="ws__pkg-title">
                 Promote From Within — Every Time
@@ -911,7 +943,8 @@ const WorkShop = () => {
                   <p className="ws__success-msg">
                     Our team will be in touch within 1 business day to lock in
                     your seminar spot. The best decision you've made all year
-                    just happened.
+                    just happened. Check your phone for the seminar confirmation
+                    text with the address and start time.
                   </p>
                   <a href="tel:+18182302223" className="ws__success-cta">
                     Can't Wait? Call Now: (818) 230-2223
@@ -973,6 +1006,25 @@ const WorkShop = () => {
                       rows={6}
                       required
                     />
+                  </div>
+                  <div className="ws__fg">
+                    <label htmlFor="ws-r">Resume (Optional)</label>
+                    <input
+                      id="ws-r"
+                      type="file"
+                      name="resume"
+                      accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                      onChange={handleResumeChange}
+                    />
+                    <div className="ws__file-meta">
+                      <span className="ws__file-note">
+                        Attach a PDF or Word resume if you want us to review it
+                        before the seminar.
+                      </span>
+                      <span className="ws__file-name">
+                        {resumeFile ? resumeFile.name : "No file selected"}
+                      </span>
+                    </div>
                   </div>
                   <div className="ws__form-consent">
                     <label className="ws__consent-lbl">
@@ -1045,6 +1097,17 @@ const WorkShop = () => {
                       </div>
                     </div>
                   ))}
+                  <div className="ws__info-sponsor">
+                    <img
+                      src="/images/tengoose_logo.jpg"
+                      alt="Tengoose Coffee"
+                      className="ws__tengoose-logo ws__tengoose-logo--card"
+                    />
+                    <div className="ws__info-sponsor-copy">
+                      <strong>Coffee and Pastries</strong>
+                      <span>Provided by Tengoose Coffee</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="ws__urgency-card">
@@ -1384,6 +1447,45 @@ const WorkShop = () => {
           text-transform: uppercase;
           color: rgba(255,255,255,0.55);
         }
+        .ws__hero-sponsor {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.9rem;
+          margin-bottom: 1.65rem;
+          padding: 0.7rem 1rem;
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.14);
+          border-radius: 14px;
+          backdrop-filter: blur(8px);
+        }
+        .ws__hero-sponsor--footer {
+          margin: 1.1rem auto 0;
+        }
+        .ws__hero-sponsor-copy {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.15rem;
+          text-align: left;
+        }
+        .ws__hero-sponsor-kicker {
+          font-size: 0.62rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.16em;
+          color: rgba(240,192,96,0.85);
+        }
+        .ws__hero-sponsor-text {
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: rgba(255,255,255,0.84);
+        }
+        .ws__tengoose-logo {
+          display: block;
+          width: auto;
+          object-fit: contain;
+        }
+        .ws__tengoose-logo--hero { height: 44px; }
 
         .ws__hero-h1 {
           display: flex; flex-direction: column;
@@ -1837,6 +1939,39 @@ const WorkShop = () => {
         .ws__fg input::placeholder, .ws__fg textarea::placeholder { color: rgba(255,255,255,0.22); }
         .ws__fg input:focus, .ws__fg textarea:focus { border-color: var(--gold); background: rgba(201,162,39,0.04); }
         .ws__fg textarea { resize: vertical; min-height: 130px; }
+        .ws__fg input[type="file"] {
+          padding: 0.65rem 0.75rem;
+          cursor: pointer;
+        }
+        .ws__fg input[type="file"]::file-selector-button {
+          margin-right: 0.85rem;
+          padding: 0.65rem 0.95rem;
+          border: none;
+          border-radius: 8px;
+          background: rgba(201,162,39,0.18);
+          color: var(--gold-lt);
+          font-family: inherit;
+          font-size: 0.8rem;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          cursor: pointer;
+        }
+        .ws__file-meta {
+          display: flex;
+          justify-content: space-between;
+          gap: 0.8rem;
+          margin-top: 0.55rem;
+          font-size: 0.72rem;
+          line-height: 1.45;
+        }
+        .ws__file-note { color: rgba(255,255,255,0.42); }
+        .ws__file-name {
+          color: var(--gold-lt);
+          font-weight: 700;
+          text-align: right;
+          word-break: break-word;
+        }
         .ws__form-consent { margin: 1rem 0 1.5rem; }
         .ws__consent-lbl {
           display: flex; align-items: flex-start; gap: 0.75rem;
@@ -1897,6 +2032,31 @@ const WorkShop = () => {
           display: block; font-size: 0.68rem;
           text-transform: uppercase; letter-spacing: 0.08em;
           color: var(--gold); margin-bottom: 0.15rem;
+        }
+        .ws__info-sponsor {
+          display: flex;
+          align-items: center;
+          gap: 0.9rem;
+          margin-top: 1rem;
+          padding-top: 1rem;
+          border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .ws__tengoose-logo--card {
+          height: 52px;
+          flex-shrink: 0;
+        }
+        .ws__info-sponsor-copy strong {
+          display: block;
+          font-size: 0.68rem;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          color: var(--gold);
+          margin-bottom: 0.15rem;
+        }
+        .ws__info-sponsor-copy span {
+          font-size: 0.84rem;
+          color: rgba(255,255,255,0.78);
+          line-height: 1.45;
         }
         .ws__urgency-card {
           background: rgba(155,32,32,0.1);
@@ -1970,6 +2130,16 @@ const WorkShop = () => {
           .ws__hero-proof { gap: 0.5rem; }
           .ws__hero-datebanner { padding: 0.9rem 1.5rem; }
           .ws__datebanner-date { font-size: 1.35rem; }
+          .ws__hero-sponsor {
+            flex-direction: column;
+            text-align: center;
+          }
+          .ws__hero-sponsor-copy {
+            align-items: center;
+            text-align: center;
+          }
+          .ws__file-meta { flex-direction: column; }
+          .ws__file-name { text-align: left; }
         }
         @media (max-width: 540px) {
           .ws__board-grid { grid-template-columns: 1fr; }
