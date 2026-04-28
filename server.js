@@ -611,7 +611,7 @@ async function sendWorkshopConfirmationSms({ phone, name }) {
     `Hi ${firstName}, you've confirmed your spot at the TAG seminar on ` +
     `${WORKSHOP_EVENT.dateLabel} at ${WORKSHOP_EVENT.timeLabel}. ` +
     `Address: ${WORKSHOP_EVENT.addressLine}. ` +
-    `Questions? Call or text ${formatUsPhone(trackingNumber)}.`;
+    `Questions? Call or text ${formatUsPhone(orocess.env.SEMINAR_CB_NUMBER)}.`;
 
   await axios.post(
     `https://api.callrail.com/v3/a/${accountId}/text-messages.json`,
@@ -668,7 +668,9 @@ function loadServiceAccountCredentials() {
     }
 
     const envRaw = fs.readFileSync(envFilePath, "utf8");
-    const inlineMatch = envRaw.match(/^\s*GOOGLE_SERVICE_ACCOUNT_JSON=(\{.*\})\s*$/m);
+    const inlineMatch = envRaw.match(
+      /^\s*GOOGLE_SERVICE_ACCOUNT_JSON=(\{.*\})\s*$/m,
+    );
     if (inlineMatch?.[1]) {
       _serviceAccountCredentials = JSON.parse(inlineMatch[1]);
       return _serviceAccountCredentials;
