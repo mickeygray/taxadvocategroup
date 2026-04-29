@@ -611,6 +611,7 @@ async function sendWorkshopConfirmationSms({ phone, name }) {
     `Hi ${firstName}, you've confirmed your spot at the TAG seminar on ` +
     `${WORKSHOP_EVENT.dateLabel} at ${WORKSHOP_EVENT.timeLabel}. ` +
     `Address: ${WORKSHOP_EVENT.addressLine}. ` +
+    `Let us know anything you want to about you that makes you stand out.` +
     `Questions? Call or text ${formatUsPhone(orocess.env.SEMINAR_CB_NUMBER)}.`;
 
   await axios.post(
