@@ -11,7 +11,7 @@ const MUSIC_SRC = `https://www.youtube.com/embed/${HYPE_TRACK_YT_ID}?enablejsapi
 
 const seminarDetails = {
   title: "Tax Advocate Group Hiring Seminar",
-  schedule: "Upcoming dates confirmed by recruiting",
+  schedule: "Saturday, July 25, 2026 at 10:00 AM PT",
   location: "Chatsworth, CA",
   address: "21625 Prairie Street, Suite #200, Chatsworth, CA 91311",
   format: "In-person hiring seminar",

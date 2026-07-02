@@ -481,7 +481,7 @@ const { google } = require("googleapis");
 
 const WORKSHOP_EVENT = Object.freeze({
   title: "Tax Advocate Group Hiring Seminar",
-  scheduleLabel: "Upcoming dates confirmed by recruiting",
+  scheduleLabel: "Saturday, July 25, 2026 at 10:00 AM PT",
   addressLine: "21625 Prairie St, Suite #200, Chatsworth, CA 91311",
 });
 
