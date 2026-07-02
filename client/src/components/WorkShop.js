@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import SEO from "./SEO";
 
-const CONTACT_PHONE = "(818) 230-2223";
-const CONTACT_PHONE_HREF = "tel:+18182302223";
+const CONTACT_PHONE = "(818) 649-3016";
+const CONTACT_PHONE_HREF = "tel:+18186493016";
 const CONTACT_EMAIL = "apply@taxadvocategroup.com";
 const HYPE_TRACK_YT_ID = "tDsZoQX1gis";
 const MUSIC_SRC = `https://www.youtube.com/embed/${HYPE_TRACK_YT_ID}?enablejsapi=1&loop=1&playlist=${HYPE_TRACK_YT_ID}&controls=0&modestbranding=1&playsinline=1`;

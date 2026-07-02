@@ -623,7 +623,7 @@ async function sendWorkshopConfirmationSms({ phone, name }) {
     `Our recruiting team will confirm the next available session details. ` +
     `Address: ${WORKSHOP_EVENT.addressLine}. ` +
     `Let us know anything about you that makes you stand out. ` +
-    `Questions? Call or text ${formatUsPhone(process.env.SEMINAR_CB_NUMBER || "8182302223")}.`;
+    `Questions? Call or text ${formatUsPhone(process.env.SEMINAR_CB_NUMBER || "8186493016")}.`;
 
   await axios.post(
     `https://api.callrail.com/v3/a/${accountId}/text-messages.json`,
