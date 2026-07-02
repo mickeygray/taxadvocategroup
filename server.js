@@ -481,8 +481,7 @@ const { google } = require("googleapis");
 
 const WORKSHOP_EVENT = Object.freeze({
   title: "Tax Advocate Group Hiring Seminar",
-  dateLabel: "Friday, May 9th, 2026",
-  timeLabel: "10:00 AM",
+  scheduleLabel: "Upcoming dates confirmed by recruiting",
   addressLine: "21625 Prairie St, Suite #200, Chatsworth, CA 91311",
 });
 
@@ -620,11 +619,11 @@ async function sendWorkshopConfirmationSms({ phone, name }) {
       .trim()
       .split(/\s+/)[0] || "there";
   const message =
-    `Hi ${firstName}, you've confirmed your spot at the TAG seminar on ` +
-    `${WORKSHOP_EVENT.dateLabel} at ${WORKSHOP_EVENT.timeLabel}. ` +
+    `Hi ${firstName}, your application for the TAG hiring seminar has been received. ` +
+    `Our recruiting team will confirm the next available session details. ` +
     `Address: ${WORKSHOP_EVENT.addressLine}. ` +
-    `Let us know anything you want to about you that makes you stand out.` +
-    `Questions? Call or text ${formatUsPhone(orocess.env.SEMINAR_CB_NUMBER)}.`;
+    `Let us know anything about you that makes you stand out. ` +
+    `Questions? Call or text ${formatUsPhone(process.env.SEMINAR_CB_NUMBER || "8182302223")}.`;
 
   await axios.post(
     `https://api.callrail.com/v3/a/${accountId}/text-messages.json`,
@@ -780,7 +779,7 @@ app.post("/api/workshop-apply", workshopResumeUpload, async (req, res) => {
       "mgray@taxadvocategroup.com",
     ],
     replyTo: email,
-    subject: `🐺 New Seminar Application — ${name}`,
+    subject: `New Hiring Seminar Application - ${name}`,
     attachments: resumeFile
       ? [
           {
@@ -794,25 +793,25 @@ app.post("/api/workshop-apply", workshopResumeUpload, async (req, res) => {
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f9f9f9;padding:20px;">
         <div style="background:linear-gradient(135deg,#0e1a3e 0%,#070b16 100%);color:#c9a227;padding:24px;border-radius:10px 10px 0 0;">
           <h1 style="margin:0;font-size:22px;">New Hiring Seminar Application</h1>
-          <p style="margin:6px 0 0;color:#fff;font-size:13px;opacity:0.85;">May 9th Seminar · Tax Advocate Group</p>
+          <p style="margin:6px 0 0;color:#fff;font-size:13px;opacity:0.85;">Hiring Seminar Application - Tax Advocate Group</p>
         </div>
         <div style="background:#fff;padding:24px;border-radius:0 0 10px 10px;border:1px solid #e5e5e5;border-top:none;">
           <table style="width:100%;border-collapse:collapse;">
             <tr><td style="padding:8px 0;font-weight:700;color:#555;width:120px;">Name:</td><td style="padding:8px 0;color:#111;">${name}</td></tr>
             <tr><td style="padding:8px 0;font-weight:700;color:#555;">Phone:</td><td style="padding:8px 0;"><a href="tel:${phone}" style="color:#c9a227;">${phone}</a></td></tr>
             <tr><td style="padding:8px 0;font-weight:700;color:#555;">Email:</td><td style="padding:8px 0;"><a href="mailto:${email}" style="color:#c9a227;">${email}</a></td></tr>
-            <tr><td style="padding:8px 0;font-weight:700;color:#555;">Seminar:</td><td style="padding:8px 0;color:#111;">${WORKSHOP_EVENT.dateLabel} at ${WORKSHOP_EVENT.timeLabel}</td></tr>
+            <tr><td style="padding:8px 0;font-weight:700;color:#555;">Seminar:</td><td style="padding:8px 0;color:#111;">${WORKSHOP_EVENT.scheduleLabel}</td></tr>
             <tr><td style="padding:8px 0;font-weight:700;color:#555;">Location:</td><td style="padding:8px 0;color:#111;">${WORKSHOP_EVENT.addressLine}</td></tr>
             <tr><td style="padding:8px 0;font-weight:700;color:#555;">Resume:</td><td style="padding:8px 0;color:#111;">${resumeFile ? `Attached (${resumeFile.originalname})` : "Not attached"}</td></tr>
           </table>
           <hr style="margin:16px 0;border:none;border-top:1px solid #eee;" />
           <p style="font-weight:700;color:#555;margin:0 0 8px;">Why they want this:</p>
           <p style="color:#111;line-height:1.6;white-space:pre-wrap;margin:0;background:#faf6e8;padding:14px;border-left:3px solid #c9a227;border-radius:4px;">${why}</p>
-          <p style="margin:20px 0 0;font-size:12px;color:#888;">Submitted ${new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} PT · Also logged to Google Sheet.</p>
+          <p style="margin:20px 0 0;font-size:12px;color:#888;">Submitted ${new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })} PT - Also logged to Google Sheet.</p>
         </div>
       </div>
     `,
-    text: `New Hiring Seminar Application\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nSeminar: ${WORKSHOP_EVENT.dateLabel} at ${WORKSHOP_EVENT.timeLabel}\nLocation: ${WORKSHOP_EVENT.addressLine}\nResume: ${resumeFile ? `Attached (${resumeFile.originalname})` : "Not attached"}\n\nWhy they want this:\n${why}\n\nSubmitted: ${submittedAt} PT`,
+    text: `New Hiring Seminar Application\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nSeminar: ${WORKSHOP_EVENT.scheduleLabel}\nLocation: ${WORKSHOP_EVENT.addressLine}\nResume: ${resumeFile ? `Attached (${resumeFile.originalname})` : "Not attached"}\n\nWhy they want this:\n${why}\n\nSubmitted: ${submittedAt} PT`,
   };
 
   // ─── Sheet (secondary — log errors, don't fail the request) ───
@@ -1678,6 +1677,7 @@ app.get("/sitemap.xml", async (req, res) => {
     { url: "/tax-news", changefreq: "weekly", priority: 0.6 },
     { url: "/state-tax-guide", changefreq: "monthly", priority: 0.8 },
     { url: "/qualify-now", changefreq: "monthly", priority: 0.6 },
+    { url: "/seminar", changefreq: "monthly", priority: 0.6 },
     { url: "/privacy-policy", changefreq: "yearly", priority: 0.3 },
     { url: "/terms-of-service", changefreq: "yearly", priority: 0.3 },
   ];

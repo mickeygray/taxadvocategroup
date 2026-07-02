@@ -15,6 +15,7 @@ const links = [
   { url: "/our-tax-services", changefreq: "monthly", priority: 0.7 },
   { url: "/contact-us", changefreq: "yearly", priority: 0.5 },
   { url: "/tax-news", changefreq: "weekly", priority: 0.6 },
+  { url: "/seminar", changefreq: "monthly", priority: 0.6 },
 ];
 
 // Add dynamic blog posts

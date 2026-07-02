@@ -34,6 +34,7 @@ const staticPages = [
   { loc: "/tax-protection-plans", priority: "0.7", changefreq: "monthly" },
   { loc: "/state-tax-guide", priority: "0.8", changefreq: "monthly" },
   { loc: "/qualify-now", priority: "0.6", changefreq: "monthly" },
+  { loc: "/seminar", priority: "0.6", changefreq: "monthly" },
   { loc: "/privacy-policy", priority: "0.2", changefreq: "yearly" },
   { loc: "/terms-of-service", priority: "0.2", changefreq: "yearly" },
 ];
