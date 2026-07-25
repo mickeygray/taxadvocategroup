@@ -780,17 +780,6 @@ const WorkShop = () => {
                   <dd>Medical, dental, vision, and 401(k) for eligible employees</dd>
                 </div>
               </dl>
-              <div className="ws__partner">
-                <img
-                  src="/images/tengoose_logo.jpg"
-                  alt="Tengoose Coffee"
-                  className="ws__partner-logo"
-                />
-                <p>
-                  Coffee and pastries are provided by Tengoose Coffee during
-                  select seminar sessions.
-                </p>
-              </div>
             </aside>
           </div>
         </div>
@@ -1760,29 +1749,6 @@ const WorkShop = () => {
           color: rgba(255, 255, 255, 0.88);
           font-size: 0.9rem;
           line-height: 1.55;
-        }
-
-        .ws__partner {
-          display: flex;
-          gap: 0.85rem;
-          align-items: center;
-          margin-top: 1.2rem;
-          padding: 1rem;
-          border-radius: 8px;
-          background: rgba(255, 255, 255, 0.08);
-        }
-
-        .ws__partner-logo {
-          width: 60px;
-          height: auto;
-          flex: 0 0 auto;
-        }
-
-        .ws__partner p {
-          margin: 0;
-          color: rgba(255, 255, 255, 0.72);
-          font-size: 0.8rem;
-          line-height: 1.45;
         }
 
         .ws__success {
