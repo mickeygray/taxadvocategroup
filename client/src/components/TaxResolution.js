@@ -70,6 +70,7 @@ const TaxResolution = () => {
             communications with the IRS, ensuring that your case is handled
             efficiently and effectively, so you don’t have to face it alone.
           </p>
+          <p><a href="/tax-resolution/dealing-with-the-irs">Dealing with the IRS guide</a></p>
 
           {/* Innocent Spouse Relief */}
           <h2 className="tax-resolution-subtitle">✔ Innocent Spouse Relief</h2>
@@ -94,6 +95,7 @@ const TaxResolution = () => {
             settlements to resolving back taxes, we’ll work to find the best
             solution.
           </p>
+          <p><a href="/tax-resolution/state-tax-relief">State tax relief guide</a></p>
 
           {/* Statute of Limitations */}
           <h2 className="tax-resolution-subtitle">✔ Statute of Limitations</h2>
@@ -158,6 +160,7 @@ const TaxResolution = () => {
             protecting your business from further liabilities and keeping your
             operations running smoothly.
           </p>
+          <p><a href="/tax-resolution/payroll-tax-relief">Payroll tax relief guide</a></p>
 
           {/* Wage Garnishment Relief */}
           <h2 className="tax-resolution-subtitle">✔ Wage Garnishment Relief</h2>

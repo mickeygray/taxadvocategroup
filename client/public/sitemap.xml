@@ -56,26 +56,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.taxadvocategroup.com/qualify-now</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.taxadvocategroup.com/seminar</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.taxadvocategroup.com/privacy-policy</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://www.taxadvocategroup.com/terms-of-service</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
     <loc>https://www.taxadvocategroup.com/tax-relief/tax-consultation</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -157,6 +137,106 @@
   </url>
   <url>
     <loc>https://www.taxadvocategroup.com/tax-negotiation/offer-in-compromise</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/tax-filing-help-vs-irs-problem</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/paycheck-gig-income-year-end-tax-check</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-account-check-payments-transcripts-notices</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/2027-standard-deduction-single-filers-seniors</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-cp40-verify-private-tax-collector</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/new-taxpayer-advocate-law-stalled-irs-issue</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-tax-pro-account-business-payments-november-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-penalty-relief-2026-aep-first-time-abate-reasonable-cause</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-wage-levy-paycheck-reduced-next-steps</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-tax-lien-selling-refinancing-property</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-payment-plan-year-end-tax-check</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/currently-not-collectible-basic-living-expenses</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/disagree-irs-notice-issue-evidence-deadline</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-adoption-tax-credit-automatic-refunds-october-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-epcrs-icrs-retirement-plan-correction-october-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-enforcement-hiring-surge-october-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-ghost-preparer-tigta-report-october-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/doj-irs-national-tax-enforcement-surge-october-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/senate-passes-tas-act-october-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.taxadvocategroup.com/tax-news/irs-kwong-denial-letters-pandemic-penalty-refunds-october-2026</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -767,11 +847,6 @@
   </url>
   <url>
     <loc>https://www.taxadvocategroup.com/state-tax-guide/state-income-tax-help-wyoming</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.taxadvocategroup.com/state-tax-guide/state-income-tax-help-district-of-columbia</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
