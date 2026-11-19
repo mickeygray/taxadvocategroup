@@ -1,0 +1,15 @@
+.blog-article-summary {
+  border-left: 3px solid #2e6844;
+  background: #f6faf7;
+  color: #1f3328;
+  padding: .75rem 1rem;
+  font-weight: 600;
+}
+
+.blog-related-guides {
+  margin-top: 2rem;
+}
+
+.blog-related-guides li {
+  margin-bottom: .55rem;
+}
